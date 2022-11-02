@@ -1,0 +1,43 @@
+Le programme prend en argument un fichier indiquant les elements de la map ainsi que leurs proprietes
+
+-- Lumiere ambiante            A coeff R,G,B
+
+	A 	  : identifiant
+	coeff : coefficient de luminosite type double entre 0 et 1
+	R,G,B : couleurs au format R G B compris entre 0 et 255
+
+-- Camera					   C x,y,z orx,ory,orz FOV
+
+	C : identifiant
+	x,y,z : coordonnees dans le plan du point de vue
+	orx,ory,orz : composantes du vecteur d'orientation du point de vue, comprises entre 0 et 1
+	FOV : angle total de vue allant de 0 a 180
+
+-- Lumiere					    L x,y,z coeff
+
+L : identifiant
+x,y,z : coordonnees du point de Lumiere
+coeff : ratio de luminosite
+
+-- Sphere						sp x,y,z diam R,G,B
+
+sp : identifiant
+x,y,z : coordonnees du centre de la Sphere
+diam : diametre sous forme d'un double
+R,G,B : couleurs au format R G B compris entre 0 et 255
+
+-- Plan							pl x,y,z orx,ory,orz R,G,B
+
+pl : identifiant
+x,y,z coordonnees d'un point du plan
+orx,ory,orz : composantes du vecteur d'orientation du plan, comprises entre -1 et 1
+R,G,B : couleurs au format R G B compris entre 0 et 255
+
+--Cylindre						cy x,y,z orx,ory,orz diam height R,G,B
+
+cy : identifiant
+x,y,z coordonnees du centre de la base
+orx,ory,orz : composantes du vecteur d'orientation du cylindre, comprises entre -1 et 1
+diam : diametre
+height : hauteur
+R,G,B : couleurs au format R G B compris entre 0 et 255
