@@ -1,8 +1,10 @@
-NAME = minishell
+NAME = miniRT
 
 FSANITIZE = -g3 -fsanitize=address
 
 SRCSPATH = srcs
+
+OBJ_PATH = objs
 
 ERR_PATH = error
 
@@ -12,8 +14,11 @@ FT_PATH = libft
 
 HEADERS = includes \
 
-SRCS = 	main.c	\
-		dot.c	\
+SRCS = 	main.c				\
+		dot.c				\
+		vect_operations.c	\
+		vect_product.c 		\
+
 		
 CC = gcc #$(FSANITIZE)
 
@@ -35,7 +40,7 @@ WHITE		=	\033[37m
 
 vpath %.h $(HEADERS)
 vpath %.c $(SRCSPATH)			\
- 	$(SRCSPATH)/$(ERR_PATH) 	\
+ 	$(SRCSPATH)/$(VECT_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)
@@ -44,12 +49,11 @@ all: $(NAME)
 
 $(NAME):		$(OBJS)
 			@make -C $(FT_PATH)
-			@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -I libft/include -L$(FT_PATH) -lft -o $(NAME)
-			@echo "$(WHITE)Compilation $(GRAS)minishell $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+			@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -I libft/include -L$(FT_PATH) -lft -lm -o $(NAME)
+			@echo "$(WHITE)Compilation $(GRAS)miniRT $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o:		%.c
-			@$(CC) $(CFLAGS) -I $(HEADERS) -I libft/include -I/usr/include -c $< -o $@
-
+			@$(CC) $(CFLAGS) -I $(HEADERS) -I libft/include -I/usr/include -lm -c $< -o $@
 
 $(OBJS):	| $(OBJ_PATH)
 
