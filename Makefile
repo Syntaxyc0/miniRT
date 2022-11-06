@@ -10,6 +10,10 @@ ERR_PATH = error
 
 VECT_PATH = vectors
 
+SPHERE_PATH = sphere
+
+PLANE_PATH = plane
+
 FT_PATH = libft
 
 HEADERS = includes \
@@ -18,6 +22,10 @@ SRCS = 	main.c				\
 		dot.c				\
 		vect_operations.c	\
 		vect_product.c 		\
+		init_sphere.c		\
+		intersphere.c		\
+		get_intersection_point.c \
+
 
 		
 CC = gcc #$(FSANITIZE)
@@ -41,6 +49,8 @@ WHITE		=	\033[37m
 vpath %.h $(HEADERS)
 vpath %.c $(SRCSPATH)			\
  	$(SRCSPATH)/$(VECT_PATH) 	\
+ 	$(SRCSPATH)/$(SPHERE_PATH) 	\
+ 	$(SRCSPATH)/$(PLANE_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)
