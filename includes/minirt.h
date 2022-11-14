@@ -14,6 +14,13 @@ typedef struct s_vect
     double  z;
 }   t_vect;
 
+typedef struct s_color
+{
+    double  red;
+    double  green;
+    double  blue;
+}   t_color;
+
 typedef struct s_ray
 {
     t_vect  start;
@@ -24,14 +31,15 @@ typedef struct s_sphere
 {
     t_vect center;
     double  radius;
+    t_color color;
 }   t_sphere;
 
 typedef struct s_plane
 {
     t_vect  point;
     t_vect  normal;
+    t_color color;
 }   t_plane;
-
 
 // Vectors
 
@@ -44,7 +52,9 @@ t_vect  vect_product(t_vect a, t_vect b);
 t_vect  normalize_v(t_vect a);
 
 int         intersphere(t_sphere *sphere, t_ray ray, double *t);
-t_sphere    *init_sphere(t_vect center, double radius);
+t_sphere    *init_sphere(t_vect center, double radius, t_color color);
+
+t_plane *init_plane(t_vect point, t_vect normal, t_color color);
 
 t_vect  get_intersection_point(t_ray ray, double t);
 

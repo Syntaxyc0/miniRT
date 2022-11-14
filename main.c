@@ -56,7 +56,12 @@ int main(int argc, char **argv)
     t_ray   ray;
     double result;
     t_sphere *sphere;
+    t_color color;
 
+    color.red = 0;
+    color.green = 0;
+    color.blue = 0;
+    
     (void)argc;
     a.x = atof(argv[1]);
     a.y = atof(argv[2]);
@@ -73,7 +78,7 @@ int main(int argc, char **argv)
 
     ray.start = a;
     ray.dir = b;
-    sphere = init_sphere(origin, 2.0);
+    sphere = init_sphere(origin, 2.0, color);
     if (!intersphere(sphere, ray, &result))
         return (1);
     printf("result %f\n", result);
