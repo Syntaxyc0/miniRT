@@ -41,6 +41,15 @@ typedef struct s_plane
     t_color color;
 }   t_plane;
 
+typedef struct s_cylinder
+{
+	t_vect	point;
+	t_vect	normal;
+	double	diameter;
+	double	height;
+	t_color	color;	
+}	t_cylinder;
+
 // Vectors
 
 double  dot(t_vect a, t_vect b);
@@ -55,8 +64,13 @@ int         intersphere(t_sphere *sphere, t_ray ray, double *t);
 t_sphere    *init_sphere(t_vect center, double radius, t_color color);
 
 t_plane *init_plane(t_vect point, t_vect normal, t_color color);
+int	interplane(t_plane *plane, t_ray ray, double *t);
+
+t_cylinder	*init_cylinder(t_vect point, t_vect normal, double diameter, double height, t_color color);
+int	intercylinder(t_cylinder *cyl, t_ray ray, double *t);
 
 t_vect  get_intersection_point(t_ray ray, double t);
+int solve_equation(double a, double b, double c, double *t);
 
 
 

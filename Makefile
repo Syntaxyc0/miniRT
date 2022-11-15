@@ -14,6 +14,8 @@ SPHERE_PATH = sphere
 
 PLANE_PATH = plane
 
+CYL_PATH = cylinder
+
 FT_PATH = libft
 
 HEADERS = includes \
@@ -24,7 +26,11 @@ SRCS = 	main.c				\
 		vect_product.c 		\
 		init_sphere.c		\
 		intersphere.c		\
+		init_plane.c		\
+		interplane.c		\
 		get_intersection_point.c \
+		intercylinder.c 		\
+		init_cylinder.c			\
 
 
 		
@@ -51,6 +57,7 @@ vpath %.c $(SRCSPATH)			\
  	$(SRCSPATH)/$(VECT_PATH) 	\
  	$(SRCSPATH)/$(SPHERE_PATH) 	\
  	$(SRCSPATH)/$(PLANE_PATH) 	\
+ 	$(SRCSPATH)/$(CYL_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)

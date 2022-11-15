@@ -14,9 +14,7 @@ int solve_equation(double a, double b, double c, double *t)
     else
     {
         r0 = (-1 * b - sqrt(delta)) / (2 * a);
-        printf("r0 : %f\n", r0);
         r1 = (-1 * b + sqrt(delta)) / (2 * a);
-        printf("r1 : %f\n", r1);
         if (r0 <= 0 || r1 <= 0)
             return(0);
         if (r0 < r1)
