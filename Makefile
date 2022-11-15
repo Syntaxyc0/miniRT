@@ -30,7 +30,6 @@ SRCS		=	main.c						\
 				error_print.c				\
 				check_args.c				\
 				parsing.c					\
-				init.c						\
 		
 CC			= gcc #$(FSANITIZE)
 

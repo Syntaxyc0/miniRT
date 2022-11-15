@@ -1,20 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 12:50:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 12:56:29 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/15 14:39:34 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_objects	init_struct_object(void);
+void	add_obj(int	type, t_objects **obj)
 {
-	t_objects obj;
+	if (!obj)
+	{
+		*obj = new_struct_object();
+		obj = &*obj;
+	}
+	else
+	{
+		*obj = last_obj(obj);
+		(*obj)->next = new_struct_object();
+		*obj = (*obj)->next;
+	}
+	obj_type(*obj, type);
+}
+
+t_objects	*last_obj(t_objects **obj)
+{
+	while (*obj)
+		*obj = (*obj)->next;
+	return (*obj);
+}
+
+t_objects	*new_struct_object(void)
+{
+	t_objects *obj;
 
 	obj = malloc(sizeof(t_objects));
 	if (!obj)
@@ -22,7 +45,15 @@ t_objects	init_struct_object(void);
 		print_error(ERR_MALLOC);
 		exit(EXIT_FAILURE);
 	}
-	obj.type = 0;
-	obj.object = 0;
-	obj.next = 0;
+	obj->type = 0;
+	obj->object = 0;
+	obj->next = 0;
+}
+
+void	obj_type(t_objects *obj, int type)
+{
+	if (type == 1)
+	{
+		obj->type = 1;
+		obj->object = 
 }

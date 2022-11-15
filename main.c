@@ -89,10 +89,12 @@
 
 int main(int argc, char **argv)
 {
+	t_objects **obj;
 	int 	fd;
 
 	fd = 0;
-    parsing(fd, argc, argv);
+	obj = 0;
+    parsing(fd, argc, argv, obj);
 }
 
 // int main()

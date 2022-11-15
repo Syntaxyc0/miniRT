@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 12:58:45 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:33:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <math.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 
 # define ERR_NBARGS "wrong number of args"
 # define ERR_TYPEARG "must be a .rt"
 # define ERR_MALLOC "malloc failed"
+# define ERR_ID "id unknown"
 
 typedef struct s_vect
 {
@@ -102,10 +103,12 @@ t_vect  get_intersection_point(t_ray ray, double t);
 
 // Parsing
 
-void	parsing(int fd, int ac, char **av);
-int 	check_args(int ac, char **av);
-int		is_rt(char *str);
-int		str_big(char *str1, char *str2);
+void		parsing(int fd, int ac, char **av, t_objects *obj);
+int 		check_args(int ac, char **av);
+int			is_rt(char *str);
+int			str_big(char *str1, char *str2);
+t_objects	*new_struct_object(void);
+t_objects	*last_obj(t_objects **obj);
 
 // Error
 
