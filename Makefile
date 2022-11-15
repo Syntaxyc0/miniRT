@@ -1,42 +1,46 @@
-NAME = miniRT
+NAME		= miniRT
 
-FSANITIZE = -g3 -fsanitize=address
+FSANITIZE	= -g3 -fsanitize=address
 
-SRCSPATH = srcs
+SRCSPATH 	= srcs
 
-OBJ_PATH = objs
+OBJ_PATH	= objs
 
-ERR_PATH = error
+ERR_PATH	= error
 
-VECT_PATH = vectors
+PARS_PATH	= parsing
 
-SPHERE_PATH = sphere
+VECT_PATH	= vectors
 
-PLANE_PATH = plane
+SPHERE_PATH	= sphere
 
-FT_PATH = libft
+PLANE_PATH	= plane
 
-HEADERS = includes \
+FT_PATH		= libft
 
-SRCS = 	main.c				\
-		dot.c				\
-		vect_operations.c	\
-		vect_product.c 		\
-		init_sphere.c		\
-		intersphere.c		\
-		get_intersection_point.c \
+HEADERS 	= includes \
 
-
+SRCS		=	main.c						\
+				dot.c						\
+				vect_operations.c			\
+				vect_product.c 				\
+				init_sphere.c				\
+				intersphere.c				\
+				get_intersection_point.c	\
+				error_print.c				\
+				check_args.c				\
+				parsing.c					\
+				init.c						\
 		
-CC = gcc #$(FSANITIZE)
+CC			= gcc #$(FSANITIZE)
 
-CFLAGS = -MMD -Wall -Werror -Wextra -g3
+CFLAGS		= -MMD -Wall -Werror -Wextra -g3
 
-RM = rm -rf
+RM			= rm -rf
 
-OBJS =  $(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
+OBJS		=  $(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
 
-DEPS = $(OBJS:.o=.d)
+DEPS		= $(OBJS:.o=.d)
 
 SUPPR		=	\033[00m
 GRAS		=	\033[01m
@@ -51,38 +55,40 @@ vpath %.c $(SRCSPATH)			\
  	$(SRCSPATH)/$(VECT_PATH) 	\
  	$(SRCSPATH)/$(SPHERE_PATH) 	\
  	$(SRCSPATH)/$(PLANE_PATH) 	\
+ 	$(SRCSPATH)/$(ERR_PATH) 	\
+ 	$(SRCSPATH)/$(PARS_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)
 
-all: $(NAME)
+all				: $(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME)			: $(OBJS)
 			@make -C $(FT_PATH)
 			@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -I libft/include -L$(FT_PATH) -lft -lm -o $(NAME)
 			@echo "$(WHITE)Compilation $(GRAS)miniRT $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
-$(OBJ_PATH)/%.o:		%.c
+$(OBJ_PATH)/%.o	: %.c
 			@$(CC) $(CFLAGS) -I $(HEADERS) -I libft/include -I/usr/include -lm -c $< -o $@
 
-$(OBJS):	| $(OBJ_PATH)
+$(OBJS)			: | $(OBJ_PATH)
 
-$(OBJ_PATH):
+$(OBJ_PATH)		:
 	@mkdir -p $(OBJ_PATH)
 
-clean:
+clean			:
 	@make clean -C $(FT_PATH)
 	@${RM} $(OBJ_PATH)
 
-fclean:
+fclean			:
 	@make fclean -C $(FT_PATH)
 	@make clean
 	@${RM} ${NAME}
 
-re:
+re				:
 	@make fclean
 	@make all
 
 -include $(DEPS)
 
-.PHONY:			all clean fclean re
+.PHONY			: all clean fclean re
