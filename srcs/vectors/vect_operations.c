@@ -1,4 +1,4 @@
-#include "miniRT.h"
+#include "minirt.h"
 
 t_vect  substract_v(t_vect a, t_vect b)
 {
