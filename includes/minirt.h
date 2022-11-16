@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 13:27:49 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/16 14:30:56 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct	s_objects
 	int					type;
 	void				*object;
 	struct s_objects	*next;
+	char				**line;
 }	t_objects;
 
 /*
@@ -122,12 +123,19 @@ t_vect  get_intersection_point(t_ray ray, double t);
 
 // Parsing
 
-void		parsing(int fd, int ac, char **av, t_objects *obj);
+void		parsing(int fd, int ac, char **av, t_objects **obj);
+void		init_id(char *line, char *id, t_objects **obj);
 int 		check_args(int ac, char **av);
 int			is_rt(char *str);
 int			str_big(char *str1, char *str2);
 t_objects	*new_struct_object(void);
 t_objects	*last_obj(t_objects **obj);
+t_ambiant	*new_ambiant(void);
+t_camera	*new_camera(void);
+t_light		*new_light(void);
+t_sphere	*new_sphere(void);
+t_plane		*new_plane(void);
+t_cylinder	*new_cylinder(void);
 
 // Error
 
