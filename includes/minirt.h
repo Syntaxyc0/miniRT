@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 14:33:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:27:49 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ typedef struct s_ray
     t_vect  start;
     t_vect  dir;
 }   t_ray;
+
+typedef struct s_ambiant
+{
+	double	intensity;
+	t_color	color;
+}	t_ambiant;
+
+typedef struct	s_camera
+{
+	t_vect	position;
+	t_vect	orientation;
+	double	angle;
+}	t_camera;
+
+typedef struct s_light
+{
+	t_vect	position;
+	double	intensity;
+}	t_light;
 
 typedef struct s_sphere
 {

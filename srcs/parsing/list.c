@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 14:39:34 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/16 11:57:55 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,36 @@ void	obj_type(t_objects *obj, int type)
 	if (type == 1)
 	{
 		obj->type = 1;
-		obj->object = 
+		obj->object = (*void)new_ambiant();
+	}
+	if (type == 2)
+	{
+		obj->type = 2;
+		obj->object = (*void)new_camera();
+	}
+	if (type == 3)
+	{
+		obj->type = 3;
+		obj->object = (*void)new_light();
+	}
+	obj_type2(obj, type);
+}
+
+void	obj_type2(t_objects *obj, int type)
+{
+	if (type == 4)
+	{
+		obj->type = 4;
+		obj->object = (*void)new_sphere();
+	}
+	if (type == 5)
+	{
+		obj->type = 5;
+		obj->object = (*void)new_plane();
+	}
+	if (type == 6)
+	{
+		obj->type = 6;
+		obj->object = (*void)new_cylinder();
+	}
 }
