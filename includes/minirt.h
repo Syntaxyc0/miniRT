@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 14:30:56 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/16 16:02:24 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,41 @@ typedef struct s_color
 
 typedef struct s_ray
 {
-    t_vect  start;
-    t_vect  dir;
+    t_vect  *start;
+    t_vect * dir;
 }   t_ray;
 
 typedef struct s_ambiant
 {
 	double	intensity;
-	t_color	color;
+	t_color	*color;
 }	t_ambiant;
 
 typedef struct	s_camera
 {
-	t_vect	position;
-	t_vect	orientation;
+	t_vect	*position;
+	t_vect	*orientation;
 	double	angle;
 }	t_camera;
 
 typedef struct s_light
 {
-	t_vect	position;
+	t_vect	*position;
 	double	intensity;
 }	t_light;
 
 typedef struct s_sphere
 {
-    t_vect center;
+    t_vect *center;
     double  radius;
-    t_color color;
+    t_color *color;
 }   t_sphere;
 
 typedef struct s_plane
 {
-    t_vect  point;
-    t_vect  normal;
-    t_color color;
+    t_vect  *point;
+    t_vect  *normal;
+    t_color *color;
 }   t_plane;
 
 typedef struct s_cylinder
@@ -140,5 +140,12 @@ t_cylinder	*new_cylinder(void);
 // Error
 
 void	print_error(char *msg);
+void	free_exit(t_objects **obj);
+void	msg_free_exit(t_objects **obj, char *msg);
+void	free_objects(t_objects **obj);
+
+// Utils
+
+double	ft_atof(char *str);
 
 #endif

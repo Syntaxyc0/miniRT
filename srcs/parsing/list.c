@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 14:20:36 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:43:53 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	add_obj(int	type, t_objects **obj, char *line)
 		(*obj)->next = new_struct_object();
 		*obj = (*obj)->next;
 	}
-	obj_type(*obj, type, line);
+	obj_type(*obj, type, line, obj);
 }
 
 t_objects	*last_obj(t_objects **obj)
@@ -50,13 +50,13 @@ t_objects	*new_struct_object(void)
 	obj->next = 0;
 }
 
-void	obj_type(t_objects *obj, int type, char *line)
+void	obj_type(t_objects *obj, int type, char *line, t_objects **objects)
 {
 	if (type == 1)
 	{
 		obj->type = 1;
 		obj->object = (void*)new_ambiant();
-		ambiant_parameter(line, type, obj);
+		ambiant_parameter(line, type, obj, objects);
 	}
 	if (type == 2)
 	{
@@ -71,7 +71,7 @@ void	obj_type(t_objects *obj, int type, char *line)
 	obj_type2(obj, type);
 }
 
-void	obj_type2(t_objects *obj, int type)
+void	obj_type2(t_objects *obj, int type, t_objects **objects)
 {
 	if (type == 4)
 	{

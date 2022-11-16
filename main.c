@@ -89,12 +89,16 @@
 
 int main(int argc, char **argv)
 {
-	t_objects **obj;
-	int 	fd;
+	// t_objects **obj;
+	// int 	fd;
+	char	a[20] = "123456789.0123456789";
 
-	fd = 0;
-	obj = 0;
-    parsing(fd, argc, argv, obj);
+	(void)argc;
+	(void)argv;
+	// fd = 0;
+	// obj = 0;
+    // parsing(fd, argc, argv, obj);
+	printf("%lf\n", ft_atof(a));
 }
 
 // int main()
