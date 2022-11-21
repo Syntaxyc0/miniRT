@@ -18,7 +18,7 @@ typedef struct s_vect
 
 typedef struct s_color
 {
-    unsigned int 	red;
+    unsigned int 	red;	
     unsigned int	green;
     unsigned int	blue;
 }   t_color;
@@ -30,7 +30,7 @@ typedef struct s_ray
 	t_vect	inter;
 	t_vect	normal;
 	float	inter_distance;
-	float	color;
+	unsigned int	color;
 }   t_ray;
 
 typedef struct s_sphere
@@ -73,6 +73,7 @@ t_sphere    *init_sphere(t_vect center, float radius, t_color color);
 
 t_plane *init_plane(t_vect point, t_vect normal, t_color color);
 int	interplane(t_plane *plane, t_ray ray, float *t);
+int	get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
 
 t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
 int	intercylinder(t_cylinder *cyl, t_ray ray, float *t);
