@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:11:37 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 14:57:59 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/21 13:29:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ t_sphere	*new_sphere(void)
 		print_error(ERR_MALLOC);
 		exit(EXIT_FAILURE);
 	}
-	sphere->center = malloc(sizeof(t_vect));
 	return (sphere);
 }

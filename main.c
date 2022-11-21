@@ -54,7 +54,7 @@
 //     t_vect b;
 //     t_vect origin;
 //     t_ray   ray;
-//     double result;
+//     float result;
 //     t_sphere *sphere;
 //     t_color color;
 
@@ -89,16 +89,12 @@
 
 int main(int argc, char **argv)
 {
-	// t_objects **obj;
-	// int 	fd;
-	char	a[20] = "123456789.0123456789";
+	t_objects **obj;
+	int 	fd;
 
-	(void)argc;
-	(void)argv;
-	// fd = 0;
-	// obj = 0;
-    // parsing(fd, argc, argv, obj);
-	printf("%lf\n", ft_atof(a));
+	fd = 0;
+	obj = 0;
+    parsing(fd, argc, argv, obj);
 }
 
 // int main()

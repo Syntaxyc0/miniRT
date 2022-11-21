@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:43:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 12:42:12 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/21 13:37:37 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int check_args(int ac, char **av)
 	if (ac != 2)
 	{
 		print_error(ERR_NBARGS);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	if (!is_rt(av[1]))
 	{
 		print_error(ERR_TYPEARG);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

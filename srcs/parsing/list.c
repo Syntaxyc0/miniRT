@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 15:43:53 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/21 14:12:38 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	add_obj(int	type, t_objects **obj, char *line)
 {
 	if (!obj)
 	{
+		obj = malloc(sizeof(t_objects *));
 		*obj = new_struct_object();
 		obj = &*obj;
 	}
@@ -48,6 +49,7 @@ t_objects	*new_struct_object(void)
 	obj->type = 0;
 	obj->object = 0;
 	obj->next = 0;
+	return (obj);
 }
 
 void	obj_type(t_objects *obj, int type, char *line, t_objects **objects)
@@ -56,36 +58,40 @@ void	obj_type(t_objects *obj, int type, char *line, t_objects **objects)
 	{
 		obj->type = 1;
 		obj->object = (void*)new_ambiant();
-		ambiant_parameter(line, type, obj, objects);
+		ambiant_parameter(line, obj, objects);
 	}
-	if (type == 2)
-	{
-		obj->type = 2;
-		obj->object = (void*)new_camera();
-	}
-	if (type == 3)
-	{
-		obj->type = 3;
-		obj->object = (void*)new_light();
-	}
-	obj_type2(obj, type);
+	// if (type == 2)
+	// {
+	// 	obj->type = 2;
+	// 	obj->object = (void*)new_camera();
+	// }
+	// if (type == 3)
+	// {
+	// 	obj->type = 3;
+	// 	obj->object = (void*)new_light();
+	// }
+	// obj_type2(obj, type, line, objects);
 }
 
-void	obj_type2(t_objects *obj, int type, t_objects **objects)
+void	obj_type2(t_objects *obj, int type, char *line, t_objects **objects)
 {
-	if (type == 4)
-	{
-		obj->type = 4;
-		obj->object = (void*)new_sphere();
-	}
-	if (type == 5)
-	{
-		obj->type = 5;
-		obj->object = (void*)new_plane();
-	}
-	if (type == 6)
-	{
-		obj->type = 6;
-		obj->object = (void*)new_cylinder();
-	}
+	(void)line;
+	(void)objects;
+	(void)type;
+	(void)obj;
+	// if (type == 4)
+	// {
+	// 	obj->type = 4;
+	// 	obj->object = (void*)new_sphere();
+	// }
+	// if (type == 5)
+	// {
+	// 	obj->type = 5;
+	// 	obj->object = (void*)new_plane();
+	// }
+	// if (type == 6)
+	// {
+	// 	obj->type = 6;
+	// 	obj->object = (void*)new_cylinder();
+	// }
 }

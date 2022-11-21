@@ -1,10 +1,10 @@
 #include "minirt.h"
 
-int solve_equation(double a, double b, double c, double *t)
+int solve_equation(float a, float b, float c, float *t)
 {
-    double  delta;
-    double  r0;
-    double  r1;
+    float  delta;
+    float  r0;
+    float  r1;
 
     delta = b * b - 4.0 * a * c;
     if (delta < 0)
@@ -27,11 +27,11 @@ int solve_equation(double a, double b, double c, double *t)
     return (1);
 }
 
-int intersphere(t_sphere *sphere, t_ray ray, double *t)
+int intersphere(t_sphere *sphere, t_ray ray, float *t)
 {
-    double  a;
-    double  b;
-    double  c;
+    float  a;
+    float  b;
+    float  c;
 
     a = dot(ray.dir, ray.dir);
     b = 2.0 * dot(ray.dir, substract_v(ray.start, sphere->center));

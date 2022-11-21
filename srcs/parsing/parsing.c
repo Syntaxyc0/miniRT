@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:32:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/15 13:59:02 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/21 13:47:37 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parsing(int fd, int ac, char **av, t_objects **obj)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror(NULL);
+		perror("minirt");
 		exit(EXIT_FAILURE);
 	}
 	get_file(fd, obj);
@@ -30,6 +30,7 @@ void	get_file(int fd, t_objects **obj)
 	char	*line;
 	
 	line = get_next_line(fd);
+	printf("%s\n", line);/*---------------------printf*/
 	get_line_parameter(line, obj);
 }
 

@@ -30,8 +30,15 @@ SRCS		=	main.c						\
 				error_print.c				\
 				check_args.c				\
 				parsing.c					\
-				utils.c					\
-		
+				utils.c						\
+				get_parameter.c				\
+				free_exit.c					\
+				line.c						\
+				list.c						\
+				ambiant.c					\
+				struct_spe.c				\
+				struct_spe2.c				\
+
 CC			= gcc #$(FSANITIZE)
 
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3

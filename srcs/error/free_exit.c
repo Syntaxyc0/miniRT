@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 15:40:58 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/21 14:53:13 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ void	msg_free_exit(t_objects **obj, char *msg)
 void	free_objects(t_objects **obj)
 {
 	t_objects	*tmp;
+	
+	if (!obj)
+		return ;
 	while (*obj)
 	{
 		if ((*obj)->object)
-			free_object(*obj);
+			free((*obj)->object);
 		tmp = *obj;
 		*obj = (*obj)->next;
 		free(tmp);
