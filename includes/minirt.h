@@ -7,30 +7,36 @@
 # include <math.h>
 # include "libft.h"
 
+#define EPS 1e-6
+
 typedef struct s_vect
 {
-    double  x;
-    double  y;
-    double  z;
+    float  x;
+    float  y;
+    float  z;
 }   t_vect;
 
 typedef struct s_color
 {
-    double  red;
-    double  green;
-    double  blue;
+    unsigned int 	red;
+    unsigned int	green;
+    unsigned int	blue;
 }   t_color;
 
 typedef struct s_ray
 {
     t_vect  start;
     t_vect  dir;
+	t_vect	inter;
+	t_vect	normal;
+	float	inter_distance;
+	float	color;
 }   t_ray;
 
 typedef struct s_sphere
 {
     t_vect center;
-    double  radius;
+    float  radius;
     t_color color;
 }   t_sphere;
 
@@ -45,33 +51,36 @@ typedef struct s_cylinder
 {
 	t_vect	point;
 	t_vect	normal;
-	double	diameter;
-	double	height;
 	t_color	color;	
+	float	diameter;
+	float	height;
 }	t_cylinder;
 
 // Vectors
 
-double  dot(t_vect a, t_vect b);
+float  dot(t_vect a, t_vect b);
 t_vect  add_v(t_vect a, t_vect b);
 t_vect  substract_v(t_vect a, t_vect b);
-t_vect  mult_v(t_vect a, double t);
-double  norm_v(t_vect a);
+t_vect  mult_v(t_vect a, float t);
+float  norm_v(t_vect a);
 t_vect  vect_product(t_vect a, t_vect b);
 t_vect  normalize_v(t_vect a);
+t_vect  init_vect(float x, float y, float z);
+float	compute_dist(t_vect a, t_vect b);
 
-int         intersphere(t_sphere *sphere, t_ray ray, double *t);
-t_sphere    *init_sphere(t_vect center, double radius, t_color color);
+int         intersphere(t_sphere *sphere, t_ray ray, float *t);
+t_sphere    *init_sphere(t_vect center, float radius, t_color color);
 
 t_plane *init_plane(t_vect point, t_vect normal, t_color color);
-int	interplane(t_plane *plane, t_ray ray, double *t);
+int	interplane(t_plane *plane, t_ray ray, float *t);
 
-t_cylinder	*init_cylinder(t_vect point, t_vect normal, double diameter, double height, t_color color);
-int	intercylinder(t_cylinder *cyl, t_ray ray, double *t);
+t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
+int	intercylinder(t_cylinder *cyl, t_ray ray, float *t);
+void	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
 
-t_vect  get_intersection_point(t_ray ray, double t);
-int solve_equation(double a, double b, double c, double *t);
-
-
+t_ray	init_ray(t_vect	origin, t_vect direction);
+t_vect  get_intersection_point(t_ray ray, float t);
+int solve_equation(float a, float b, float c, float *t);
+unsigned int	rgb_to_hex(t_color color);
 
 #endif

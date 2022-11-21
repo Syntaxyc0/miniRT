@@ -22,8 +22,11 @@ HEADERS = includes \
 
 SRCS = 	main.c				\
 		dot.c				\
+		init_vect.c			\
 		vect_operations.c	\
 		vect_product.c 		\
+		vect_dist.c			\
+		rgb_to_hex.c		\
 		init_sphere.c		\
 		intersphere.c		\
 		init_plane.c		\
@@ -31,6 +34,7 @@ SRCS = 	main.c				\
 		get_intersection_point.c \
 		intercylinder.c 		\
 		init_cylinder.c			\
+		init_ray.c				\
 
 
 		

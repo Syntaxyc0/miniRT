@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_cylinder	*init_cylinder(t_vect point, t_vect normal, double diameter, double height, t_color color)
+t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color)
 {
 	t_cylinder	*ret;
 
