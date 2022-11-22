@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 15:32:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 16:54:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/22 17:25:18 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/22 18:16:24 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parsing(int fd, int ac, char **av, t_minirt *minirt)
+void	camera_parameter(char *line, t_minirt *minirt)
 {
-	if (check_args(ac, av))
-		return ;
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-	{
-		perror("minirt");
-		exit(EXIT_FAILURE);
-	}
-	get_file(fd, minirt);
-}
+	int	i;
+	t_camera *camera;
 
-void	get_file(int fd, t_minirt *minirt)
-{
-	char	*line;
+	i = 0;
+	camera = minirt->camera;
+	if (camera_check_line(line))
+		msg_free_exit(minirt, ERR_CONFORM);
+	while (ft_isalpha(line[i]))
+		i++;
+	camera->angle = get_vector(line, i, minirt);
 	
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (!(*line == '\n'))
-			get_line_parameter(line, minirt);
-		line = get_next_line(fd);
-	}
-	free(line);
 }

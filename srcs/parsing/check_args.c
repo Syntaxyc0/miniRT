@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:43:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/21 13:37:37 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:56:57 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,3 @@ int	is_rt(char *str)
 	return (1);
 }
 
-int	str_big(char *str1, char *str2)
-{
-	if (ft_strlen(str1) > ft_strlen(str2))
-		return (ft_strlen(str1));
-	else
-		return (ft_strlen(str2));
-}

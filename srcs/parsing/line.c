@@ -6,19 +6,19 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/21 14:49:53 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:28:28 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	get_line_parameter(char *line, t_objects **obj)
+void	get_line_parameter(char *line, t_minirt *minirt)
 {
-	if (!get_id(line, obj))
-		msg_free_exit(obj, ERR_ID);
+	if (!get_id(line, minirt))
+		msg_free_exit(minirt, ERR_ID);
 }
 
-int	get_id(char *line, t_objects **obj)
+int	get_id(char *line, t_minirt *minirt)
 {
 	int 	i;
 	int		j;
@@ -41,25 +41,26 @@ int	get_id(char *line, t_objects **obj)
 	while (ft_isalpha(line[i]))
 		id[j++] = line[i++];
 	id[j] = 0;
-	if (!init_id(line, id, obj))
+	printf("id = %s\n", id);
+	if (!init_id(line, id, minirt))
 		return(0);
 	return (1);
 }
 
-int	init_id(char *line, char *id, t_objects **obj)
+int	init_id(char *line, char *id, t_minirt *minirt)
 {
 	if (!ft_strncmp(id, "A", str_big(id, "A")))
-		add_obj(1, obj, line);
-	if (!ft_strncmp(id, "C", str_big(id, "C")))
-		add_obj(2, obj, line);
-	if (!ft_strncmp(id, "L", str_big(id, "L")))
-		add_obj(3, obj, line);
-	if (!ft_strncmp(id, "sp", str_big(id, "sp")))
-		add_obj(4, obj, line);
-	if (!ft_strncmp(id, "pl", str_big(id, "pl")))
-		add_obj(5, obj, line);
-	if (!ft_strncmp(id, "cy", str_big(id, "cy")))
-		add_obj(6, obj, line);
+		add_obj(1, minirt, line);
+	else if (!ft_strncmp(id, "C", str_big(id, "C")))
+		add_obj(2, minirt, line);
+	else if (!ft_strncmp(id, "L", str_big(id, "L")))
+		add_obj(3, minirt, line);
+	else if (!ft_strncmp(id, "sp", str_big(id, "sp")))
+		add_obj(4, minirt, line);
+	else if (!ft_strncmp(id, "pl", str_big(id, "pl")))
+		add_obj(5, minirt, line);
+	else if (!ft_strncmp(id, "cy", str_big(id, "cy")))
+		add_obj(6, minirt, line);
 	else
 		return (0);
 	return (1);

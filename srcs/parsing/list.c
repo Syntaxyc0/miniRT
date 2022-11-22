@@ -6,34 +6,37 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/21 14:12:38 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/22 17:25:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	add_obj(int	type, t_objects **obj, char *line)
+void	add_obj(int	type, t_minirt *minirt, char *line)
 {
-	if (!obj)
+	t_objects *obj;
+
+	obj = minirt->objects;
+	if (!obj && type > 3)
 	{
 		obj = malloc(sizeof(t_objects *));
-		*obj = new_struct_object();
-		obj = &*obj;
+		if (!obj)
+			msg_free_exit(minirt, ERR_MALLOC);
+		obj = new_struct_object();
 	}
-	else
+	else if (type > 3)
 	{
-		*obj = last_obj(obj);
-		(*obj)->next = new_struct_object();
-		*obj = (*obj)->next;
+		obj = last_obj(obj);
+		obj->next = new_struct_object();
 	}
-	obj_type(*obj, type, line, obj);
+	obj_type(minirt, type, line, obj);
 }
 
-t_objects	*last_obj(t_objects **obj)
+t_objects	*last_obj(t_objects *obj)
 {
-	while (*obj)
-		*obj = (*obj)->next;
-	return (*obj);
+	while (obj)
+		obj = obj->next;
+	return (obj);
 }
 
 t_objects	*new_struct_object(void)
@@ -52,19 +55,30 @@ t_objects	*new_struct_object(void)
 	return (obj);
 }
 
-void	obj_type(t_objects *obj, int type, char *line, t_objects **objects)
+void	obj_type(t_minirt *minirt, int type, char *line, t_objects *obj)
 {
 	if (type == 1)
 	{
-		obj->type = 1;
-		obj->object = (void*)new_ambiant();
-		ambiant_parameter(line, obj, objects);
+		(void)obj;
+		if (minirt->ambiant)
+		{
+			free(line);
+			msg_free_exit(minirt, ERR_DOUBLE_A);
+		}
+		minirt->ambiant = (void*)new_ambiant();
+		ambiant_parameter(line, minirt);
 	}
-	// if (type == 2)
-	// {
-	// 	obj->type = 2;
-	// 	obj->object = (void*)new_camera();
-	// }
+	if (type == 2)
+	{
+		(void)obj;
+		if (minirt->ambiant)
+		{
+			free(line);
+			msg_free_exit(minirt, ERR_DOUBLE_A);
+		}
+		minirt->camera = (void*)new_camera();
+		camera_parameter(line, minirt);
+	}
 	// if (type == 3)
 	// {
 	// 	obj->type = 3;
@@ -73,12 +87,12 @@ void	obj_type(t_objects *obj, int type, char *line, t_objects **objects)
 	// obj_type2(obj, type, line, objects);
 }
 
-void	obj_type2(t_objects *obj, int type, char *line, t_objects **objects)
+void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects)
 {
 	(void)line;
 	(void)objects;
 	(void)type;
-	(void)obj;
+	(void)minirt;
 	// if (type == 4)
 	// {
 	// 	obj->type = 4;

@@ -32,12 +32,14 @@ SRCS		=	main.c						\
 				parsing.c					\
 				utils.c						\
 				get_parameter.c				\
+				get_parameter2.c			\
 				free_exit.c					\
 				line.c						\
 				list.c						\
 				ambiant.c					\
 				struct_spe.c				\
 				struct_spe2.c				\
+				init.c						\
 
 CC			= gcc #$(FSANITIZE)
 

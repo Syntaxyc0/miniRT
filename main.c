@@ -89,12 +89,14 @@
 
 int main(int argc, char **argv)
 {
-	t_objects **obj;
+	t_minirt	*minirt;
 	int 	fd;
 
 	fd = 0;
-	obj = 0;
-    parsing(fd, argc, argv, obj);
+	minirt = init_minirt();
+    parsing(fd, argc, argv, minirt);
+	printf("intensity = %f color = %u,%u,%u\n", minirt->ambiant->intensity,
+			minirt->ambiant->color.red, minirt->ambiant->color.green, minirt->ambiant->color.blue);
 }
 
 // int main()
