@@ -6,34 +6,32 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:18:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 15:23:37 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 11:19:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-char	*get_intensity(char *line, int i, t_minirt *minirt)
+char	*get_float(char *line, int i, t_minirt *minirt)
 {
 	int		j;
-	char	*intensity;
+	char	*float_value;
 
 	j = 0;
-	while (line[i] && line[i] == ' ')
-		i++;
 	while (line[i] && ft_isfloat(line[i]))
 	{
 		i++;
 		j++;
 	}
-	intensity = malloc(j + 1);
-	if (!intensity)
+	float_value = malloc(j + 1);
+	if (!float_value)
 		msg_free_exit(minirt, ERR_MALLOC);
 	i -= j;
 	j = 0;
 	while (line[i] && ft_isfloat(line[i]))
-		intensity[j++] = line[i++];
-	intensity[j] = 0;
-	return (intensity);
+		float_value[j++] = line[i++];
+	float_value[j] = 0;
+	return (float_value);
 }
 
 t_color	get_colors(char *line, int i, t_minirt *minirt)
@@ -65,7 +63,10 @@ char	*get_red(char *line, int i, t_minirt *minirt)
 	}
 	red = malloc(j + 1);
 	if (!red)
+	{
+		free(line);
 		msg_free_exit(minirt, ERR_MALLOC);
+	}
 	i -= j;
 	j = 0;
 	while (line[i] && line[i] != ',')
@@ -90,7 +91,10 @@ char	*get_green(char *line, int i, t_minirt *minirt)
 	}
 	green = malloc(j + 1);
 	if (!green)
+	{
+		free(line);
 		msg_free_exit(minirt, ERR_MALLOC);
+	}
 	i -= j;
 	j = 0;
 	while (line[i] && line[i] != ',')

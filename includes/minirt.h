@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 18:15:53 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 10:50:55 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define ERR_INTENS "wrong value of intensity"
 # define ERR_SPACE "need space between values"
 # define ERR_DOUBLE_A "ambiant light have to be define once"
-# define ERR_CONFORM "value(s) missing or not conform for ambiant light (A)"
+# define ERR_CONFORM_A "value(s) missing or not conform for ambiant light (A)"
+# define ERR_CONFORM_C "value(s) missing or not conform for camera (C)"
 
 typedef struct s_vect
 {
@@ -143,7 +144,7 @@ void			get_line_parameter(char *line, t_minirt *minirt);
 void			parsing(int fd, int ac, char **av, t_minirt *minirt);
 void			obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
 void			obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
-char			*get_intensity(char *line, int i, t_minirt *minirt);
+char			*get_float(char *line, int i, t_minirt *minirt);
 char			*get_red(char *line, int i, t_minirt *minirt);
 char			*get_green(char *line, int i, t_minirt *minirt);
 char			*get_blue(char *line, int i, t_minirt *minirt);

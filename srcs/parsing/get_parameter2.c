@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:46:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 18:14:22 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 11:24:28 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,20 @@ char	*get_x(char *line, int i, t_minirt *minirt)
 	char	*x;
 	
 	j = 0;
-	while (ft_isfloat(line[i++]))
+	while (line[i] && line[i] != ',')
+	{
+		i++;
 		j++;
+	}
 	x = malloc(j + 1);
 	if (!x)
 	{
 		free(line);
 		msg_free_exit(minirt, ERR_MALLOC);
 	}
-	j = 0;
 	i -= j;
-	while (ft_isfloat(line[i]))
+	j = 0;
+	while (line[i] && line[i] != ',')
 		x[j++] = line[i++];
 	x[j++] = 0;
 	return (x);
@@ -53,17 +56,20 @@ char	*get_y(char *line, int i, t_minirt *minirt)
 	while (line[i] != ',')
 		i++;
 	i++;
-	while (ft_isfloat(line[i++]))
+	while (line[i] && line[i] != ',')
+	{
+		i++;
 		j++;
+	}
 	y = malloc(j + 1);
 	if (!y)
 	{
 		free(line);
 		msg_free_exit(minirt, ERR_MALLOC);
 	}
-	j = 0;
 	i -= j;
-	while (ft_isfloat(line[i]))
+	j = 0;
+	while (line[i] && line[i] != ',')
 		y[j++] = line[i++];
 	y[j++] = 0;
 	return (y);
@@ -81,8 +87,11 @@ char	*get_z(char *line, int i, t_minirt *minirt)
 		i++;
 	i++;
 	j = 0;
-	while (ft_isfloat(line[i++]))
+	while (line[i] && line[i] != ' ')
+	{
+		i++;
 		j++;
+	}
 	z = malloc(j + 1);
 	if (!z)
 	{
@@ -91,7 +100,7 @@ char	*get_z(char *line, int i, t_minirt *minirt)
 	}
 	j = 0;
 	i -= j;
-	while (ft_isfloat(line[i]))
+	while (line[i] && line[i] != ' ')
 		z[j++] = line[i++];
 	z[j++] = 0;
 	return (z);

@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:19:33 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 17:45:32 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 10:52:36 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ambiant_parameter(char *line, t_minirt *minirt)
 	i = 0;
 	ambiant = minirt->ambiant;
 	if (ambiant_check_line(line))
-		msg_free_exit(minirt, ERR_CONFORM);
+		msg_free_exit(minirt, ERR_CONFORM_A);
 	while (ft_isalpha(line[i]))
 		i++;
 	ambiant->intensity = ft_atof(get_intensity(line, i, minirt));

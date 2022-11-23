@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:25:18 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 18:16:24 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 11:10:38 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,46 @@ void	camera_parameter(char *line, t_minirt *minirt)
 
 	i = 0;
 	camera = minirt->camera;
-	if (camera_check_line(line))
-		msg_free_exit(minirt, ERR_CONFORM);
+	if (camera_check_line(line, i))
+		msg_free_exit(minirt, ERR_CONFORM_C);
 	while (ft_isalpha(line[i]))
 		i++;
+	while (line[i] == ' ')
+		i++;
 	camera->angle = get_vector(line, i, minirt);
-	
+	while (line[i] == ' ')
+		i++;
+	camera->orientation = get_vector(line, i, minirt);
+	while (line[i] == ' ')
+		i++;
+	camera->angle = get_float(line, i, minirt);
 }
+
+int	camera_check_line(char *line, int i)
+{
+	while (ft_isalpha(line[i]))
+		i++;
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_vector(line, i);
+	if (!i)
+		return (1);
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_vector(line, i);
+	if (!i)
+		return (1);
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_digit(line, i);
+	if (!i)
+		return (1);
+	i = check_eof(line, i);
+	if (!i)
+		return (1);
+	return (0);
+}
+
