@@ -81,7 +81,7 @@ void	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
 
 t_ray	init_ray(t_vect	origin, t_vect direction);
 t_vect  get_intersection_point(t_ray ray, float t);
-int solve_equation(float a, float b, float c, float *t);
+int solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
 
 #endif

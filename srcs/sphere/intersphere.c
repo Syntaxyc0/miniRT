@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int solve_equation(float a, float b, float c, float *t)
+int solve_quadratic_equation(float a, float b, float c, float *t)
 {
     float  delta;
     float  r0;
@@ -34,7 +34,7 @@ int intersphere(t_sphere *sphere, t_ray ray, float *t)
     a = dot(ray.dir, ray.dir);
     b = 2.0 * dot(ray.dir, substract_v(ray.start, sphere->center));
     c = dot(substract_v(ray.start, sphere->center), substract_v(ray.start, sphere->center)) - sphere->radius * sphere->radius;
-    if (solve_equation(a, b, c, t))
+    if (solve_quadratic_equation(a, b, c, t))
         return (1);
     return (0);
 }
