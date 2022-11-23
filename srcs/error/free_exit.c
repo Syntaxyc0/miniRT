@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 13:54:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:59:20 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,22 @@ void	free_minirt(t_minirt *minirt)
 {
 	t_objects	*tmp;
 	
-	if (!minirt->objects)
+	if (minirt->ambiant)
+		free(minirt->ambiant);
+	if (minirt->camera)
+		free(minirt->camera);
+	if (minirt->light)
+		free(minirt->light);
+	if (minirt->objects)
 	{
-		free(minirt);
-		return ;
-	}
-	while (minirt->objects->object)
-	{
-		if (minirt->objects->object)
-			free(minirt->objects->object);
-		tmp = minirt->objects->object;
-		minirt->objects = minirt->objects->next;
-		free(tmp);
+		while (minirt->objects)
+		{
+			if (minirt->objects->object)
+				free(minirt->objects->object);
+			tmp = minirt->objects;
+			minirt->objects = minirt->objects->next;
+			free(tmp);
+		}
 	}
 	free(minirt);
 }

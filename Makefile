@@ -42,6 +42,7 @@ SRCS		=	main.c						\
 				range.c						\
 				struct_spe.c				\
 				struct_spe2.c				\
+				sphere.c					\
 				utils.c						\
 				vect_operations.c			\
 				vect_product.c 				\

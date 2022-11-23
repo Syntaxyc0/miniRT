@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:04:49 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 14:12:09 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:54:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	light_parameter(char *line, t_minirt *minirt)
 	i = 0;
 	light = minirt->light;
 	if (light_check_line(line, i))
-		msg_free_exit(minirt, ERR_CONFORM_L);
+		msg_free_line_exit(minirt, line, ERR_CONFORM_L);
 	while (ft_isalpha(line[i]))
 		i++;
 	while (line[i] == ' ')

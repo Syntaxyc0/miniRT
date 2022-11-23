@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:32:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 16:54:17 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:07:35 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	get_file(int fd, t_minirt *minirt)
 	{
 		if (!(*line == '\n'))
 			get_line_parameter(line, minirt);
+		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);

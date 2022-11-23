@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 14:13:48 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:58:11 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ERR_DOUBLE_L "light has to be defined once"
 # define ERR_CONFORM_L "value(s) missing or not conform for light (L)"
 # define ERR_INTENSITY_L "intensity value of light not in range [0,1]"
+# define ERR_CONFORM_SP "value(s) missing or not conform for sphere (sp)"
 
 typedef struct s_vect
 {
@@ -103,7 +104,6 @@ typedef struct	s_objects
 	int					type;
 	void				*object;
 	struct s_objects	*next;
-	char				**line;
 }	t_objects;
 
 typedef struct	s_minirt
@@ -151,6 +151,7 @@ void		light_parameter(char *line, t_minirt *minirt);
 void		parsing(int fd, int ac, char **av, t_minirt *minirt);
 void		obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
 void		obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
+void		sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
 char		*get_float(char *line, int i, t_minirt *minirt);
 char		*get_red(char *line, int i, t_minirt *minirt);
 char		*get_green(char *line, int i, t_minirt *minirt);
@@ -173,11 +174,12 @@ int			is_rt(char *str);
 int			light_check_line(char *line, int i);
 int			range_float(float x, float min, float max);
 int			range_vector(t_vect vect, float min, float max);
+int			sphere_check_line(char *line, int i);
 t_minirt	*init_minirt(void);
 t_ambiant	*new_ambiant(void);
 t_camera	*new_camera(void);
 t_light		*new_light(void);
-t_objects	*new_struct_object(void);
+t_objects	*new_struct_objects(void);
 t_objects	*last_obj(t_objects *obj);
 t_sphere	*new_sphere(void);
 t_plane		*new_plane(void);

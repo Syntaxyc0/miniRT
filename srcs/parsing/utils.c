@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:46:23 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 16:29:30 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:10:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,26 @@ float	ft_atof(char *str)
 		ret += (str[i++] - '0') * j;
 		j *= 0.1;
 	}
+	free(str);
 	return (ret * pos);
 }
 
 unsigned int	ft_atoui(char *str)
 {
+	int	i;
 	unsigned int	ret;
 
 	ret = 0;
-	while (*str == ' ')
-		str++;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	while (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-		ret = ret * 10 + (*str++ - '0');
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		ret = ret * 10 + (str[i++] - '0');
+	free(str);
 	return (ret);
 }
 

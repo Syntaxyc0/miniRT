@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 14:12:27 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:51:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	add_obj(int	type, t_minirt *minirt, char *line)
 		obj = malloc(sizeof(t_objects *));
 		if (!obj)
 			msg_free_exit(minirt, ERR_MALLOC);
-		obj = new_struct_object();
+		obj = new_struct_objects();
 	}
 	else if (type > 3)
 	{
 		obj = last_obj(obj);
-		obj->next = new_struct_object();
+		obj->next = new_struct_objects();
 	}
 	obj_type(minirt, type, line, obj);
 }
@@ -39,7 +39,7 @@ t_objects	*last_obj(t_objects *obj)
 	return (obj);
 }
 
-t_objects	*new_struct_object(void)
+t_objects	*new_struct_objects(void)
 {
 	t_objects *obj;
 
@@ -95,11 +95,12 @@ void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *obj)
 		minirt->light = (void*)new_light();
 		light_parameter(line, minirt);
 	}
-	// if (type == 4)
-	// {
-	// 	obj->type = 4;
-	// 	obj->object = (void*)new_sphere();
-	// }
+	if (type == 4)
+	{
+		obj->type = 4;
+		obj->object = (void*)new_sphere();
+		sphere_parameter(line, minirt, obj);
+	}
 	// if (type == 5)
 	// {
 	// 	obj->type = 5;

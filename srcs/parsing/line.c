@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 13:31:50 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:08:20 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int	get_id(char *line, t_minirt *minirt)
 		id[j++] = line[i++];
 	id[j] = 0;
 	if (!init_id(line, id, minirt))
+	{
+		free(id);
 		return(0);
+	}
+	free(id);
 	return (1);
 }
 

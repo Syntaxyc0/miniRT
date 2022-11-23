@@ -1,45 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambiant.c                                          :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 14:19:33 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:53:52 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/23 15:09:52 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/23 15:53:32 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
-void	ambiant_parameter(char *line, t_minirt *minirt)
+void	sphere_parameter(char *line, t_minirt *minirt, t_objects *obj)
 {
 	int	i;
-	t_ambiant *ambiant;
+	t_sphere *sphere;
 
 	i = 0;
-	ambiant = minirt->ambiant;
-	if (ambiant_check_line(line, i))
-		msg_free_line_exit(minirt, line, ERR_CONFORM_A);
+	sphere = (t_sphere*)obj->object;
+	if (sphere_check_line(line, i))
+		msg_free_line_exit(minirt, line, ERR_CONFORM_SP);
 	while (ft_isalpha(line[i]))
 		i++;
 	while (line[i] == ' ')
 		i++;
-	ambiant->intensity = ft_atof(get_float(line, i, minirt));
-	if (range_float(ambiant->intensity, 0, 1))
-		msg_free_line_exit(minirt, line, ERR_INTENSITY_A);
+	sphere->center = get_vector(line, i, minirt);
 	while (line[i] != ' ')
 		i++;
 	while (line[i] == ' ')
 		i++;
-	ambiant->color = get_colors(line, i, minirt);
+	sphere->radius = ft_atof(get_float(line, i, minirt));
+	while (line[i] != ' ')
+		i++;
+	while (line[i] == ' ')
+		i++;
+	sphere->color = get_colors(line, i, minirt);
 }
 
-int	ambiant_check_line(char *line, int i)
+int	sphere_check_line(char *line, int i)
 {
 	while (ft_isalpha(line[i]))
 		i++;
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_vector(line, i);
+	if (!i)
+		return (1);
 	i = check_space(line, i);
 	if (!i)
 		return (1);
