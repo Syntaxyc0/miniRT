@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 14:45:43 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:54:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	free_minirt(t_minirt *minirt)
 		free(tmp);
 	}
 	free(minirt);
+}
+
+void	msg_free_line_exit(t_minirt *minirt, char *line, char *msg)
+{
+	print_error(msg);
+	free(line);
+	free_minirt(minirt);
+	exit(EXIT_FAILURE);
 }

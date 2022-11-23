@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:18:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 11:19:54 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:19:59 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_float(char *line, int i, t_minirt *minirt)
 	char	*float_value;
 
 	j = 0;
-	while (line[i] && ft_isfloat(line[i]))
+	while ((line[i] && ft_isfloat(line[i])) || (line[i] && line[i] == '-'))
 	{
 		i++;
 		j++;
@@ -28,7 +28,7 @@ char	*get_float(char *line, int i, t_minirt *minirt)
 		msg_free_exit(minirt, ERR_MALLOC);
 	i -= j;
 	j = 0;
-	while (line[i] && ft_isfloat(line[i]))
+	while ((line[i] && ft_isfloat(line[i])) || (line[i] && line[i] == '-'))
 		float_value[j++] = line[i++];
 	float_value[j] = 0;
 	return (float_value);

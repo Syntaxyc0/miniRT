@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 17:25:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 14:12:27 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	obj_type(t_minirt *minirt, int type, char *line, t_objects *obj)
 	if (type == 2)
 	{
 		(void)obj;
-		if (minirt->ambiant)
+		if (minirt->camera)
 		{
 			free(line);
 			msg_free_exit(minirt, ERR_DOUBLE_A);
@@ -79,20 +79,22 @@ void	obj_type(t_minirt *minirt, int type, char *line, t_objects *obj)
 		minirt->camera = (void*)new_camera();
 		camera_parameter(line, minirt);
 	}
-	// if (type == 3)
-	// {
-	// 	obj->type = 3;
-	// 	obj->object = (void*)new_light();
-	// }
-	// obj_type2(obj, type, line, objects);
+	obj_type2(minirt, type, line, obj);
 }
 
-void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects)
+void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *obj)
 {
-	(void)line;
-	(void)objects;
-	(void)type;
-	(void)minirt;
+	if (type == 3)
+	{
+		(void)obj;
+		if (minirt->light)
+		{
+			free(line);
+			msg_free_exit(minirt, ERR_DOUBLE_L);
+		}
+		minirt->light = (void*)new_light();
+		light_parameter(line, minirt);
+	}
 	// if (type == 4)
 	// {
 	// 	obj->type = 4;

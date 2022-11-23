@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:46:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 11:24:28 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 12:51:17 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ char	*get_z(char *line, int i, t_minirt *minirt)
 		free(line);
 		msg_free_exit(minirt, ERR_MALLOC);
 	}
-	j = 0;
 	i -= j;
+	j = 0;
 	while (line[i] && line[i] != ' ')
 		z[j++] = line[i++];
 	z[j++] = 0;

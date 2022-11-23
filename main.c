@@ -97,6 +97,13 @@ int main(int argc, char **argv)
     parsing(fd, argc, argv, minirt);
 	printf("intensity = %f color = %u,%u,%u\n", minirt->ambiant->intensity,
 			minirt->ambiant->color.red, minirt->ambiant->color.green, minirt->ambiant->color.blue);
+	printf("position = %f,%f,%f orientation = %f,%f,%f angle = %f\n",
+			minirt->camera->position.x, minirt->camera->position.y, minirt->camera->position.z,
+			minirt->camera->orientation.x, minirt->camera->orientation.y, minirt->camera->orientation.z, 
+			minirt->camera->angle);
+	printf("position = %f,%f,%f intensity = %f\n",
+			minirt->light->position.x, minirt->light->position.y, minirt->light->position.z,
+			minirt->light->intensity);
 }
 
 // int main()

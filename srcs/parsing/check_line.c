@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:53:03 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 11:15:29 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 14:16:21 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	check_vector(char *line, int i)
 	count = 0;
 	while (count++ < 3)
 	{
-		if (!ft_isfloat(line[i]) || line[i] == '-')
+		i = check_float(line, i);
+		if (!i)
 			return (0);
-		while (ft_isfloat(line[++i]))
-			;
-		if (line[i++] != ',')
-			return (0);
+		if (count != 3)
+			if (line[i++] != ',')
+				return (0);
 	}
 	return (i);
 }
@@ -36,12 +36,13 @@ int	check_color(char *line, int i)
 	count = 0;
 	while (count++ < 3)
 	{
-		if (!ft_isdigit(line[i]) || line[i] == '-')
+		if (!ft_isdigit(line[i]))
 			return (0);
 		while (ft_isdigit(line[++i]))
 			;
-		if (line[i++] != ',')
-			return (0);
+		if (count != 3)
+			if (line[i++] != ',')
+				return (0);
 	}
 	return (i);
 }
@@ -58,10 +59,23 @@ int	check_space(char *line, int i)
 
 int	check_float(char *line, int i)
 {
-	if (!ft_isdigit(line[i]) || line[i] == '-')
+	if (!ft_isdigit(line[i]) && line[i] != '-')
 		return (0);
-	while (ft_isfloat(line[++i]))
-		;
+	if (line[i] == '-')
+		i++;
+	if (!ft_isdigit(line[i]))
+		return (0);
+	while (ft_isdigit(line[i]))
+		i++;
+	if (!line[i] || line[i] == ' ' || line[i] == ',' || line[i] == '\n')
+		return (i);
+	if (line[i] != '.')
+		return (0);
+	i++;
+	if (!ft_isdigit(line[i]))
+		return (0);
+	while (ft_isdigit(line[i]))
+		i++;
 	return (i);
 }
 

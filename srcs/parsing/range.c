@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line2.c                                      :+:      :+:    :+:   */
+/*   range.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 11:07:00 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 12:49:50 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/23 13:40:05 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/23 13:51:03 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int check_eof(char *line, int i)
+int	range_float(float x, float min, float max)
 {
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (i);
+	if (x < min || x > max)
+		return (1);
+	return (0);
+}
+
+int	range_vector(t_vect vect, float min, float max)
+{
+	if (vect.x < min || vect.x > max)
+		return (1);
+	if (vect.y < min || vect.y > max)
+		return (1);
+	if (vect.z < min || vect.z > max)
+		return (1);
+	return (0);
 }

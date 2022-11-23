@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 15:28:28 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:31:50 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	get_id(char *line, t_minirt *minirt)
 	while (ft_isalpha(line[i]))
 		id[j++] = line[i++];
 	id[j] = 0;
-	printf("id = %s\n", id);
 	if (!init_id(line, id, minirt))
 		return(0);
 	return (1);

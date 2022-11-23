@@ -21,25 +21,30 @@ FT_PATH		= libft
 HEADERS 	= includes \
 
 SRCS		=	main.c						\
-				dot.c						\
-				vect_operations.c			\
-				vect_product.c 				\
-				init_sphere.c				\
-				intersphere.c				\
-				get_intersection_point.c	\
-				error_print.c				\
+				ambiant.c					\
+				camera.c					\
 				check_args.c				\
-				parsing.c					\
-				utils.c						\
+				check_line.c				\
+				check_line2.c				\
+				dot.c						\
+				error_print.c				\
+				free_exit.c					\
+				get_intersection_point.c	\
 				get_parameter.c				\
 				get_parameter2.c			\
-				free_exit.c					\
+				init.c						\
+				init_sphere.c				\
+				intersphere.c				\
+				light.c						\
 				line.c						\
 				list.c						\
-				ambiant.c					\
+				parsing.c					\
+				range.c						\
 				struct_spe.c				\
 				struct_spe2.c				\
-				init.c						\
+				utils.c						\
+				vect_operations.c			\
+				vect_product.c 				\
 
 CC			= gcc #$(FSANITIZE)
 

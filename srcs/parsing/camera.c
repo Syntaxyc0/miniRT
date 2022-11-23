@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:25:18 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 11:10:38 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 14:01:11 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,21 @@ void	camera_parameter(char *line, t_minirt *minirt)
 		i++;
 	while (line[i] == ' ')
 		i++;
-	camera->angle = get_vector(line, i, minirt);
+	camera->position = get_vector(line, i, minirt);
+	while (line[i] != ' ')
+		i++;
 	while (line[i] == ' ')
 		i++;
 	camera->orientation = get_vector(line, i, minirt);
+	if (range_vector(camera->orientation, -1, 1))
+		msg_free_line_exit(minirt, line, ERR_ORIENT_C);
+	while (line[i] != ' ')
+		i++;
 	while (line[i] == ' ')
 		i++;
-	camera->angle = get_float(line, i, minirt);
+	camera->angle = ft_atof(get_float(line, i, minirt));
+	if (range_float(camera->angle, 0, 180))
+		msg_free_line_exit(minirt, line, ERR_FOV_C);
 }
 
 int	camera_check_line(char *line, int i)

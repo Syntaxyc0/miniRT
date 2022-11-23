@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 10:50:55 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/23 14:13:48 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@
 # define ERR_MALLOC "malloc failed"
 # define ERR_ID "id unknown"
 # define ERR_COLOR "wrong value of color"
-# define ERR_INTENS "wrong value of intensity"
-# define ERR_SPACE "need space between values"
-# define ERR_DOUBLE_A "ambiant light have to be define once"
+# define ERR_DOUBLE_A "ambiant light has to be defined once"
 # define ERR_CONFORM_A "value(s) missing or not conform for ambiant light (A)"
+# define ERR_INTENSITY_A "intensity value of ambiant light not in range [0,1]"
+# define ERR_DOUBLE_C "camera has to be defined once"
 # define ERR_CONFORM_C "value(s) missing or not conform for camera (C)"
+# define ERR_ORIENT_C "orientation value(s) of camera not in range [-1,1]"
+# define ERR_FOV_C "FOV value(s) of camera not in range [-1,1]"
+# define ERR_DOUBLE_L "light has to be defined once"
+# define ERR_CONFORM_L "value(s) missing or not conform for light (L)"
+# define ERR_INTENSITY_L "intensity value of light not in range [0,1]"
 
 typedef struct s_vect
 {
@@ -137,42 +142,55 @@ t_vect  get_intersection_point(t_ray ray, float t);
 
 // Parsing
 
-void			add_obj(int	type, t_minirt *minirt, char *line);
-void			ambiant_parameter(char *line, t_minirt *minirt);
-void			get_file(int fd, t_minirt *minirt);
-void			get_line_parameter(char *line, t_minirt *minirt);
-void			parsing(int fd, int ac, char **av, t_minirt *minirt);
-void			obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
-void			obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
-char			*get_float(char *line, int i, t_minirt *minirt);
-char			*get_red(char *line, int i, t_minirt *minirt);
-char			*get_green(char *line, int i, t_minirt *minirt);
-char			*get_blue(char *line, int i, t_minirt *minirt);
-char			*get_x(char *line, int i, t_minirt *minirt);
-char			*get_y(char *line, int i, t_minirt *minirt);
-char			*get_z(char *line, int i, t_minirt *minirt);
-int				ambiant_check_line(char *line);
-int 			check_args(int ac, char **av);
-int				get_id(char *line, t_minirt *minirt);
-int				init_id(char *line, char *id, t_minirt *minirt);
-int				is_rt(char *str);
-t_minirt		*init_minirt(void);
-t_ambiant		*new_ambiant(void);
-t_camera		*new_camera(void);
-t_light			*new_light(void);
-t_objects		*new_struct_object(void);
-t_objects		*last_obj(t_objects *obj);
-t_sphere		*new_sphere(void);
-t_plane			*new_plane(void);
-t_cylinder		*new_cylinder(void);
-t_color			get_colors(char *line, int i, t_minirt *minirt);
-t_vect			get_vector(char *line, int i, t_minirt *minirt);
+void		add_obj(int	type, t_minirt *minirt, char *line);
+void		ambiant_parameter(char *line, t_minirt *minirt);
+void		camera_parameter(char *line, t_minirt *minirt);
+void		get_file(int fd, t_minirt *minirt);
+void		get_line_parameter(char *line, t_minirt *minirt);
+void		light_parameter(char *line, t_minirt *minirt);
+void		parsing(int fd, int ac, char **av, t_minirt *minirt);
+void		obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
+void		obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
+char		*get_float(char *line, int i, t_minirt *minirt);
+char		*get_red(char *line, int i, t_minirt *minirt);
+char		*get_green(char *line, int i, t_minirt *minirt);
+char		*get_blue(char *line, int i, t_minirt *minirt);
+char		*get_x(char *line, int i, t_minirt *minirt);
+char		*get_y(char *line, int i, t_minirt *minirt);
+char		*get_z(char *line, int i, t_minirt *minirt);
+int			ambiant_check_line(char *line, int i);
+int			camera_check_line(char *line, int i);
+int 		check_args(int ac, char **av);
+int			check_vector(char *line, int i);
+int			check_color(char *line, int i);
+int			check_space(char *line, int i);
+int			check_float(char *line, int i);
+int			check_digit(char *line, int i);
+int 		check_eof(char *line, int i);
+int			get_id(char *line, t_minirt *minirt);
+int			init_id(char *line, char *id, t_minirt *minirt);
+int			is_rt(char *str);
+int			light_check_line(char *line, int i);
+int			range_float(float x, float min, float max);
+int			range_vector(t_vect vect, float min, float max);
+t_minirt	*init_minirt(void);
+t_ambiant	*new_ambiant(void);
+t_camera	*new_camera(void);
+t_light		*new_light(void);
+t_objects	*new_struct_object(void);
+t_objects	*last_obj(t_objects *obj);
+t_sphere	*new_sphere(void);
+t_plane		*new_plane(void);
+t_cylinder	*new_cylinder(void);
+t_color		get_colors(char *line, int i, t_minirt *minirt);
+t_vect		get_vector(char *line, int i, t_minirt *minirt);
 
 // Error
 
 void	print_error(char *msg);
 void	free_exit(t_minirt *minirt);
 void	msg_free_exit(t_minirt *minirt, char *msg);
+void	msg_free_line_exit(t_minirt *minirt, char *line, char *msg);
 void	free_minirt(t_minirt *minirt);
 
 // Utils
@@ -183,3 +201,5 @@ float			ft_atof(char *str);
 unsigned int	ft_atoui(char *str);
 
 #endif
+
+// !! Note : normalize vecteur normal
