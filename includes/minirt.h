@@ -76,8 +76,11 @@ int	interplane(t_plane *plane, t_ray ray, float *t);
 int	get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
 
 t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
-int	intercylinder(t_cylinder *cyl, t_ray ray, float *t);
-void	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
+int		intercylinder(t_cylinder *cyl, t_ray ray, float *t);
+int		inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
+void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, float *t);
+int		inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
+void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, float *t);
 
 t_ray	init_ray(t_vect	origin, t_vect direction);
 t_vect  get_intersection_point(t_ray ray, float t);

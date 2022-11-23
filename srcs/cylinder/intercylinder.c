@@ -14,63 +14,6 @@
 // 	return (0);
 // }
 
-void	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
-{
-	t_plane *plane;
-	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
-
-	plane = (t_plane *)cyl;
-	if (interplane(plane, *ray, t))
-	{
-		inter = get_intersection_point(*ray, *t);
-		dist = compute_dist(inter, ray->start);
-		dist_to_center = compute_dist(inter, cyl->point);
-		if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2)
-			return ;
-		ray->inter = inter;
-		ray->normal = mult_v(plane->normal, -1);
-		ray->inter_distance = dist;
-		ray->color = rgb_to_hex(plane->color);
-	}
-	return ;
-}
-
-t_plane *init_top_plane(t_cylinder *cyl)
-{
-	t_plane	*ret;
-
-	ret = NULL;
-	ret->point = add_v(cyl->point, mult_v(normalize_v(cyl->normal), cyl->height));
-	ret->normal = cyl->normal;
-	ret->color = cyl->color;
-	return (ret);
-}
-
-void	inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t)
-{
-	t_plane	*plane;
-	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
-
-	plane= init_top_plane(cyl);
-	if (interplane(plane, *ray, t))
-	{
-		inter = get_intersection_point(*ray, *t);
-		dist = compute_dist(inter, ray->start);
-		dist_to_center = compute_dist(inter, cyl->point);
-		if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2)
-			return ;
-		ray->inter = inter;
-		ray->normal = plane->normal;
-		ray->inter_distance = dist;
-		ray->color = rgb_to_hex(plane->color);
-	}
-	return ;
-}
-
 int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 {
 	t_vect	cyl_ray;
@@ -102,13 +45,26 @@ void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	ray->color = rgb_to_hex(cyl->color);
 }
 
-void	intersect_cylinder(t_cylinder *cyl, t_ray ray)
+void	get_intersect_cylinder(t_cylinder *cyl, t_ray ray)
 {
 	float	t;
 
 	t = 0;
-	inter_cylinder_bot(cyl, &ray, &t);
-	inter_cylinder_top(cyl, &ray, &t);
+	if (inter_cylinder_bot(cyl, &ray, &t))
+		get_intersection_bot_point(cyl, &ray, &t);
+	if (inter_cylinder_top(cyl, &ray, &t))
+		get_intersection_top_point(cyl, &ray, &t);
 	if (inter_cylinder_pipe(cyl, &ray, &t))
 		get_intersection_cylinder_pipe(cyl, &ray, &t);
+}
+
+int	intercylinder(t_cylinder *cyl, t_ray ray, float *t)
+{
+	if (inter_cylinder_bot(cyl, &ray, t))
+		return (1);
+	if (inter_cylinder_top(cyl, &ray, t))
+		return (1);
+	if (inter_cylinder_pipe(cyl, &ray, t))
+		return (1);
+	return (0);
 }

@@ -34,6 +34,7 @@ SRCS = 	main.c				\
 		get_intersection_point.c \
 		intercylinder.c 		\
 		init_cylinder.c			\
+		inter_cylinder_bot_top.c \
 		init_ray.c				\
 
 
