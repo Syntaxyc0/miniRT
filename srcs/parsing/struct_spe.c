@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:11:37 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/21 13:29:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:25 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_ambiant	*new_ambiant(void)
 t_camera	*new_camera(void)
 {
 	t_camera	*camera;
-	
+
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
 	{

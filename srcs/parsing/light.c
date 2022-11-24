@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:04:49 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:54:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:00:05 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	light_parameter(char *line, t_minirt *minirt)
 {
-	int	i;
-	t_light *light;
+	int		i;
+	t_light	*light;
 
 	i = 0;
 	light = minirt->light;

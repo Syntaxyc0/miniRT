@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:46:23 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:55:03 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:23:05 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ float	ft_atof(char *str)
 	float	ret;
 
 	i = 0;
-	j = 0.1;
+	j = 1;
 	ret = 0;
 	pos = 1;
-	while (str[i] == ' ')
-		i++;
 	if (str[i] == '-')
 	{
 		i++;
@@ -43,18 +41,16 @@ float	ft_atof(char *str)
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
 	{
-		printf("stri = %c, ret = %f\n", str[i], ret);
-		ret += (str[i++] - '0') * j;
-		printf("ret AFTER OP = %f\n", ret);
-		j *= 0.1;
+		ret = ret * 10 + (str[i++] - '0');
+		j *= 10;
 	}
 	free(str);
-	return (ret * pos);
+	return ((ret / j) * pos);
 }
 
 unsigned int	ft_atoui(char *str)
 {
-	int	i;
+	int				i;
 	unsigned int	ret;
 
 	ret = 0;
@@ -77,4 +73,11 @@ int	str_big(char *str1, char *str2)
 		return (ft_strlen(str1));
 	else
 		return (ft_strlen(str2));
+}
+
+t_objects	*last_obj(t_objects *obj)
+{
+	while (obj->next)
+		obj = obj->next;
+	return (obj);
 }

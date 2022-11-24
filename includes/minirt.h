@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:42:50 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:20:03 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@
 
 typedef struct s_vect
 {
-    float  x;
-    float  y;
-    float  z;
-}   t_vect;
+	float	x;
+	float	y;
+	float	z;
+}	t_vect;
 
 typedef struct s_color
 {
-    unsigned int	red;
-    unsigned int	green;
-    unsigned int	blue;
-}   t_color;
+	unsigned int	red;
+	unsigned int	green;
+	unsigned int	blue;
+}	t_color;
 
 typedef struct s_ray
 {
-    t_vect  start;
-    t_vect	dir;
-}   t_ray;
+	t_vect	start;
+	t_vect	dir;
+}	t_ray;
 
 typedef struct s_ambiant
 {
@@ -67,7 +67,7 @@ typedef struct s_ambiant
 	t_color	color;
 }	t_ambiant;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vect	position;
 	t_vect	orientation;
@@ -82,35 +82,35 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
-    t_vect center;
-    float  radius;
-    t_color color;
-}   t_sphere;
+	t_vect	center;
+	float	radius;
+	t_color	color;
+}	t_sphere;
 
 typedef struct s_plane
 {
-    t_vect  point;
-    t_vect  normal;
-    t_color color;
-}   t_plane;
+	t_vect	point;
+	t_vect	normal;
+	t_color	color;
+}	t_plane;
 
 typedef struct s_cylinder
 {
-    t_vect  point;
-    t_vect  normal;
-    t_color color;
+	t_vect	point;
+	t_vect	normal;
+	t_color	color;
 	float	diameter;
 	float	height;
-}   t_cylinder;
+}	t_cylinder;
 
-typedef struct	s_objects
+typedef struct s_objects
 {
 	int					type;
 	void				*object;
 	struct s_objects	*next;
 }	t_objects;
 
-typedef struct	s_minirt
+typedef struct s_minirt
 {
 	t_ambiant	*ambiant;
 	t_camera	*camera;
@@ -147,62 +147,69 @@ t_vect  get_intersection_point(t_ray ray, float t);
 
 // Parsing
 
-void		add_obj(int	type, t_minirt *minirt, char *line);
-void		ambiant_parameter(char *line, t_minirt *minirt);
-void		camera_parameter(char *line, t_minirt *minirt);
-void		cylinder_parameter(char *line, t_minirt *minirt, t_objects *obj);
-void		get_file(int fd, t_minirt *minirt);
-void		get_line_parameter(char *line, t_minirt *minirt);
-void		light_parameter(char *line, t_minirt *minirt);
-void		parsing(int fd, int ac, char **av, t_minirt *minirt);
-void		obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
-void		plane_parameter(char *line, t_minirt *minirt, t_objects *obj);
-void		obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
-void		sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
-char		*get_float(char *line, int i, t_minirt *minirt);
-char		*get_red(char *line, int i, t_minirt *minirt);
-char		*get_green(char *line, int i, t_minirt *minirt);
-char		*get_blue(char *line, int i, t_minirt *minirt);
-char		*get_x(char *line, int i, t_minirt *minirt);
-char		*get_y(char *line, int i, t_minirt *minirt);
-char		*get_z(char *line, int i, t_minirt *minirt);
-int			ambiant_check_line(char *line, int i);
-int			camera_check_line(char *line, int i);
-int			cylinder_check_line(char *line, int i);
-int 		check_args(int ac, char **av);
-int			check_vector(char *line, int i);
-int			check_color(char *line, int i);
-int			check_space(char *line, int i);
-int			check_float(char *line, int i);
-int			check_digit(char *line, int i);
-int 		check_eof(char *line, int i);
-int			get_id(char *line, t_minirt *minirt);
-int			init_id(char *line, char *id, t_minirt *minirt);
-int			is_rt(char *str);
-int			light_check_line(char *line, int i);
-int			plane_check_line(char *line, int i);
-int			range_float(float x, float min, float max);
-int			range_vector(t_vect vect, float min, float max);
-int			sphere_check_line(char *line, int i);
-t_minirt	*init_minirt(void);
-t_ambiant	*new_ambiant(void);
-t_camera	*new_camera(void);
-t_light		*new_light(void);
-t_objects	*new_struct_objects(void);
-t_objects	*last_obj(t_objects *obj);
-t_sphere	*new_sphere(void);
-t_plane		*new_plane(void);
-t_cylinder	*new_cylinder(void);
-t_color		get_colors(char *line, int i, t_minirt *minirt);
-t_vect		get_vector(char *line, int i, t_minirt *minirt);
+void			add_obj(int type, t_minirt *minirt, char *line);
+void			ambiant_parameter(char *line, t_minirt *minirt);
+void			camera_parameter(char *line, t_minirt *minirt);
+void			cylinder_parameter(char *line, t_minirt *minirt,
+			t_objects *obj);
+void			get_file(int fd, t_minirt *minirt);
+void			get_line_parameter(char *line, t_minirt *minirt, int line_nb);
+void			light_parameter(char *line, t_minirt *minirt);
+void			parsing(int fd, int ac, char **av, t_minirt *minirt);
+void			obj_type(t_minirt *minirt, int type, char *line,
+			t_objects *objects);
+void			obj_type2(t_minirt *minirt, int type, char *line,
+			t_objects *objects);
+void			obj_type3(t_minirt *minirt, int type, char *line,
+			t_objects *obj);
+void			plane_parameter(char *line, t_minirt *minirt, t_objects *obj);
+void			sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
+char			*get_float(char *line, int i, t_minirt *minirt);
+char			*get_red(char *line, int i, t_minirt *minirt);
+char			*get_green(char *line, int i, t_minirt *minirt);
+char			*get_blue(char *line, int i, t_minirt *minirt);
+char			*get_x(char *line, int i, t_minirt *minirt);
+char			*get_y(char *line, int i, t_minirt *minirt);
+char			*get_z(char *line, int i, t_minirt *minirt);
+int				ambiant_check_line(char *line, int i);
+int				camera_check_line(char *line, int i);
+int				cylinder_check_line(char *line, int i);
+int				cylinder_check_line2(char *line, int i);
+int				check_args(int ac, char **av);
+int				check_vector(char *line, int i);
+int				check_color(char *line, int i);
+int				check_space(char *line, int i);
+int				check_float(char *line, int i);
+int				check_digit(char *line, int i);
+int				check_eof(char *line, int i);
+int				get_id(char *line, t_minirt *minirt);
+int				init_id(char *line, char *id, t_minirt *minirt);
+int				is_rt(char *str);
+int				light_check_line(char *line, int i);
+int				next_value(char *line, int i);
+int				plane_check_line(char *line, int i);
+int				range_float(float x, float min, float max);
+int				range_vector(t_vect vect, float min, float max);
+int				sphere_check_line(char *line, int i);
+t_minirt		*init_minirt(void);
+t_ambiant		*new_ambiant(void);
+t_camera		*new_camera(void);
+t_light			*new_light(void);
+t_objects		*new_struct_objects(void);
+t_objects		*last_obj(t_objects *obj);
+t_sphere		*new_sphere(void);
+t_plane			*new_plane(void);
+t_cylinder		*new_cylinder(void);
+t_color			get_colors(char *line, int i, t_minirt *minirt);
+t_vect			get_vector(char *line, int i, t_minirt *minirt);
 
 // Error
 
-void	print_error(char *msg);
-void	free_exit(t_minirt *minirt);
-void	msg_free_exit(t_minirt *minirt, char *msg);
-void	msg_free_line_exit(t_minirt *minirt, char *line, char *msg);
-void	free_minirt(t_minirt *minirt);
+void			print_error(char *msg);
+void			free_exit(t_minirt *minirt);
+void			msg_free_exit(t_minirt *minirt, char *msg);
+void			msg_free_line_exit(t_minirt *minirt, char *line, char *msg);
+void			free_minirt(t_minirt *minirt);
 
 // Utils
 

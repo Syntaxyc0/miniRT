@@ -6,21 +6,24 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 10:58:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:14:46 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	get_line_parameter(char *line, t_minirt *minirt)
+void	get_line_parameter(char *line, t_minirt *minirt, int line_nb)
 {
 	if (!get_id(line, minirt))
+	{
+		printf("l.%d : ", line_nb);
 		msg_free_exit(minirt, ERR_ID);
+	}
 }
 
 int	get_id(char *line, t_minirt *minirt)
 {
-	int 	i;
+	int		i;
 	char	*id;
 
 	i = 0;
@@ -37,7 +40,7 @@ int	get_id(char *line, t_minirt *minirt)
 		free(minirt->id);
 	minirt->id = id;
 	if (!init_id(line, id, minirt))
-		return(0);
+		return (0);
 	return (1);
 }
 

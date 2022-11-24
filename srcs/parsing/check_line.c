@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:53:03 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:02:42 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:21:26 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_vector(char *line, int i)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (count++ < 3)
@@ -31,7 +31,7 @@ int	check_vector(char *line, int i)
 
 int	check_color(char *line, int i)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (count++ < 3)
@@ -46,7 +46,6 @@ int	check_color(char *line, int i)
 	}
 	return (i);
 }
-
 
 int	check_space(char *line, int i)
 {

@@ -152,3 +152,45 @@ int main(int argc, char **argv)
 //     b.z = 3;
 //     printf("dot : %f\n", dot(a, b));
 // }
+
+/* TEST_FOR_PARSING
+
+	printf("A : intensity = %f color = %u,%u,%u\n", minirt->ambiant->intensity,
+			minirt->ambiant->color.red, minirt->ambiant->color.green, minirt->ambiant->color.blue);
+	printf("C : position = %f,%f,%f orientation = %f,%f,%f angle = %f\n",
+			minirt->camera->position.x, minirt->camera->position.y, minirt->camera->position.z,
+			minirt->camera->orientation.x, minirt->camera->orientation.y, minirt->camera->orientation.z, 
+			minirt->camera->angle);
+	printf("L : position = %f,%f,%f intensity = %f\n",
+			minirt->light->position.x, minirt->light->position.y, minirt->light->position.z,
+			minirt->light->intensity);
+	while(minirt->objects)
+	{
+		if (minirt->objects->type == 4)
+		{
+			sp = (t_sphere*)minirt->objects->object;
+			printf("sp : center = %f,%f,%f diameter = %f color = %u,%u,%u\n",
+				sp->center.x, sp->center.y, sp->center.z,
+				sp->radius,
+				sp->color.red, sp->color.green, sp->color.blue);
+		}
+		if (minirt->objects->type == 5)
+		{
+			pl = (t_plane*)minirt->objects->object;
+			printf("pl : point = %f,%f,%f normal = %f,%f,%f color = %u,%u,%u\n",
+				pl->point.x, pl->point.y, pl->point.z,
+				pl->normal.x, pl->normal.y, pl->normal.z,
+				pl->color.red, pl->color.green, pl->color.blue);
+		}
+		if (minirt->objects->type == 6)
+		{
+			cy = (t_cylinder*)minirt->objects->object;
+			printf("cy : point = %f,%f,%f normal = %f,%f,%f color = %u,%u,%u diameter = %f height = %f\n",
+				cy->point.x, cy->point.y, cy->point.z,
+				cy->normal.x, cy->normal.y, cy->normal.z,
+				cy->color.red, cy->color.green, cy->color.blue,
+				cy->diameter,cy->height);
+		}
+		minirt->objects = minirt->objects->next;
+	}
+*/

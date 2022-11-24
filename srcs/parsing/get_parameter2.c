@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:46:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 12:51:17 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:17:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_vect	get_vector(char *line, int i, t_minirt *minirt)
 {
-	t_vect vect;
-	
+	t_vect	vect;
+
 	vect.x = ft_atof(get_x(line, i, minirt));
 	vect.y = ft_atof(get_y(line, i, minirt));
 	vect.z = ft_atof(get_z(line, i, minirt));
@@ -24,9 +24,9 @@ t_vect	get_vector(char *line, int i, t_minirt *minirt)
 
 char	*get_x(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
+	int		j;
 	char	*x;
-	
+
 	j = 0;
 	while (line[i] && line[i] != ',')
 	{
@@ -49,9 +49,9 @@ char	*get_x(char *line, int i, t_minirt *minirt)
 
 char	*get_y(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
+	int		j;
 	char	*y;
-	
+
 	j = 0;
 	while (line[i] != ',')
 		i++;
@@ -77,15 +77,13 @@ char	*get_y(char *line, int i, t_minirt *minirt)
 
 char	*get_z(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
+	int		j;
 	char	*z;
-	
-	while (line[i] != ',')
-		i++;
-	i++;
-	while (line[i] != ',')
-		i++;
-	i++;
+
+	while (line[i++] != ',')
+		;
+	while (line[i++] != ',')
+		;
 	j = 0;
 	while (line[i] && line[i] != ' ')
 	{

@@ -6,17 +6,16 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:19:33 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:53:52 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:10:50 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
 void	ambiant_parameter(char *line, t_minirt *minirt)
 {
-	int	i;
-	t_ambiant *ambiant;
+	int			i;
+	t_ambiant	*ambiant;
 
 	i = 0;
 	ambiant = minirt->ambiant;

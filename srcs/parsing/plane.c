@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:08:16 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:18:43 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:14:13 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	plane_parameter(char *line, t_minirt *minirt, t_objects *obj)
 {
-	int	i;
-	t_plane *plane;
+	int		i;
+	t_plane	*plane;
 
 	i = 0;
-	plane = (t_plane*)obj->object;
+	plane = (t_plane *)obj->object;
 	if (plane_check_line(line, i))
 		msg_free_line_exit(minirt, line, ERR_CONFORM_PL);
 	while (ft_isalpha(line[i]))

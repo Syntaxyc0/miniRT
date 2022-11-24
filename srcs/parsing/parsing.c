@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:32:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 16:07:35 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:13:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@ void	parsing(int fd, int ac, char **av, t_minirt *minirt)
 void	get_file(int fd, t_minirt *minirt)
 {
 	char	*line;
-	
+	int		line_nb;
+
+	line_nb = 1;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (!(*line == '\n'))
-			get_line_parameter(line, minirt);
+			get_line_parameter(line, minirt, line_nb);
 		free(line);
 		line = get_next_line(fd);
+		line_nb++;
 	}
 	free(line);
 }

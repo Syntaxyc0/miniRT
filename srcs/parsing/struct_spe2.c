@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:38:59 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/16 14:58:21 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:57 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_cylinder	*new_cylinder(void)
 
 	cylinder = malloc(sizeof(t_cylinder));
 	if (!cylinder)
-		{
+	{
 		print_error(ERR_MALLOC);
 		exit(EXIT_FAILURE);
 	}

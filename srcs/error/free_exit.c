@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 10:41:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 14:59:26 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	msg_free_exit(t_minirt *minirt, char *msg)
 void	free_minirt(t_minirt *minirt)
 {
 	t_objects	*tmp;
-	
+
 	if (minirt->ambiant)
 		free(minirt->ambiant);
 	if (minirt->camera)

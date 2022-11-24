@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:18:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 13:19:59 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:13:13 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_float(char *line, int i, t_minirt *minirt)
 t_color	get_colors(char *line, int i, t_minirt *minirt)
 {
 	t_color	color;
-	
+
 	color.red = ft_atoui(get_red(line, i, minirt));
 	if (color.red > 255)
 		msg_free_exit(minirt, ERR_COLOR);
@@ -52,7 +52,7 @@ t_color	get_colors(char *line, int i, t_minirt *minirt)
 
 char	*get_red(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
+	int		j;
 	char	*red;
 
 	j = 0;
@@ -77,8 +77,8 @@ char	*get_red(char *line, int i, t_minirt *minirt)
 
 char	*get_green(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
-	char	*green; 
+	int		j;
+	char	*green;
 
 	j = 0;
 	while (line[i] && line[i] != ',')
@@ -105,8 +105,8 @@ char	*get_green(char *line, int i, t_minirt *minirt)
 
 char	*get_blue(char *line, int i, t_minirt *minirt)
 {
-	int 	j;
-	char	*blue; 
+	int		j;
+	char	*blue;
 
 	j = 0;
 	while (line[i] && line[i] != ',')

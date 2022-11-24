@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:09:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:06:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 15:13:42 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	sphere_parameter(char *line, t_minirt *minirt, t_objects *obj)
 {
-	int	i;
-	t_sphere *sphere;
+	int			i;
+	t_sphere	*sphere;
 
 	i = 0;
-	sphere = (t_sphere*)obj->object;
+	sphere = (t_sphere *)obj->object;
 	if (sphere_check_line(line, i))
 		msg_free_line_exit(minirt, line, ERR_CONFORM_SP);
 	while (ft_isalpha(line[i]))
