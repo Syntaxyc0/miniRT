@@ -31,6 +31,7 @@ SRCS = 	main.c						\
 		vect_product.c 				\
 		vect_dist.c					\
 		rgb_to_hex.c				\
+		hex_to_rgb.c				\
 		init_sphere.c				\
 		intersphere.c				\
 		init_plane.c				\

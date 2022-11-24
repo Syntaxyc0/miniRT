@@ -101,6 +101,17 @@ typedef struct	s_objects
 	char				**line;
 }	t_objects;
 
+typedef struct s_img
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 /*
 1 = A (lumiere ambiante)
 2 = C (camera)
@@ -140,6 +151,7 @@ t_ray	init_ray(t_vect	origin, t_vect direction);
 t_vect  get_intersection_point(t_ray ray, float t);
 int solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
+t_color hex_to_rgb(unsigned int hex);
 
 // Parsing
 

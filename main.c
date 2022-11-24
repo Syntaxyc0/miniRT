@@ -87,17 +87,7 @@
 //     printf("coord intersection point : %f %f %f\n", inter.x, inter.y, inter.z);
 // }
 
-int main(int argc, char **argv)
-{
-	t_objects **obj;
-	int 	fd;
-
-	fd = 0;
-	obj = 0;
-    parsing(fd, argc, argv, obj);
-}
-
-// int main()
+// int main()~
 // {
 //     t_vect a;
 //     t_vect b;
@@ -111,3 +101,21 @@ int main(int argc, char **argv)
 //     b.z = 3;
 //     printf("dot : %f\n", dot(a, b));
 // }
+
+int main(int argc, char **argv)
+{
+	t_color	color;
+	unsigned int hex;
+	t_color test;
+
+	(void)argc;
+	color.red=atoi(argv[1]);
+	color.blue=atoi(argv[2]);
+	color.green=atoi(argv[3]);
+	hex = rgb_to_hex(color);
+	test = hex_to_rgb(hex);
+	printf("color hex: %#08x\n", hex);
+	printf("color : %d\n", test.red);
+	printf("color : %d\n", test.green);
+	printf("color : %d\n", test.blue);
+}
