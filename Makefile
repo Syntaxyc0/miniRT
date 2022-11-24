@@ -10,15 +10,34 @@ ERR_PATH	= error
 
 PARS_PATH	= parsing
 
+PLANE_PATH	= plane
+
 VECT_PATH	= vectors
 
 SPHERE_PATH	= sphere
 
-PLANE_PATH	= plane
+CYL_PATH = cylinder
 
-FT_PATH		= libft
+FT_PATH = libft
 
-HEADERS 	= includes \
+HEADERS = includes \
+
+SRCS = 	main.c				\
+		dot.c				\
+		init_vect.c			\
+		vect_operations.c	\
+		vect_product.c 		\
+		vect_dist.c			\
+		rgb_to_hex.c		\
+		init_sphere.c		\
+		intersphere.c		\
+		init_plane.c		\
+		interplane.c		\
+		get_intersection_point.c \
+		intercylinder.c 		\
+		init_cylinder.c			\
+		inter_cylinder_bot_top.c \
+		init_ray.c				\
 
 SRCS		=	main.c						\
 				dot.c						\
@@ -54,6 +73,7 @@ vpath %.c $(SRCSPATH)			\
  	$(SRCSPATH)/$(VECT_PATH) 	\
  	$(SRCSPATH)/$(SPHERE_PATH) 	\
  	$(SRCSPATH)/$(PLANE_PATH) 	\
+ 	$(SRCSPATH)/$(CYL_PATH) 	\
  	$(SRCSPATH)/$(ERR_PATH) 	\
  	$(SRCSPATH)/$(PARS_PATH) 	\
 

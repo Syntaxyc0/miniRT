@@ -3,7 +3,7 @@ Le programme prend en argument un fichier indiquant les elements de la map ainsi
 -- Lumiere ambiante            A coeff R,G,B
 
 	A 	  : identifiant
-	coeff : coefficient de luminosite type double entre 0 et 1
+	coeff : coefficient de luminosite type float entre 0 et 1
 	R,G,B : couleurs au format R G B compris entre 0 et 255
 
 -- Camera					   C x,y,z orx,ory,orz FOV
@@ -23,7 +23,7 @@ coeff : ratio de luminosite
 
 sp : identifiant
 x,y,z : coordonnees du centre de la Sphere
-diam : diametre sous forme d'un double
+diam : diametre sous forme d'un float
 R,G,B : couleurs au format R G B compris entre 0 et 255
 
 -- Plan							pl x,y,z orx,ory,orz R,G,B

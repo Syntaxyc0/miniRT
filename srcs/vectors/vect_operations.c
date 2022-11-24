@@ -10,7 +10,7 @@ t_vect  substract_v(t_vect a, t_vect b)
     return (ret);
 }
 
-t_vect  mult_v(t_vect a, double t)
+t_vect  mult_v(t_vect a, float t)
 {
     t_vect  ret;
 
@@ -30,9 +30,9 @@ t_vect  add_v(t_vect a, t_vect b)
     return (ret);
 }
 
-double  norm_v(t_vect a)
+float  norm_v(t_vect a)
 {
-    return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+    return (sqrtf(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 
 t_vect  normalize_v(t_vect a)
