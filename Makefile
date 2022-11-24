@@ -26,6 +26,7 @@ SRCS		=	main.c						\
 				check_args.c				\
 				check_line.c				\
 				check_line2.c				\
+				cylinder.c					\
 				dot.c						\
 				error_print.c				\
 				free_exit.c					\
@@ -39,6 +40,7 @@ SRCS		=	main.c						\
 				line.c						\
 				list.c						\
 				parsing.c					\
+				plane.c						\
 				range.c						\
 				struct_spe.c				\
 				struct_spe2.c				\

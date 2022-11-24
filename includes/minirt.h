@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:58:11 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:42:50 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 # define ERR_CONFORM_L "value(s) missing or not conform for light (L)"
 # define ERR_INTENSITY_L "intensity value of light not in range [0,1]"
 # define ERR_CONFORM_SP "value(s) missing or not conform for sphere (sp)"
+# define ERR_CONFORM_PL "value(s) missing or not conform for plane (pl)"
+# define ERR_ORIENT_PL "orientation value(s) of plane not in range [-1,1]"
+# define ERR_CONFORM_CY "value(s) missing or not conform for cylinder (cy)"
+# define ERR_ORIENT_CY "orientation value(s) of cylinder not in range [-1,1]"
 
 typedef struct s_vect
 {
@@ -112,6 +116,7 @@ typedef struct	s_minirt
 	t_camera	*camera;
 	t_light		*light;
 	t_objects	*objects;
+	char		*id;
 }	t_minirt;
 
 /*
@@ -145,11 +150,13 @@ t_vect  get_intersection_point(t_ray ray, float t);
 void		add_obj(int	type, t_minirt *minirt, char *line);
 void		ambiant_parameter(char *line, t_minirt *minirt);
 void		camera_parameter(char *line, t_minirt *minirt);
+void		cylinder_parameter(char *line, t_minirt *minirt, t_objects *obj);
 void		get_file(int fd, t_minirt *minirt);
 void		get_line_parameter(char *line, t_minirt *minirt);
 void		light_parameter(char *line, t_minirt *minirt);
 void		parsing(int fd, int ac, char **av, t_minirt *minirt);
 void		obj_type(t_minirt *minirt, int type, char *line, t_objects *objects);
+void		plane_parameter(char *line, t_minirt *minirt, t_objects *obj);
 void		obj_type2(t_minirt *minirt, int type, char *line, t_objects *objects);
 void		sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
 char		*get_float(char *line, int i, t_minirt *minirt);
@@ -161,6 +168,7 @@ char		*get_y(char *line, int i, t_minirt *minirt);
 char		*get_z(char *line, int i, t_minirt *minirt);
 int			ambiant_check_line(char *line, int i);
 int			camera_check_line(char *line, int i);
+int			cylinder_check_line(char *line, int i);
 int 		check_args(int ac, char **av);
 int			check_vector(char *line, int i);
 int			check_color(char *line, int i);
@@ -172,6 +180,7 @@ int			get_id(char *line, t_minirt *minirt);
 int			init_id(char *line, char *id, t_minirt *minirt);
 int			is_rt(char *str);
 int			light_check_line(char *line, int i);
+int			plane_check_line(char *line, int i);
 int			range_float(float x, float min, float max);
 int			range_vector(t_vect vect, float min, float max);
 int			sphere_check_line(char *line, int i);

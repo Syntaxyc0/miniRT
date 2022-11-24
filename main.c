@@ -91,7 +91,9 @@ int main(int argc, char **argv)
 {
 	t_minirt	*minirt;
 	t_sphere	*sp;
-	int 	fd;
+	t_plane		*pl;
+	t_cylinder	*cy;
+	int 		fd;
 
 	fd = 0;
 	minirt = init_minirt();
@@ -105,12 +107,35 @@ int main(int argc, char **argv)
 	printf("L : position = %f,%f,%f intensity = %f\n",
 			minirt->light->position.x, minirt->light->position.y, minirt->light->position.z,
 			minirt->light->intensity);
-
-	sp = (t_sphere*)minirt->objects->object;
-	printf("sp : center = %f,%f,%f diameter = %f color = %u,%u,%u\n",
-		sp->center.x, sp->center.y, sp->center.z,
-		sp->radius,
-		sp->color.red, sp->color.green, sp->color.blue);
+	while(minirt->objects)
+	{
+		if (minirt->objects->type == 4)
+		{
+			sp = (t_sphere*)minirt->objects->object;
+			printf("sp : center = %f,%f,%f diameter = %f color = %u,%u,%u\n",
+				sp->center.x, sp->center.y, sp->center.z,
+				sp->radius,
+				sp->color.red, sp->color.green, sp->color.blue);
+		}
+		if (minirt->objects->type == 5)
+		{
+			pl = (t_plane*)minirt->objects->object;
+			printf("pl : point = %f,%f,%f normal = %f,%f,%f color = %u,%u,%u\n",
+				pl->point.x, pl->point.y, pl->point.z,
+				pl->normal.x, pl->normal.y, pl->normal.z,
+				pl->color.red, pl->color.green, pl->color.blue);
+		}
+		if (minirt->objects->type == 6)
+		{
+			cy = (t_cylinder*)minirt->objects->object;
+			printf("cy : point = %f,%f,%f normal = %f,%f,%f color = %u,%u,%u diameter = %f height = %f\n",
+				cy->point.x, cy->point.y, cy->point.z,
+				cy->normal.x, cy->normal.y, cy->normal.z,
+				cy->color.red, cy->color.green, cy->color.blue,
+				cy->diameter,cy->height);
+		}
+		minirt->objects = minirt->objects->next;
+	}
 }
 
 // int main()

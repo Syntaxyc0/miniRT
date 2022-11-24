@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:01:47 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:51:12 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:31:07 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ void	add_obj(int	type, t_minirt *minirt, char *line)
 	obj = minirt->objects;
 	if (!obj && type > 3)
 	{
-		obj = malloc(sizeof(t_objects *));
-		if (!obj)
-			msg_free_exit(minirt, ERR_MALLOC);
 		obj = new_struct_objects();
+		minirt->objects = obj;
 	}
 	else if (type > 3)
 	{
 		obj = last_obj(obj);
 		obj->next = new_struct_objects();
+		obj = obj->next;
 	}
 	obj_type(minirt, type, line, obj);
 }
 
 t_objects	*last_obj(t_objects *obj)
 {
-	while (obj)
+	while (obj->next)
 		obj = obj->next;
 	return (obj);
 }
@@ -101,14 +100,16 @@ void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *obj)
 		obj->object = (void*)new_sphere();
 		sphere_parameter(line, minirt, obj);
 	}
-	// if (type == 5)
-	// {
-	// 	obj->type = 5;
-	// 	obj->object = (void*)new_plane();
-	// }
-	// if (type == 6)
-	// {
-	// 	obj->type = 6;
-	// 	obj->object = (void*)new_cylinder();
-	// }
+	if (type == 5)
+	{
+		obj->type = 5;
+		obj->object = (void*)new_plane();
+		plane_parameter(line, minirt, obj);
+	}
+	if (type == 6)
+	{
+		obj->type = 6;
+		obj->object = (void*)new_cylinder();
+		cylinder_parameter(line, minirt, obj);
+	}
 }

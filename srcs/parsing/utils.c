@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:46:23 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 16:10:54 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:55:03 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ float	ft_atof(char *str)
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
 	{
+		printf("stri = %c, ret = %f\n", str[i], ret);
 		ret += (str[i++] - '0') * j;
+		printf("ret AFTER OP = %f\n", ret);
 		j *= 0.1;
 	}
 	free(str);

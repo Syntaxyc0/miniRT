@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:35:06 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/22 15:26:28 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 10:41:49 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_minirt	*init_minirt(void)
 	minirt->camera = 0;
 	minirt->light = 0;
 	minirt->objects = 0;
+	minirt->id = 0;
 	return (minirt);
 }

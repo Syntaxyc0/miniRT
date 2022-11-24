@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:59:20 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 10:41:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	free_minirt(t_minirt *minirt)
 		free(minirt->camera);
 	if (minirt->light)
 		free(minirt->light);
+	if (minirt->id)
+		free(minirt->id);
 	if (minirt->objects)
 	{
 		while (minirt->objects)

@@ -1,44 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 15:09:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 11:06:06 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/24 11:31:25 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/24 11:45:55 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	sphere_parameter(char *line, t_minirt *minirt, t_objects *obj)
+void	cylinder_parameter(char *line, t_minirt *minirt, t_objects *obj)
 {
 	int	i;
-	t_sphere *sphere;
+	t_cylinder *cylinder;
 
 	i = 0;
-	sphere = (t_sphere*)obj->object;
-	if (sphere_check_line(line, i))
-		msg_free_line_exit(minirt, line, ERR_CONFORM_SP);
+	cylinder = (t_cylinder*)obj->object;
+	if (cylinder_check_line(line, i))
+		msg_free_line_exit(minirt, line, ERR_CONFORM_CY);
 	while (ft_isalpha(line[i]))
 		i++;
 	while (line[i] == ' ')
 		i++;
-	sphere->center = get_vector(line, i, minirt);
+	cylinder->point = get_vector(line, i, minirt);
 	while (line[i] != ' ')
 		i++;
 	while (line[i] == ' ')
 		i++;
-	sphere->radius = ft_atof(get_float(line, i, minirt));
+	cylinder->normal = get_vector(line, i, minirt);
+	if (range_vector(cylinder->normal, -1, 1))
+		msg_free_line_exit(minirt, line, ERR_ORIENT_CY);
 	while (line[i] != ' ')
 		i++;
 	while (line[i] == ' ')
 		i++;
-	sphere->color = get_colors(line, i, minirt);
+	cylinder->height = ft_atof(get_float(line, i, minirt));
+	while (line[i] != ' ')
+		i++;
+	while (line[i] == ' ')
+		i++;
+	cylinder->diameter = ft_atof(get_float(line, i, minirt));
+	while (line[i] != ' ')
+		i++;
+	while (line[i] == ' ')
+		i++;
+	cylinder->color = get_colors(line, i, minirt);
 }
 
-int	sphere_check_line(char *line, int i)
+int	cylinder_check_line(char *line, int i)
 {
 	while (ft_isalpha(line[i]))
 		i++;
@@ -46,6 +58,18 @@ int	sphere_check_line(char *line, int i)
 	if (!i)
 		return (1);
 	i = check_vector(line, i);
+	if (!i)
+		return (1);
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_vector(line, i);
+	if (!i)
+		return (1);
+	i = check_space(line, i);
+	if (!i)
+		return (1);
+	i = check_float(line, i);
 	if (!i)
 		return (1);
 	i = check_space(line, i);

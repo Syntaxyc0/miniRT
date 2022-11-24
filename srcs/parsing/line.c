@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 16:08:20 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 10:58:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,23 @@ void	get_line_parameter(char *line, t_minirt *minirt)
 int	get_id(char *line, t_minirt *minirt)
 {
 	int 	i;
-	int		j;
 	char	*id;
 
 	i = 0;
-	j = 0;
-	while (line[i] == ' ')
-		i++;
 	while (ft_isalpha(line[i]))
-	{
 		i++;
-		j++;
-	}
-	id = malloc(j + 1);
+	id = malloc(i + 1);
 	if (!id)
 		return (0);
-	i -= j;
-	j = 0;
-	while (ft_isalpha(line[i]))
-		id[j++] = line[i++];
-	id[j] = 0;
+	i = -1;
+	while (ft_isalpha(line[++i]))
+		id[i] = line[i];
+	id[i] = 0;
+	if (minirt->id)
+		free(minirt->id);
+	minirt->id = id;
 	if (!init_id(line, id, minirt))
-	{
-		free(id);
 		return(0);
-	}
-	free(id);
 	return (1);
 }
 

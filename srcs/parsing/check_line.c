@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:53:03 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/23 15:43:01 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:02:42 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	check_color(char *line, int i)
 	{
 		if (!ft_isdigit(line[i]))
 			return (0);
-		while (ft_isdigit(line[++i]))
-			;
+		while (ft_isdigit(line[i]))
+			i++;
 		if (count != 3)
 			if (line[i++] != ',')
 				return (0);
