@@ -18,37 +18,31 @@ SPHERE_PATH	= sphere
 
 CYL_PATH = cylinder
 
+GRAPHIC_PATH = graphic
+
 FT_PATH = libft
 
 HEADERS = includes \
 
-SRCS = 	main.c				\
-		dot.c				\
-		init_vect.c			\
-		vect_operations.c	\
-		vect_product.c 		\
-		vect_dist.c			\
-		rgb_to_hex.c		\
-		init_sphere.c		\
-		intersphere.c		\
-		init_plane.c		\
-		interplane.c		\
-		get_intersection_point.c \
-		intercylinder.c 		\
-		init_cylinder.c			\
-		inter_cylinder_bot_top.c \
-		init_ray.c				\
-
-SRCS		=	main.c						\
-				dot.c						\
-				vect_operations.c			\
-				vect_product.c 				\
-				init_sphere.c				\
-				intersphere.c				\
-				get_intersection_point.c	\
-				error_print.c				\
-				check_args.c				\
-				parsing.c					\
+SRCS = 	main.c						\
+		dot.c						\
+		init_vect.c					\
+		vect_operations.c			\
+		vect_product.c 				\
+		vect_dist.c					\
+		rgb_to_hex.c				\
+		init_sphere.c				\
+		intersphere.c				\
+		init_plane.c				\
+		interplane.c				\
+		get_intersection_point.c	\
+		intercylinder.c 			\
+		init_cylinder.c				\
+		inter_cylinder_bot_top.c	\
+		init_ray.c					\
+		error_print.c				\
+		check_args.c				\
+		parsing.c					\
 		
 CC			= gcc #$(FSANITIZE)
 
@@ -69,13 +63,14 @@ RED			=	\033[31m
 WHITE		=	\033[37m
 
 vpath %.h $(HEADERS)
-vpath %.c $(SRCSPATH)			\
- 	$(SRCSPATH)/$(VECT_PATH) 	\
- 	$(SRCSPATH)/$(SPHERE_PATH) 	\
- 	$(SRCSPATH)/$(PLANE_PATH) 	\
- 	$(SRCSPATH)/$(CYL_PATH) 	\
- 	$(SRCSPATH)/$(ERR_PATH) 	\
- 	$(SRCSPATH)/$(PARS_PATH) 	\
+vpath %.c $(SRCSPATH)				\
+ 	$(SRCSPATH)/$(VECT_PATH) 		\
+ 	$(SRCSPATH)/$(SPHERE_PATH) 		\
+ 	$(SRCSPATH)/$(PLANE_PATH) 		\
+ 	$(SRCSPATH)/$(CYL_PATH) 		\
+ 	$(SRCSPATH)/$(ERR_PATH) 		\
+ 	$(SRCSPATH)/$(PARS_PATH) 		\
+ 	$(SRCSPATH)/$(GRAPHIC_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)
