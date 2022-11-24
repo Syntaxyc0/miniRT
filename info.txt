@@ -41,3 +41,7 @@ orx,ory,orz : composantes du vecteur d'orientation du cylindre, comprises entre 
 diam : diametre
 height : hauteur
 R,G,B : couleurs au format R G B compris entre 0 et 255
+
+https://www.cl.cam.ac.uk/teaching/1999/AGraphHCI/SMAG/node2.html#eqn:rectray
+https://www.doc.ic.ac.uk/~dfg/graphics/graphics2009/GraphicsLecture11.pdf
+
