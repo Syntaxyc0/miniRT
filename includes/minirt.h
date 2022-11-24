@@ -86,38 +86,23 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-<<<<<<< HEAD
 	t_vect	point;
 	t_vect	normal;
 	t_color	color;	
 	float	diameter;
 	float	height;
 }	t_cylinder;
-=======
-    t_vect  point;
-    t_vect  normal;
-	double	diameter;
-	double	height;
-    t_color color;
-}   t_cylinder;
 
-typedef struct	s_objects
+typedef struct s_img
 {
-	int					type;
-	void				*object;
-	struct s_objects	*next;
-	char				**line;
-}	t_objects;
-
-/*
-1 = A (lumiere ambiante)
-2 = C (camera)
-3 = L (lumiere)
-4 = sp
-5 = pl
-6 = cy
-*/
->>>>>>> main
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}	t_img;
 
 // Vectors
 
@@ -138,7 +123,6 @@ t_plane *init_plane(t_vect point, t_vect normal, t_color color);
 int	interplane(t_plane *plane, t_ray ray, float *t);
 int	get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
 
-<<<<<<< HEAD
 t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
 int		intercylinder(t_cylinder *cyl, t_ray ray, float *t);
 int		inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
@@ -150,7 +134,6 @@ t_ray	init_ray(t_vect	origin, t_vect direction);
 t_vect  get_intersection_point(t_ray ray, float t);
 int solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
-=======
 t_vect  get_intersection_point(t_ray ray, double t);
 
 // Parsing
@@ -172,6 +155,5 @@ t_cylinder	*new_cylinder(void);
 // Error
 
 void	print_error(char *msg);
->>>>>>> main
 
 #endif

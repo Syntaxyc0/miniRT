@@ -26,7 +26,7 @@ int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	b = dot(cyl_ray, ray->dir) - dot(cyl->normal, ray->dir) * (dot(cyl->normal, cyl_ray));
 	c = powf(norm_v(cyl_ray), 2) - powf(cyl->diameter / 2, 2);
 	if (solve_quadratic_equation(a,b,c,t))
-		return (1);
+		return (1); // check hauteur
 	return (0);
 }
 
