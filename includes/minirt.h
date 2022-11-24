@@ -93,16 +93,22 @@ typedef struct s_cylinder
 	float	height;
 }	t_cylinder;
 
-typedef struct s_img
+typedef struct	s_objects
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-}	t_img;
+	int					type;
+	void				*object;
+	struct s_objects	*next;
+	char				**line;
+}	t_objects;
+
+/*
+1 = A (lumiere ambiante)
+2 = C (camera)
+3 = L (lumiere)
+4 = sp
+5 = pl
+6 = cy
+*/
 
 // Vectors
 
@@ -134,7 +140,6 @@ t_ray	init_ray(t_vect	origin, t_vect direction);
 t_vect  get_intersection_point(t_ray ray, float t);
 int solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
-t_vect  get_intersection_point(t_ray ray, double t);
 
 // Parsing
 
