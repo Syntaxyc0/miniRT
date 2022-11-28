@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:32:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 15:13:54 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:48:09 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	parsing(int fd, int ac, char **av, t_minirt *minirt)
 		exit(EXIT_FAILURE);
 	}
 	get_file(fd, minirt);
+	if (!minirt->camera)
+		msg_free_exit(minirt, ERR_MISSCAM);
 }
 
 void	get_file(int fd, t_minirt *minirt)

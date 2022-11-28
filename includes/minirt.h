@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 15:28:50 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:54:02 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define ERR_ORIENT_PL "orientation value(s) of plane not in range [-1,1]"
 # define ERR_CONFORM_CY "value(s) missing or not conform for cylinder (cy)"
 # define ERR_ORIENT_CY "orientation value(s) of cylinder not in range [-1,1]"
+# define ERR_MISSCAM "need a camera in file"
 
 #define EPS 1e-6
 
@@ -52,13 +53,13 @@ typedef struct s_vect
 
 typedef struct s_ray
 {
-    t_vect  start;
-    t_vect  dir;
-	t_vect	inter;
-	t_vect	normal;
-	float	inter_distance;
+	t_vect			start;
+	t_vect			dir;
+	t_vect			inter;
+	t_vect			normal;
+	float			inter_distance;
 	unsigned int	color;
-}   t_ray;
+}	t_ray;
 
 typedef struct s_color
 {
@@ -66,7 +67,6 @@ typedef struct s_color
 	unsigned int	green;
 	unsigned int	blue;
 }	t_color;
-
 
 typedef struct s_ambiant
 {
@@ -137,33 +137,35 @@ typedef struct s_minirt
 
 // Vectors
 
-float  dot(t_vect a, t_vect b);
-t_vect  add_v(t_vect a, t_vect b);
-t_vect  substract_v(t_vect a, t_vect b);
-t_vect  mult_v(t_vect a, float t);
-float  norm_v(t_vect a);
-t_vect  vect_product(t_vect a, t_vect b);
-t_vect  normalize_v(t_vect a);
-t_vect  init_vect(float x, float y, float z);
-float	compute_dist(t_vect a, t_vect b);
+float			dot(t_vect a, t_vect b);
+t_vect			add_v(t_vect a, t_vect b);
+t_vect			substract_v(t_vect a, t_vect b);
+t_vect			mult_v(t_vect a, float t);
+float			norm_v(t_vect a);
+t_vect			vect_product(t_vect a, t_vect b);
+t_vect			normalize_v(t_vect a);
+t_vect			init_vect(float x, float y, float z);
+float			compute_dist(t_vect a, t_vect b);
 
-int         intersphere(t_sphere *sphere, t_ray ray, float *t);
-t_sphere    *init_sphere(t_vect center, float radius, t_color color);
+int				intersphere(t_sphere *sphere, t_ray ray, float *t);
+t_sphere		*init_sphere(t_vect center, float radius, t_color color);
 
-t_plane *init_plane(t_vect point, t_vect normal, t_color color);
-int	interplane(t_plane *plane, t_ray ray, float *t);
-int	get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
+t_plane			*init_plane(t_vect point, t_vect normal, t_color color);
+int				interplane(t_plane *plane, t_ray ray, float *t);
+int				get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
 
-t_cylinder	*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
-int		intercylinder(t_cylinder *cyl, t_ray ray, float *t);
-int		inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
-void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, float *t);
-int		inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
-void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, float *t);
+t_cylinder		*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
+int				intercylinder(t_cylinder *cyl, t_ray ray, float *t);
+int				inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
+void			get_intersection_bot_point(t_cylinder *cyl,
+					t_ray *ray, float *t);
+int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
+void			get_intersection_top_point(t_cylinder *cyl,
+					t_ray *ray, float *t);
 
-t_ray	init_ray(t_vect	origin, t_vect direction);
-t_vect  get_intersection_point(t_ray ray, float t);
-int solve_quadratic_equation(float a, float b, float c, float *t);
+t_ray			init_ray(t_vect	origin, t_vect direction);
+t_vect			get_intersection_point(t_ray ray, float t);
+int				solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
 
 // Parsing
@@ -172,17 +174,17 @@ void			add_obj(int type, t_minirt *minirt, char *line);
 void			ambiant_parameter(char *line, t_minirt *minirt);
 void			camera_parameter(char *line, t_minirt *minirt);
 void			cylinder_parameter(char *line, t_minirt *minirt,
-			t_objects *obj);
+					t_objects *obj);
 void			get_file(int fd, t_minirt *minirt);
 void			get_line_parameter(char *line, t_minirt *minirt, int line_nb);
 void			light_parameter(char *line, t_minirt *minirt);
 void			parsing(int fd, int ac, char **av, t_minirt *minirt);
 void			obj_type(t_minirt *minirt, int type, char *line,
-			t_objects *objects);
+					t_objects *objects);
 void			obj_type2(t_minirt *minirt, int type, char *line,
-			t_objects *objects);
+					t_objects *objects);
 void			obj_type3(t_minirt *minirt, int type, char *line,
-			t_objects *obj);
+					t_objects *obj);
 void			plane_parameter(char *line, t_minirt *minirt, t_objects *obj);
 void			sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
 char			*get_float(char *line, int i, t_minirt *minirt);

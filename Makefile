@@ -25,17 +25,11 @@ FT_PATH		= libft
 HEADERS		= includes \
 
 SRCS		=	main.c						\
-				dot.c						\
 				init_vect.c					\
-				vect_operations.c			\
-				vect_product.c 				\
 				vect_dist.c					\
 				rgb_to_hex.c				\
-				init_sphere.c				\
-				intersphere.c				\
 				init_plane.c				\
 				interplane.c				\
-				get_intersection_point.c	\
 				intercylinder.c 			\
 				init_cylinder.c				\
 				inter_cylinder_bot_top.c	\
