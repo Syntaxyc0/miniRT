@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_print.c                                      :+:      :+:    :+:   */
+/*   check_line2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 15:44:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 14:59:00 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/23 11:07:00 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/24 15:23:18 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_error(char *msg)
+int	check_eof(char *line, int i)
 {
-	printf("%s\n", msg);
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (i);
+}
+
+int	next_value(char *line, int i)
+{
+	while (line[i] != ' ')
+		i++;
+	while (line[i] == ' ')
+		i++;
+	return (i);
 }

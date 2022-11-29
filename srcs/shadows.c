@@ -40,7 +40,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	return (0);
 }
 
-void	check_shadow_intersect(t_minirrt *mini, t_ray *ray)
+void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 {
 	t_objects	*obj;
 	int	is_in_shadow;

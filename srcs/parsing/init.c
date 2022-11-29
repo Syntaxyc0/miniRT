@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_print.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 15:44:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 14:59:00 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/22 14:35:06 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/24 15:02:44 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_error(char *msg)
+t_minirt	*init_minirt(void)
 {
-	printf("%s\n", msg);
+	t_minirt	*minirt;
+
+	minirt = malloc(sizeof(t_minirt));
+	if (!minirt)
+	{
+		print_error(ERR_MALLOC);
+		exit(EXIT_FAILURE);
+	}
+	minirt->ambiant = 0;
+	minirt->camera = 0;
+	minirt->light = 0;
+	minirt->objects = 0;
+	minirt->id = 0;
+	return (minirt);
 }

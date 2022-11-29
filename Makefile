@@ -16,10 +16,11 @@ VECT_PATH	= vectors
 
 SPHERE_PATH	= sphere
 
-CYL_PATH = cylinder
+CYL_PATH 	= cylinder
 
 GRAPHIC_PATH = graphic
 
+<<<<<<< HEAD
 FT_PATH = libft
 
 HEADERS = includes \
@@ -45,6 +46,50 @@ SRCS = 	main.c						\
 		check_args.c				\
 		parsing.c					\
 		
+=======
+FT_PATH		= libft
+
+HEADERS		= includes \
+
+SRCS		=	main.c						\
+				init_vect.c					\
+				vect_dist.c					\
+				rgb_to_hex.c				\
+				init_plane.c				\
+				interplane.c				\
+				intercylinder.c 			\
+				init_cylinder.c				\
+				inter_cylinder_bot_top.c	\
+				init_ray.c					\
+				ambiant.c					\
+				camera.c					\
+				check_args.c				\
+				check_line.c				\
+				check_line2.c				\
+				cylinder.c					\
+				dot.c						\
+				error_print.c				\
+				free_exit.c					\
+				get_intersection_point.c	\
+				get_parameter.c				\
+				get_parameter2.c			\
+				init.c						\
+				init_sphere.c				\
+				intersphere.c				\
+				light.c						\
+				line.c						\
+				list.c						\
+				parsing.c					\
+				plane.c						\
+				range.c						\
+				struct_spe.c				\
+				struct_spe2.c				\
+				sphere.c					\
+				utils.c						\
+				vect_operations.c			\
+				vect_product.c 				\
+
+>>>>>>> main
 CC			= gcc #$(FSANITIZE)
 
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3
