@@ -104,7 +104,7 @@ clean			:
 
 fclean			:
 	@make fclean -C $(FT_PATH)
-	@make fclean -C $(MLX_DIR)
+	@make clean -C $(MLX_DIR)
 	@${RM} ${NAME}
 
 re				:
