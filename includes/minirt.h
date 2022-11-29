@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/28 13:54:02 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/29 12:15:34 by jbesnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,16 @@ typedef struct s_objects
 	struct s_objects	*next;
 }	t_objects;
 
+typedef struct s_img
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}	t_img;
 typedef struct s_minirt
 {
 	t_ambiant	*ambiant;
@@ -167,6 +177,7 @@ t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, float t);
 int				solve_quadratic_equation(float a, float b, float c, float *t);
 unsigned int	rgb_to_hex(t_color color);
+t_color hex_to_rgb(unsigned int hex);
 
 // Parsing
 

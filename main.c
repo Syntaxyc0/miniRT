@@ -87,6 +87,9 @@
 //     printf("coord intersection point : %f %f %f\n", inter.x, inter.y, inter.z);
 // }
 
+<<<<<<< HEAD
+// int main()~
+=======
 int main(int argc, char **argv)
 {
 	t_minirt	*minirt;
@@ -139,6 +142,7 @@ int main(int argc, char **argv)
 }
 
 // int main()
+>>>>>>> main
 // {
 //     t_vect a;
 //     t_vect b;
@@ -153,6 +157,25 @@ int main(int argc, char **argv)
 //     printf("dot : %f\n", dot(a, b));
 // }
 
+<<<<<<< HEAD
+int main(int argc, char **argv)
+{
+	t_color	color;
+	unsigned int hex;
+	t_color test;
+
+	(void)argc;
+	color.red=atoi(argv[1]);
+	color.blue=atoi(argv[2]);
+	color.green=atoi(argv[3]);
+	hex = rgb_to_hex(color);
+	test = hex_to_rgb(hex);
+	printf("color hex: %#08x\n", hex);
+	printf("color : %d\n", test.red);
+	printf("color : %d\n", test.green);
+	printf("color : %d\n", test.blue);
+}
+=======
 /* TEST_FOR_PARSING
 
 	printf("A : intensity = %f color = %u,%u,%u\n", minirt->ambiant->intensity,
@@ -194,3 +217,4 @@ int main(int argc, char **argv)
 		minirt->objects = minirt->objects->next;
 	}
 */
+>>>>>>> main

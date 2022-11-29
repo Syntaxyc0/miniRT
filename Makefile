@@ -20,6 +20,33 @@ CYL_PATH 	= cylinder
 
 GRAPHIC_PATH = graphic
 
+<<<<<<< HEAD
+FT_PATH = libft
+
+HEADERS = includes \
+
+SRCS = 	main.c						\
+		dot.c						\
+		init_vect.c					\
+		vect_operations.c			\
+		vect_product.c 				\
+		vect_dist.c					\
+		rgb_to_hex.c				\
+		hex_to_rgb.c				\
+		init_sphere.c				\
+		intersphere.c				\
+		init_plane.c				\
+		interplane.c				\
+		get_intersection_point.c	\
+		intercylinder.c 			\
+		init_cylinder.c				\
+		inter_cylinder_bot_top.c	\
+		init_ray.c					\
+		error_print.c				\
+		check_args.c				\
+		parsing.c					\
+		
+=======
 FT_PATH		= libft
 
 HEADERS		= includes \
@@ -62,6 +89,7 @@ SRCS		=	main.c						\
 				vect_operations.c			\
 				vect_product.c 				\
 
+>>>>>>> main
 CC			= gcc #$(FSANITIZE)
 
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3

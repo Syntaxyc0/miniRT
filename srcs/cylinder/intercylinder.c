@@ -20,13 +20,21 @@ int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	float	a;
 	float	b;
 	float	c;
+	t_vect	point;
 	
 	cyl_ray = substract_v(ray->start, cyl->point);
 	a = powf(norm_v(cyl_ray), 2) - powf(dot(ray->dir, cyl->normal), 2);
 	b = dot(cyl_ray, ray->dir) - dot(cyl->normal, ray->dir) * (dot(cyl->normal, cyl_ray));
 	c = powf(norm_v(cyl_ray), 2) - powf(cyl->diameter / 2, 2);
 	if (solve_quadratic_equation(a,b,c,t))
-		return (1); // check hauteur
+	{
+		point = get_intersection_point(*ray, *t);
+		if (dot(substract_v(point, cyl->point), cyl->normal) < 0)
+			return (0);
+		else if (sqrtf(powf(norm_v(point), 2) - powf(cyl->diameter / 2, 2)) > cyl->height)
+			return (0);
+		return (1);
+	}
 	return (0);
 }
 
