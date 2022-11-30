@@ -44,6 +44,8 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 {
 	t_objects	*obj;
 	int	is_in_shadow;
+	float	angle;
+	unsigned int	nuance_color;
 
 	is_in_shadow = 0;
 	obj = mini->objects;
@@ -57,8 +59,15 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 		obj = obj->next;
 	}
 	if (is_in_shadow)
+		ray->color = apply_coeff_color(ray->color, mini->ambiant->color, mini->ambiant->intensity);
+	else
 	{
-		
+		angle = dot(ray->dir, ray->normal);
+		if (angle > 0)
+		{
+			nuance_color = apply_coeff(ray->color, angle * mini->light->intensity);
+			ray->color = add_color(ray->color, nuance_color);
+		}
 	}
 
 }
@@ -68,7 +77,7 @@ void	shadows(t_minirt *mini, t_ray ray)
 	t_ray	shadow;
 	t_vect	dir;
 
-	dir = substract_v(ray.inter, mini->light->position);
+	dir = normalize_v(substract_v(mini->light->position, ray.inter));
 	shadow = init_ray(add_v(ray.inter, mult_v(dir, EPS)), dir);
 	shadow.inter = mini->light->position;
 	shadow.inter_distance = norm_v(shadow.dir);
