@@ -42,6 +42,9 @@
 # define ERR_ORIENT_CY "orientation value(s) of cylinder not in range [-1,1]"
 # define ERR_MISSCAM "need a camera in file"
 
+# define WINDOW_WIDTH 300
+# define WINDOW_HEIGHT 300
+
 #define EPS 1e-6
 
 typedef struct s_vect
@@ -127,6 +130,16 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
+typedef struct s_camera_settings
+{
+	t_vect	forward;
+	t_vect	abs;
+	t_vect	ord;
+	float	height;
+	float	width;
+}	t_camera_settings;
+
 typedef struct s_minirt
 {
 	t_ambiant	*ambiant;
