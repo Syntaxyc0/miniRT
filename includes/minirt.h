@@ -135,9 +135,9 @@ typedef struct s_camera_settings
 {
 	t_vect	forward;
 	t_vect	abs;
-	t_vect	ord;
-	float	height;
-	float	width;
+	t_vect	ord;	
+	float	ratio;
+	float	fov_ratio;
 }	t_camera_settings;
 
 typedef struct s_minirt
