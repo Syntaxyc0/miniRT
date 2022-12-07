@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphic_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 12:04:11 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/07 13:40:14 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	set_img(t_minirt *mini)
@@ -7,10 +19,10 @@ void	set_img(t_minirt *mini)
 	img = mini->img;
 	img->mlx = mlx_init();
 	if (!img->mlx)
-		return ; // gestion d'erreur free_minirt exit
-	mimg->win = mlx_new_window(img->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Minirt");
+		msg_free_exit(mini, ERR_INIT);
+	img->win = mlx_new_window(img->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Minirt");
 	if (!img->win)
-		return ; // gestion d'erreur free_minirt exit
+		msg_free_exit(mini, ERR_WIN);
 	img->img = mlx_new_image(img->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_len, &img->endian);
 }

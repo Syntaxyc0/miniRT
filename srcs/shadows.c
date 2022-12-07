@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shadows.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 12:05:10 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/07 12:05:10 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	intersect_obj(t_objects *obj, t_ray *ray)
@@ -9,7 +21,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	t = 0;
 	if (obj->type == 4)
 	{
-		if (intersphere((t_sphere *)obj->object), *ray, &t)
+		if (intersphere((t_sphere *)obj->object, *ray, &t))
 		{
 			point = get_intersection_point(*ray, t);
 			dist = compute_dist(ray->start, point);
@@ -19,7 +31,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	}
 	else if (obj->type == 5)
 	{
-		if (interplane((t_plane *)obj->object), *ray, &t)
+		if (interplane((t_plane *)obj->object, *ray, &t))
 		{
 			point = get_intersection_point(*ray, t);
 			dist = compute_dist(ray->start, point);
@@ -29,7 +41,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	}
 	else if (obj->type == 6)
 	{
-		if (intercylinder((t_cylinder *)obj->object), *ray, &t)
+		if (intercylinder((t_cylinder *)obj->object, *ray, &t))
 		{
 			point = get_intersection_point(*ray, t);
 			dist = compute_dist(ray->start, point);

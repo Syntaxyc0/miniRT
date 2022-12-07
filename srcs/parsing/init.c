@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:35:06 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:44 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/12/07 11:05:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_minirt	*init_minirt(void)
 	minirt->camera = 0;
 	minirt->light = 0;
 	minirt->objects = 0;
+	minirt->img = 0;
 	minirt->id = 0;
 	return (minirt);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_tracing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 12:02:45 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/07 13:10:14 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 t_camera_settings   init_settings(t_camera *cam)
@@ -28,13 +40,32 @@ t_ray   set_ray(t_camera *cam, t_camera_settings settings, int x, int y)
     t_vect  tmp;
     t_ray   ret;
 
-    tmp = get_direction(settings, x, y)
+    tmp = get_direction(settings, x, y);
     dir.x = settings.abs.x * tmp.x + settings.ord.x * tmp.y + settings.forward.x * tmp.z;
     dir.y = settings.abs.y * tmp.x + settings.ord.y * tmp.y + settings.forward.y * tmp.z;
     dir.z = settings.abs.z * tmp.x + settings.ord.z * tmp.y + settings.forward.z * tmp.z;
     dir = normalize_v(dir);
     ret = init_ray(cam->position, dir);
     return (ret);
+}
+
+void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
+{
+	t_objects	*obj;
+	float		t;
+
+	t = 0;
+	obj = minirt->objects;
+	while (obj)
+	{
+		if (obj->type == 4)
+			get_intersection_sphere((t_sphere *)obj->object, ray, &t);
+		else if (obj->type == 5)
+			get_intersecton_plane((t_plane *)obj->object, ray, &t);
+		else if (obj->type == 6)
+			get_intersecton_cylinder((t_cylinder *)obj->object, ray, &t);
+		obj = obj->next;
+	}
 }
 
 void    ray_tracing(t_minirt *mini)
@@ -52,8 +83,9 @@ void    ray_tracing(t_minirt *mini)
         while (x < WINDOW_WIDTH)
         {
             ray = set_ray(mini->camera, settings, x, y);
-            //fonction get color ray
-            //put pixel color en x y
+            get_intersect_ray(mini, &ray);
+            shadows(mini, ray);
+			put_pixel(mini->img, x, y, ray.color);
             x++;
         }
         y++;

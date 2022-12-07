@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 14:59:26 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/12/07 11:54:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_minirt(t_minirt *minirt)
 			free(tmp);
 		}
 	}
+	if (minirt->img)
+		free_img(minirt);
 	free(minirt);
 }
 

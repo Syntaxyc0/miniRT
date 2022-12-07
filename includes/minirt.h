@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/29 12:15:34 by jbesnier         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:38:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define ERR_CONFORM_CY "value(s) missing or not conform for cylinder (cy)"
 # define ERR_ORIENT_CY "orientation value(s) of cylinder not in range [-1,1]"
 # define ERR_MISSCAM "need a camera in file"
+# define ERR_INIT	"mlx_init failed"
+# define ERR_WIN	"mlx_new_window failed"
 
 # define WINDOW_WIDTH 300
 # define WINDOW_HEIGHT 300
@@ -146,6 +148,7 @@ typedef struct s_minirt
 	t_camera	*camera;
 	t_light		*light;
 	t_objects	*objects;
+	t_img		*img;
 	char		*id;
 }	t_minirt;
 
@@ -185,12 +188,22 @@ void			get_intersection_bot_point(t_cylinder *cyl,
 int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
 void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, float *t);
+void   			ray_tracing(t_minirt *mini);
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, float t);
 int				solve_quadratic_equation(float a, float b, float c, float *t);
+
+t_img			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
-t_color hex_to_rgb(unsigned int hex);
+unsigned int	apply_coeff(unsigned int color, float coeff);
+unsigned int	apply_coeff_color(unsigned int color, t_color to_add, float coeff);
+unsigned int	add_color(unsigned int color, unsigned int to_add);
+t_color 		hex_to_rgb(unsigned int hex);
+void			set_img(t_minirt *mini);
+void			put_pixel(t_img	*img, int x, int y, unsigned int color);
+void			display_img(t_img	*img);
+void			loop(t_minirt *minirt);
 
 // Parsing
 
@@ -257,6 +270,8 @@ void			free_exit(t_minirt *minirt);
 void			msg_free_exit(t_minirt *minirt, char *msg);
 void			msg_free_line_exit(t_minirt *minirt, char *line, char *msg);
 void			free_minirt(t_minirt *minirt);
+void			free_img(t_minirt *minirt);
+
 
 // Utils
 

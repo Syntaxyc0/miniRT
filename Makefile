@@ -24,10 +24,14 @@ FT_PATH		= libft
 
 HEADERS		= includes \
 
-SRCS		=	main.c						\
+SRCS		=	minirt.c					\
 				init_vect.c					\
 				vect_dist.c					\
 				rgb_to_hex.c				\
+				graphic_utils.c				\
+				color_operations.c			\
+				mlx_functions.c				\
+				init_img.c					\
 				init_plane.c				\
 				interplane.c				\
 				intercylinder.c 			\
@@ -43,6 +47,7 @@ SRCS		=	main.c						\
 				dot.c						\
 				error_print.c				\
 				free_exit.c					\
+				free_img.c					\
 				get_intersection_point.c	\
 				get_parameter.c				\
 				get_parameter2.c			\

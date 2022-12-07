@@ -1,18 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intercylinder.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 12:06:47 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/07 12:07:04 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
-
-// int	intercylinder(t_cylinder *cyl, t_ray ray, float *t)
-// {
-// 	float	a;
-// 	float	b;
-// 	float	c;
-
-// 	a = powf(ray.dir.x, 2) + powf(ray.dir.y, 2);
-// 	b = 2 * (ray.start.x * ray.dir.x + ray.start.y * ray.dir.y);
-// 	c = powf(ray.start.x, 2) + powf(ray.start.y, 2) - powf(cyl->diameter / 2, 2);
-// 	if (solve_equation(a, b, c, t))
-// 		return (1);
-// 	return (0);
-// }
 
 int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 {
