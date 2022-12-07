@@ -17,7 +17,7 @@ t_vect  get_direction(t_camera_settings settings, int x, int y)
     float   x_proj;
     float   y_proj;
 
-    x_proj = (2 * (x + 0.5) / (WINDOW_WIDTH - 1)) * settings.ratio * settings.fov_ratio;
+    x_proj = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * settings.ratio * settings.fov_ratio;
     y_proj = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * settings.fov_ratio;
     return (init_vect(x_proj, y_proj, 1.0));
 }
