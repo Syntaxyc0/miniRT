@@ -18,6 +18,7 @@ SRCS		=	main.c						\
 				init_vect.c					\
 				vect_dist.c					\
 				rgb_to_hex.c				\
+				hex_to_rgb.c				\
 				graphic_utils.c				\
 				color_operations.c			\
 				mlx_functions.c				\
@@ -73,13 +74,13 @@ WHITE		=	\033[37m
 
 vpath %.h $(HEADERS)
 vpath %.c $(SRCSPATH)				\
+ 	$(SRCSPATH)/$(GRAPHIC_PATH) 	\
  	$(SRCSPATH)/$(VECT_PATH) 		\
  	$(SRCSPATH)/$(SPHERE_PATH) 		\
  	$(SRCSPATH)/$(PLANE_PATH) 		\
  	$(SRCSPATH)/$(CYL_PATH) 		\
  	$(SRCSPATH)/$(ERR_PATH) 		\
  	$(SRCSPATH)/$(PARS_PATH) 		\
- 	$(SRCSPATH)/$(GRAPHIC_PATH) 	\
 
 
 vpath %.o $(OBJ_PATH)
@@ -110,6 +111,7 @@ clean			:
 fclean			:
 	@make fclean -C $(FT_PATH)
 	@make clean -C $(MLX_DIR)
+	@${RM} $(OBJ_PATH)
 	@${RM} ${NAME}
 
 re				:

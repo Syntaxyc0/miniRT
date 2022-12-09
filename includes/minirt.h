@@ -151,7 +151,7 @@ typedef struct s_minirt
 	t_camera	*camera;
 	t_light		*light;
 	t_objects	*objects;
-	t_img		*img;
+	t_image		*img;
 	char		*id;
 }	t_minirt;
 
@@ -197,15 +197,15 @@ t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, float t);
 int				solve_quadratic_equation(float a, float b, float c, float *t);
 
-t_img			*init_img(void);
+t_image			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
 unsigned int	apply_coeff(unsigned int color, float coeff);
 unsigned int	apply_coeff_color(unsigned int color, t_color to_add, float coeff);
 unsigned int	add_color(unsigned int color, unsigned int to_add);
 t_color 		hex_to_rgb(unsigned int hex);
 void			set_img(t_minirt *mini);
-void			put_pixel(t_img	*img, int x, int y, unsigned int color);
-void			display_img(t_img	*img);
+void			put_pixel(t_image	*img, int x, int y, unsigned int color);
+void			display_img(t_image	*img);
 void			loop(t_minirt *minirt);
 
 // Parsing
