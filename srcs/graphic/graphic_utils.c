@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	set_image(t_minirt *mini)
+void	set_img(t_minirt *mini)
 {
 	t_image *img;
 

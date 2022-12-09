@@ -51,7 +51,7 @@ int intersphere(t_sphere *sphere, t_ray ray, float *t)
     return (0);
 }
 
-int	get_intersecton_sphere(t_sphere *sphere, t_ray *ray, float *t)
+int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t)
 {
 	t_vect	inter;
 	float	dist;

@@ -14,7 +14,7 @@ CYL_PATH 	= cylinder
 GRAPHIC_PATH = graphic
 FT_PATH		= libft
 HEADERS		= includes 
-SRCS		=	main.c						\
+SRCS		=	minirt.c						\
 				init_vect.c					\
 				vect_dist.c					\
 				rgb_to_hex.c				\
@@ -29,6 +29,8 @@ SRCS		=	main.c						\
 				init_cylinder.c				\
 				inter_cylinder_bot_top.c	\
 				init_ray.c					\
+				ray_tracing.c				\
+				shadows.c					\
 				ambiant.c					\
 				camera.c					\
 				check_args.c				\

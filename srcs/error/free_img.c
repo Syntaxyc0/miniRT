@@ -16,5 +16,9 @@ void	free_img(t_minirt *minirt)
 {
 	if (minirt->img->mlx)
 		free(minirt->img->mlx);
+	if (minirt->img->win)
+		free(minirt->img->win);
+	if (minirt->img->img)
+		free(minirt->img->img);
 	free(minirt->img);
 }

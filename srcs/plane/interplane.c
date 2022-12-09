@@ -29,7 +29,7 @@ int	interplane(t_plane *plane, t_ray ray, float *t)
 		return (0);
 }
 
-int	get_intersecton_plane(t_plane *plane, t_ray *ray, float *t)
+int	get_intersection_plane(t_plane *plane, t_ray *ray, float *t)
 {
 	t_vect	inter;
 	float	dist;

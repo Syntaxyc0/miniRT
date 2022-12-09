@@ -89,10 +89,11 @@ void	shadows(t_minirt *mini, t_ray ray)
 	t_ray	shadow;
 	t_vect	dir;
 
-	dir = normalize_v(substract_v(mini->light->position, ray.inter));
+	dir = substract_v(mini->light->position, ray.inter);
 	shadow = init_ray(add_v(ray.inter, mult_v(dir, EPS)), dir);
 	shadow.inter = mini->light->position;
 	shadow.inter_distance = norm_v(shadow.dir);
 	shadow.color = ray.color;
+	shadow.dir = normalize_v(shadow.dir);
 	check_shadow_intersect(mini, &shadow);
 }

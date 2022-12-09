@@ -59,11 +59,20 @@ void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
 	while (obj)
 	{
 		if (obj->type == 4)
-			get_intersection_sphere((t_sphere *)obj->object, ray, &t);
+		{
+			if (intersphere((t_sphere *)obj->object, *ray, &t))
+				get_intersection_sphere((t_sphere *)obj->object, ray, &t);
+		}
 		else if (obj->type == 5)
-			get_intersecton_plane((t_plane *)obj->object, ray, &t);
+		{
+			if (interplane((t_plane *)obj->object, *ray, &t))
+				get_intersection_plane((t_plane *)obj->object, ray, &t);
+		}
 		else if (obj->type == 6)
-			get_intersecton_cylinder((t_cylinder *)obj->object, ray, &t);
+		{
+			if (intercylinder((t_cylinder *)obj->object, *ray, &t))
+				get_intersect_cylinder((t_cylinder *)obj->object, ray, &t);
+		}
 		obj = obj->next;
 	}
 }

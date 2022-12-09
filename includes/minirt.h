@@ -47,8 +47,8 @@
 # define ERR_INIT	"mlx_init failed"
 # define ERR_WIN	"mlx_new_window failed"
 
-# define WINDOW_WIDTH 300
-# define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 
 #define EPS 1e-6
 
@@ -178,10 +178,11 @@ float			compute_dist(t_vect a, t_vect b);
 
 int				intersphere(t_sphere *sphere, t_ray ray, float *t);
 t_sphere		*init_sphere(t_vect center, float radius, t_color color);
+int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t);
 
 t_plane			*init_plane(t_vect point, t_vect normal, t_color color);
 int				interplane(t_plane *plane, t_ray ray, float *t);
-int				get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
+int				get_intersection_plane(t_plane *plane, t_ray *ray, float *t);
 
 t_cylinder		*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
 int				intercylinder(t_cylinder *cyl, t_ray ray, float *t);
@@ -191,7 +192,10 @@ void			get_intersection_bot_point(t_cylinder *cyl,
 int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
 void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, float *t);
+void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t);
 void   			ray_tracing(t_minirt *mini);
+void			shadows(t_minirt *mini, t_ray ray);
+
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, float t);

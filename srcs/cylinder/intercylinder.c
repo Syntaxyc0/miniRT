@@ -51,17 +51,14 @@ void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	ray->color = rgb_to_hex(cyl->color);
 }
 
-void	get_intersect_cylinder(t_cylinder *cyl, t_ray ray)
+void	get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t)
 {
-	float	t;
-
-	t = 0;
-	if (inter_cylinder_bot(cyl, &ray, &t))
-		get_intersection_bot_point(cyl, &ray, &t);
-	if (inter_cylinder_top(cyl, &ray, &t))
-		get_intersection_top_point(cyl, &ray, &t);
-	if (inter_cylinder_pipe(cyl, &ray, &t))
-		get_intersection_cylinder_pipe(cyl, &ray, &t);
+	if (inter_cylinder_bot(cyl, ray, t))
+		get_intersection_bot_point(cyl, ray, t);
+	if (inter_cylinder_top(cyl, ray, t))
+		get_intersection_top_point(cyl, ray, t);
+	if (inter_cylinder_pipe(cyl, ray, t))
+		get_intersection_cylinder_pipe(cyl, ray, t);
 }
 
 int	intercylinder(t_cylinder *cyl, t_ray ray, float *t)

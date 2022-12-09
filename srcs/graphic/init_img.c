@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_image	*init_image(void)
+t_image	*init_img(void)
 {
 	t_image	*ret;
 
