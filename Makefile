@@ -59,6 +59,7 @@ SRCS		=	minirt.c						\
 				utils.c						\
 				vect_operations.c			\
 				vect_product.c 				\
+				debug_utils.c				\
 
 CC			= gcc #$(FSANITIZE)
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3

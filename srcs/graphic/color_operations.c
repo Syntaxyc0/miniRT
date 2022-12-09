@@ -53,3 +53,19 @@ unsigned int	add_color(unsigned int color, unsigned int to_add)
 		result.blue = 255;
 	return (rgb_to_hex(result));
 }
+
+t_color	add_color_v(t_color color1, t_color color2)
+{
+	t_color	result;
+
+	result.red = color1.red + color2.red;
+	result.green = color1.green + color2.green;
+	result.blue = color1.blue + color2.blue;
+	if (result.red > 255)
+		result.red = 255;
+	if (result.green > 255)
+		result.green = 255;
+	if (result.blue > 255)
+		result.blue = 255;
+	return (result);
+}

@@ -194,7 +194,7 @@ void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, float *t);
 void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t);
 void   			ray_tracing(t_minirt *mini);
-void			shadows(t_minirt *mini, t_ray ray);
+unsigned int			shadows(t_minirt *mini, t_ray *ray);
 
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
@@ -286,6 +286,7 @@ int				ft_isfloat(char c);
 int				str_big(char *str1, char *str2);
 float			ft_atof(char *str);
 unsigned int	ft_atoui(char *str);
+void			display_vect(t_vect	vect);
 
 #endif
 

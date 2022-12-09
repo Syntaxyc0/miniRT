@@ -83,7 +83,9 @@ void    ray_tracing(t_minirt *mini)
     t_ray   ray;
     int x;
     int y;
+	unsigned int	color;
 
+	color = 0;
     settings = init_settings(mini->camera);
     y = 0;
     while (y < WINDOW_HEIGHT)
@@ -93,8 +95,8 @@ void    ray_tracing(t_minirt *mini)
         {
             ray = set_ray(mini->camera, settings, x, y);
             get_intersect_ray(mini, &ray);
-            shadows(mini, ray);
-			put_pixel(mini->img, x, y, ray.color);
+            color = shadows(mini, &ray);
+			put_pixel(mini->img, x, y, color);
             x++;
         }
         y++;

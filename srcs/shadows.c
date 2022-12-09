@@ -58,7 +58,11 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 	int	is_in_shadow;
 	float	angle;
 	unsigned int	nuance_color;
+	t_color	white;
 
+	white.red = 0;
+	white.blue = 0;
+	white.green = 0;
 	is_in_shadow = 0;
 	obj = mini->objects;
 	while (obj)
@@ -75,25 +79,33 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 	else
 	{
 		angle = dot(ray->dir, ray->normal);
+		ray->color = apply_coeff_color(ray->color, mini->ambiant->color, mini->ambiant->intensity);
 		if (angle > 0)
 		{
-			nuance_color = apply_coeff(ray->color, angle * mini->light->intensity);
+			nuance_color = apply_coeff_color(ray->color,white, angle * mini->light->intensity);
 			ray->color = add_color(ray->color, nuance_color);
 		}
 	}
 
 }
 
-void	shadows(t_minirt *mini, t_ray ray)
+unsigned int	shadows(t_minirt *mini, t_ray *ray)
 {
 	t_ray	shadow;
 	t_vect	dir;
 
-	dir = substract_v(mini->light->position, ray.inter);
-	shadow = init_ray(add_v(ray.inter, mult_v(dir, EPS)), dir);
-	shadow.inter = mini->light->position;
-	shadow.inter_distance = norm_v(shadow.dir);
-	shadow.color = ray.color;
-	shadow.dir = normalize_v(shadow.dir);
-	check_shadow_intersect(mini, &shadow);
+	if (ray->inter_distance != INFINITY)
+	{
+		dir = substract_v(mini->light->position, ray->inter);
+		// shadow = init_ray(add_v(ray->inter, mult_v(dir, EPS)), dir);
+		shadow = init_ray(ray->inter, dir);
+		shadow.inter = mini->light->position;
+		shadow.inter_distance = norm_v(shadow.dir);
+		shadow.color = ray->color;
+		shadow.dir = normalize_v(shadow.dir);
+		shadow.normal = ray->normal;
+		check_shadow_intersect(mini, &shadow);
+		return (shadow.color);
+	}
+	return (apply_coeff(rgb_to_hex(mini->ambiant->color), mini->ambiant->intensity));
 }
