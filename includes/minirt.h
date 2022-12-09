@@ -120,7 +120,7 @@ typedef struct s_objects
 	struct s_objects	*next;
 }	t_objects;
 
-typedef struct s_img
+typedef struct s_image
 {
 	void	*mlx;
 	void	*win;
@@ -129,7 +129,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_len;
 	int		endian;
-}	t_img;
+}	t_image;
+
 typedef struct s_minirt
 {
 	t_ambiant	*ambiant;
