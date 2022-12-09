@@ -12,11 +12,11 @@
 
 #include "minirt.h"
 
-t_img	*init_img(void)
+t_image	*init_image(void)
 {
-	t_img	*ret;
+	t_image	*ret;
 
-	ret = malloc(sizeof(t_img));
+	ret = malloc(sizeof(t_image));
 	if (!ret)
 		return (NULL);
 	ret->mlx = NULL;

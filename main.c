@@ -1,4 +1,4 @@
-#include "minirt.h"
+	#include "minirt.h"
 
 // int main(int argc, char **argv)
 // {
@@ -194,4 +194,3 @@ int main(int argc, char **argv)
 		minirt->objects = minirt->objects->next;
 	}
 */
-	

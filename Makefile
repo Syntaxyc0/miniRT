@@ -1,30 +1,20 @@
 NAME		= miniRT
-
 FSANITIZE	= -g3 -fsanitize=address
-
+FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX			= minilibx-linux/libmlx.a
+MLX_DIR 	= minilibx-linux
 SRCSPATH 	= srcs
-
 OBJ_PATH	= objs
-
 ERR_PATH	= error
-
 PARS_PATH	= parsing
-
 PLANE_PATH	= plane
-
 VECT_PATH	= vectors
-
 SPHERE_PATH	= sphere
-
 CYL_PATH 	= cylinder
-
 GRAPHIC_PATH = graphic
-
 FT_PATH		= libft
-
-HEADERS		= includes \
-
-SRCS		=	minirt.c					\
+HEADERS		= includes 
+SRCS		=	main.c						\
 				init_vect.c					\
 				vect_dist.c					\
 				rgb_to_hex.c				\
@@ -68,13 +58,9 @@ SRCS		=	minirt.c					\
 				vect_product.c 				\
 
 CC			= gcc #$(FSANITIZE)
-
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3
-
 RM			= rm -rf
-
 OBJS		=  $(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
-
 DEPS		= $(OBJS:.o=.d)
 
 SUPPR		=	\033[00m
@@ -100,9 +86,12 @@ vpath %.o $(OBJ_PATH)
 
 all				: $(NAME)
 
-$(NAME)			: $(OBJS)
+$(MLX)		:
+	@make -sC $(MLX_DIR)
+
+$(NAME)			: $(OBJS) $(MLX)
 			@make -C $(FT_PATH)
-			@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -I libft/include -L$(FT_PATH) -lft -lm -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) -L $(MLX_DIR) $(FLAGS_LIB) -I $(HEADERS) -I libft/include -L$(FT_PATH) -lft -lm -o $(NAME)
 			@echo "$(WHITE)Compilation $(GRAS)miniRT $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.c
@@ -115,11 +104,12 @@ $(OBJ_PATH)		:
 
 clean			:
 	@make clean -C $(FT_PATH)
+	@make clean -C $(MLX_DIR)
 	@${RM} $(OBJ_PATH)
 
 fclean			:
 	@make fclean -C $(FT_PATH)
-	@make clean
+	@make clean -C $(MLX_DIR)
 	@${RM} ${NAME}
 
 re				:
