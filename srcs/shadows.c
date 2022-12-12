@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:05:10 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/12 16:21:54 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:43:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_dist(t_ray *ray, float *t)
 	t_vect	point;
 	float	dist;
 
-	point = get_intersection_point(*ray, t);
+	point = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, point);
 	if (dist < ray->inter_distance)
 		return (1);
@@ -100,7 +100,7 @@ unsigned int	shadows(t_minirt *mini, t_ray *ray)
 		shadow.color = ray->color;
 		shadow.dir = normalize_v(shadow.dir);
 		shadow.normal = ray->normal;
-		if (dot(ray->dir, shadow.normal > 0))
+		if (dot(ray->dir, shadow.normal) > 0)
 			shadow.normal = mult_v(shadow.normal, -1);
 		check_shadow_intersect(mini, &shadow);
 		return (shadow.color);

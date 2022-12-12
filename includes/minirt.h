@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/12/12 16:36:54 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:39:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <math.h>
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
+# include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include <fcntl.h>
 # include <X11/X.h>
 
