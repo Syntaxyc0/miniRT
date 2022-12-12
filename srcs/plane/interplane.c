@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:33 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:34 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/11 21:09:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ int	interplane(t_plane *plane, t_ray ray, float *t)
 	if (fabs(denom) > EPS)
 	{
 		*t = dot(plane->normal, substract_v(plane->point, ray.start)) / denom;
-		if (*t < 0)
-			return (0);
-		else
+		if (*t > EPS)
 			return (1); 
 	}
-	else
-		return (0);
+	return (0);
 }
 
 int	get_intersection_plane(t_plane *plane, t_ray *ray, float *t)
@@ -40,8 +37,9 @@ int	get_intersection_plane(t_plane *plane, t_ray *ray, float *t)
 		return (0);
 	ray->inter = inter;
 	ray->normal = plane->normal;
-	if (dot(ray->dir, plane->normal))
+	if (dot(ray->dir, plane->normal) > 0)
 		ray->normal = mult_v(plane->normal, -1);
+	ray->normal = normalize_v(ray->normal);
 	ray->inter_distance = dist;
 	ray->color = rgb_to_hex(plane->color);
 	return (1);

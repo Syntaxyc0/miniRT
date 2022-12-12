@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:06:43 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:06:43 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/11 21:17:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,27 @@
 int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
 {
 	t_plane *plane;
+	t_vect	inter;
+	float	dist;
+	float	dist_to_center;
 
 	plane = (t_plane *)cyl;
 	if (interplane(plane, *ray, t))
-		return (1);
+	{
+		inter = get_intersection_point(*ray, *t);
+		dist = compute_dist(inter, ray->start);
+		dist_to_center = compute_dist(inter, cyl->point);
+		if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2 + EPS)
+			return 0;
+		else
+			return (1);
+	}
 	return (0);
 }
 
 void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, float *t)
 {
-	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
-
-	inter = get_intersection_point(*ray, *t);
-	dist = compute_dist(inter, ray->start);
-	dist_to_center = compute_dist(inter, cyl->point);
-	if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2 + EPS)
-		return ;
+	
 	ray->inter = inter;
 	ray->normal = mult_v(cyl->normal, -1);
 	ray->inter_distance = dist;

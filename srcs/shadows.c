@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:05:10 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:05:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 12:42:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,10 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 		ray->color = apply_coeff_color(ray->color, mini->ambiant->color, mini->ambiant->intensity);
 		if (angle > 0)
 		{
-			nuance_color = apply_coeff_color(ray->color,white, angle * mini->light->intensity);
+			nuance_color = apply_coeff_color(ray->color, white, angle * mini->light->intensity);
 			ray->color = add_color(ray->color, nuance_color);
 		}
 	}
-
 }
 
 unsigned int	shadows(t_minirt *mini, t_ray *ray)
@@ -104,6 +103,8 @@ unsigned int	shadows(t_minirt *mini, t_ray *ray)
 		shadow.color = ray->color;
 		shadow.dir = normalize_v(shadow.dir);
 		shadow.normal = ray->normal;
+		if (dot(ray->dir, shadow.normal > 0))
+			shadow.normal = mult_v(shadow.normal, -1);
 		check_shadow_intersect(mini, &shadow);
 		return (shadow.color);
 	}

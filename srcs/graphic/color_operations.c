@@ -28,9 +28,9 @@ unsigned int	apply_coeff_color(unsigned int color, t_color to_add, float coeff)
 	t_color	rgb;
 
 	rgb = hex_to_rgb(color);
-	rgb.red = rgb.red * to_add.red * coeff;
-	rgb.green = rgb.green * to_add.green * coeff;
-	rgb.blue = rgb.blue * to_add.blue * coeff;
+	rgb.red = rgb.red * to_add.red * coeff / 255;
+	rgb.green = rgb.green * to_add.green * coeff / 255;
+	rgb.blue = rgb.blue * to_add.blue * coeff / 255;
 	return (rgb_to_hex(rgb));
 }
 

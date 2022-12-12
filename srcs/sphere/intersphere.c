@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:41 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 11:26:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,25 @@ int solve_quadratic_equation(float a, float b, float c, float *t)
     float  r1;
 
     delta = b * b - 4.0 * a * c;
-    if (delta < 0)
+    if (delta < EPS)
         return (0);
-    else if (delta == 0)
-        *t = -1 * b / (2 * a);
-    else
-    {
-        r0 = (-1 * b - sqrtf(delta)) / (2 * a);
-        r1 = (-1 * b + sqrtf(delta)) / (2 * a);
-        if (r0 <= 0 || r1 <= 0)
-            return(0);
-        if (r0 < r1)
-            *t = r0;
-        else
-            *t = r1;
-    }
+	r0 = (-1 * b - sqrtf(delta)) / (2 * a);
+	r1 = (-1 * b + sqrtf(delta)) / (2 * a);
+	if (r0 * r1 > EPS)
+	{
+		if (r0 > EPS)
+		{
+			*t = r0;
+			return (1);
+		}
+		return(0);
+	}
+	if (r0 > EPS)
+	{
+		*t = r0;
+		return (1);
+	}
+	*t = r1;
     return (1);
 }
 
@@ -62,6 +66,7 @@ int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t)
 		return (0);
 	ray->inter = inter;
 	ray->normal = substract_v(inter, sphere->center);
+	ray->normal = normalize_v(ray->normal);
 	ray->inter_distance = dist;
 	ray->color = rgb_to_hex(sphere->color);
 	return (1);

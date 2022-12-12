@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/12/07 13:38:53 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 12:42:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,15 @@ typedef struct s_camera_settings
 	float	ratio;
 	float	fov_ratio;
 }	t_camera_settings;
+
+typedef struct s_res
+{
+	float	a;
+	float	b;
+	float	c;
+	float	delta;
+}	t_res;
+
 
 typedef struct s_minirt
 {
