@@ -1,8 +1,8 @@
 NAME		= miniRT
 FSANITIZE	= -g3 -fsanitize=address
 FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-MLX			= minilibx-linux/libmlx.a
-MLX_DIR 	= minilibx-linux
+MLX			= mlx_linux/libmlx.a
+MLX_DIR 	= mlx_linux
 SRCSPATH 	= srcs
 OBJ_PATH	= objs
 ERR_PATH	= error
@@ -23,7 +23,6 @@ SRCS		=	minirt.c						\
 				color_operations.c			\
 				mlx_functions.c				\
 				init_img.c					\
-				init_plane.c				\
 				interplane.c				\
 				intercylinder.c 			\
 				inter_cylinder_bot_top.c	\
@@ -44,7 +43,6 @@ SRCS		=	minirt.c						\
 				get_parameter.c				\
 				get_parameter2.c			\
 				init.c						\
-				init_sphere.c				\
 				intersphere.c				\
 				light.c						\
 				line.c						\
