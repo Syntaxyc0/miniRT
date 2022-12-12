@@ -56,6 +56,7 @@ void	get_intersection_cylinder(t_cylinder *cyl, t_ray *ray, float *t)
 		return (0);
 	ray->color = rgb_to_hex(cyl->color);
 	ray->inter = inter;
+	ray->inter_distance = dist;
 	len = dot(ray->dir, mult_v(cyl->normal, *t)) + dot(substract_v(ray->start, cyl->point), cyl->normal);
 	ray->normal = normalize_v(substract_v(substract_v(inter, cyl->point), mult_v(len, cyl->normal)));
 }
