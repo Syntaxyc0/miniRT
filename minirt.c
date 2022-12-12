@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:05:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:05:14 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:34:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_minirt	*minirt;
 	int			fd;

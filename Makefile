@@ -26,7 +26,6 @@ SRCS		=	minirt.c						\
 				init_plane.c				\
 				interplane.c				\
 				intercylinder.c 			\
-				init_cylinder.c				\
 				inter_cylinder_bot_top.c	\
 				init_ray.c					\
 				ray_tracing.c				\

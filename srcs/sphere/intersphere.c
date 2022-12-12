@@ -6,21 +6,21 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/12 11:26:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:26:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int solve_quadratic_equation(float a, float b, float c, float *t)
+int	solve_quadratic_equation(float a, float b, float c, float *t)
 {
-    float  delta;
-    float  r0;
-    float  r1;
+	float	delta;
+	float	r0;
+	float	r1;
 
-    delta = b * b - 4.0 * a * c;
-    if (delta < EPS)
-        return (0);
+	delta = b * b - 4.0 * a * c;
+	if (delta < EPS)
+		return (0);
 	r0 = (-1 * b - sqrtf(delta)) / (2 * a);
 	r1 = (-1 * b + sqrtf(delta)) / (2 * a);
 	if (r0 * r1 > EPS)
@@ -30,7 +30,7 @@ int solve_quadratic_equation(float a, float b, float c, float *t)
 			*t = r0;
 			return (1);
 		}
-		return(0);
+		return (0);
 	}
 	if (r0 > EPS)
 	{
@@ -38,21 +38,22 @@ int solve_quadratic_equation(float a, float b, float c, float *t)
 		return (1);
 	}
 	*t = r1;
-    return (1);
+	return (1);
 }
 
-int intersphere(t_sphere *sphere, t_ray ray, float *t)
+int	intersphere(t_sphere *sphere, t_ray ray, float *t)
 {
-    float  a;
-    float  b;
-    float  c;
+	float	a;
+	float	b;
+	float	c;
 
-    a = dot(ray.dir, ray.dir);
-    b = 2.0 * dot(ray.dir, substract_v(ray.start, sphere->center));
-    c = dot(substract_v(ray.start, sphere->center), substract_v(ray.start, sphere->center)) - sphere->radius * sphere->radius;
-    if (solve_quadratic_equation(a, b, c, t))
-        return (1);
-    return (0);
+	a = dot(ray.dir, ray.dir);
+	b = 2.0 * dot(ray.dir, substract_v(ray.start, sphere->center));
+	c = dot(substract_v(ray.start, sphere->center), substract_v(ray.start,
+				sphere->center)) - sphere->radius * sphere->radius;
+	if (solve_quadratic_equation(a, b, c, t))
+		return (1);
+	return (0);
 }
 
 int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t)

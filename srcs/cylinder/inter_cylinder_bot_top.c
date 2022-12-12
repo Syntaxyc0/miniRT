@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:06:43 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/11 21:17:18 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 15:44:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
 {
-	t_plane *plane;
+	t_plane	*plane;
 	t_vect	inter;
 	float	dist;
 	float	dist_to_center;
@@ -25,8 +25,9 @@ int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
 		inter = get_intersection_point(*ray, *t);
 		dist = compute_dist(inter, ray->start);
 		dist_to_center = compute_dist(inter, cyl->point);
-		if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2 + EPS)
-			return 0;
+		if (dist < EPS || dist >= ray->inter_distance
+			|| dist_to_center > cyl->diameter / 2 + EPS)
+			return (0);
 		else
 			return (1);
 	}
@@ -35,20 +36,19 @@ int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
 
 void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, float *t)
 {
-	
 	ray->inter = inter;
 	ray->normal = mult_v(cyl->normal, -1);
 	ray->inter_distance = dist;
 	ray->color = rgb_to_hex(cyl->color);
-
 }
 
-t_plane *init_top_plane(t_cylinder *cyl)
+t_plane	*init_top_plane(t_cylinder *cyl)
 {
 	t_plane	*ret;
 
 	ret = malloc(sizeof(t_plane));
-	ret->point = add_v(cyl->point, mult_v(normalize_v(cyl->normal), cyl->height));
+	ret->point = add_v(cyl->point,
+			mult_v(normalize_v(cyl->normal), cyl->height));
 	ret->normal = cyl->normal;
 	ret->color = cyl->color;
 	return (ret);
@@ -77,7 +77,8 @@ void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, float *t)
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(inter, ray->start);
 	dist_to_center = compute_dist(inter, cyl->point);
-	if (dist < EPS || dist >= ray->inter_distance || dist_to_center > cyl->diameter / 2 + EPS)
+	if (dist < EPS || dist >= ray->inter_distance
+		|| dist_to_center > cyl->diameter / 2 + EPS)
 		return ;
 	ray->inter = inter;
 	ray->normal = cyl->normal;
