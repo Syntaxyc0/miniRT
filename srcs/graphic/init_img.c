@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:20 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:22 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 15:47:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_image	*init_image(void)
+t_image	*init_img(void)
 {
 	t_image	*ret;
 

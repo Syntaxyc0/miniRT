@@ -14,7 +14,7 @@ CYL_PATH 	= cylinder
 GRAPHIC_PATH = graphic
 FT_PATH		= libft
 HEADERS		= includes 
-SRCS		=	main.c						\
+SRCS		=	minirt.c						\
 				init_vect.c					\
 				vect_dist.c					\
 				rgb_to_hex.c				\
@@ -26,9 +26,10 @@ SRCS		=	main.c						\
 				init_plane.c				\
 				interplane.c				\
 				intercylinder.c 			\
-				init_cylinder.c				\
 				inter_cylinder_bot_top.c	\
 				init_ray.c					\
+				ray_tracing.c				\
+				shadows.c					\
 				ambiant.c					\
 				camera.c					\
 				check_args.c				\
@@ -57,6 +58,7 @@ SRCS		=	main.c						\
 				utils.c						\
 				vect_operations.c			\
 				vect_product.c 				\
+				debug_utils.c				\
 
 CC			= gcc #$(FSANITIZE)
 CFLAGS		= -MMD -Wall -Werror -Wextra -g3

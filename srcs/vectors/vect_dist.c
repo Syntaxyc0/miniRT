@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:49 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:50 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:30:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 float	compute_dist(t_vect a, t_vect b)
 {
-	return (sqrtf(powf(a.x - b.x, 2) + powf(a.y - b.y, 2) + powf(a.z - b.z, 2)));
+	return (sqrtf(powf(a.x - b.x, 2)
+			+ powf(a.y - b.y, 2) + powf(a.z - b.z, 2)));
 }

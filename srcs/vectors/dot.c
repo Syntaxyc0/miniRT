@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:43 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:44 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:27:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-float  dot(t_vect a, t_vect b)
+float	dot(t_vect a, t_vect b)
 {
-    return (a.x * b.x + a.y * b.y + a.z *b.z);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }

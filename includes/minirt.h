@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/12/07 13:38:53 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 16:36:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@
 # define ERR_INIT	"mlx_init failed"
 # define ERR_WIN	"mlx_new_window failed"
 
-# define WINDOW_WIDTH 300
-# define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 
-#define EPS 1e-6
+# define EPS 1e-6
 
 typedef struct s_vect
 {
@@ -145,6 +145,14 @@ typedef struct s_camera_settings
 	float	fov_ratio;
 }	t_camera_settings;
 
+typedef struct s_res
+{
+	float	a;
+	float	b;
+	float	c;
+	float	delta;
+}	t_res;
+
 typedef struct s_minirt
 {
 	t_ambiant	*ambiant;
@@ -177,13 +185,11 @@ t_vect			init_vect(float x, float y, float z);
 float			compute_dist(t_vect a, t_vect b);
 
 int				intersphere(t_sphere *sphere, t_ray ray, float *t);
-t_sphere		*init_sphere(t_vect center, float radius, t_color color);
+int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t);
 
-t_plane			*init_plane(t_vect point, t_vect normal, t_color color);
 int				interplane(t_plane *plane, t_ray ray, float *t);
-int				get_intersecton_plane(t_plane *plane, t_ray *ray, float *t);
+int				get_intersection_plane(t_plane *plane, t_ray *ray, float *t);
 
-t_cylinder		*init_cylinder(t_vect point, t_vect normal, float diameter, float height, t_color color);
 int				intercylinder(t_cylinder *cyl, t_ray ray, float *t);
 int				inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
 void			get_intersection_bot_point(t_cylinder *cyl,
@@ -191,7 +197,9 @@ void			get_intersection_bot_point(t_cylinder *cyl,
 int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
 void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, float *t);
-void   			ray_tracing(t_minirt *mini);
+void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t);
+void			ray_tracing(t_minirt *mini);
+unsigned int	shadows(t_minirt *mini, t_ray *ray);
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, float t);
@@ -200,11 +208,14 @@ int				solve_quadratic_equation(float a, float b, float c, float *t);
 t_image			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
 unsigned int	apply_coeff(unsigned int color, float coeff);
-unsigned int	apply_coeff_color(unsigned int color, t_color to_add, float coeff);
-unsigned int	add_color(unsigned int color, unsigned int to_add);
-t_color 		hex_to_rgb(unsigned int hex);
+unsigned int	apply_coeff_color(unsigned int color,
+					t_color to_add, float coeff);
+unsigned int	add_color(unsigned int color,
+					unsigned int to_add);
+t_color			hex_to_rgb(unsigned int hex);
 void			set_img(t_minirt *mini);
 void			put_pixel(t_image	*img, int x, int y, unsigned int color);
+t_color			init_white(void);
 void			display_img(t_image	*img);
 void			loop(t_minirt *minirt);
 
@@ -275,13 +286,13 @@ void			msg_free_line_exit(t_minirt *minirt, char *line, char *msg);
 void			free_minirt(t_minirt *minirt);
 void			free_img(t_minirt *minirt);
 
-
 // Utils
 
 int				ft_isfloat(char c);
 int				str_big(char *str1, char *str2);
 float			ft_atof(char *str);
 unsigned int	ft_atoui(char *str);
+void			display_vect(t_vect	vect);
 
 #endif
 

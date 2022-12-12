@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:16 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/07 12:04:17 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 15:46:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_color hex_to_rgb(unsigned int hex)
+t_color	hex_to_rgb(unsigned int hex)
 {
 	t_color	ret;
 
