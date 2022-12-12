@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:04:33 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/11 21:09:58 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/12 12:46:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	interplane(t_plane *plane, t_ray ray, float *t)
 {
 	float	denom;
 
+	plane->normal = normalize_v(plane->normal);
 	denom = dot(plane->normal, ray.dir);
 	if (fabs(denom) > EPS)
 	{
