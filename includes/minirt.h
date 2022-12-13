@@ -47,8 +47,8 @@
 # define ERR_INIT	"mlx_init failed"
 # define ERR_WIN	"mlx_new_window failed"
 
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 
 # define EPS 1e-6
 

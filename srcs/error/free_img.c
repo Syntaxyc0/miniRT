@@ -15,10 +15,12 @@
 void	free_img(t_minirt *minirt)
 {
 	if (minirt->img->mlx)
+	{
+		if (minirt->img->win)
+			mlx_destroy_window(minirt->img->mlx, minirt->img->win);
+		if (minirt->img->img)
+			mlx_destroy_image(minirt->img->mlx, minirt->img->img);
 		free(minirt->img->mlx);
-	if (minirt->img->win)
-		free(minirt->img->win);
-	if (minirt->img->img)
-		free(minirt->img->img);
+	}
 	free(minirt->img);
 }

@@ -63,10 +63,10 @@ int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t)
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, inter);
-	if (dist < EPS || dist >= ray->inter_distance)
+	if (dist < 0 || dist > ray->inter_distance)
 		return (0);
-	ray->inter = inter;
 	ray->normal = substract_v(inter, sphere->center);
+	ray->inter = inter;
 	ray->normal = normalize_v(ray->normal);
 	ray->inter_distance = dist;
 	ray->color = rgb_to_hex(sphere->color);
