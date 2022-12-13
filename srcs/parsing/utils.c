@@ -12,19 +12,19 @@
 
 #include "minirt.h"
 
-int	ft_isfloat(char c)
+int	ft_isdouble(char c)
 {
 	if (ft_isdigit(c) || c == '.')
 		return (1);
 	return (0);
 }
 
-float	ft_atof(char *str)
+double	ft_atof(char *str)
 {
 	int		i;
 	int		pos;
-	float	j;
-	float	ret;
+	double	j;
+	double	ret;
 
 	i = 0;
 	j = 1;

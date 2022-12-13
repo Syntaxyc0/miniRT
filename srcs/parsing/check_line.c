@@ -19,7 +19,7 @@ int	check_vector(char *line, int i)
 	count = 0;
 	while (count++ < 3)
 	{
-		i = check_float(line, i);
+		i = check_double(line, i);
 		if (!i)
 			return (0);
 		if (count != 3)
@@ -56,7 +56,7 @@ int	check_space(char *line, int i)
 	return (i);
 }
 
-int	check_float(char *line, int i)
+int	check_double(char *line, int i)
 {
 	if (!ft_isdigit(line[i]) && line[i] != '-')
 		return (0);

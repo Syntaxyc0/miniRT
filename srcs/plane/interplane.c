@@ -12,9 +12,9 @@
 
 #include "minirt.h"
 
-int	interplane(t_plane *plane, t_ray ray, float *t)
+int	interplane(t_plane *plane, t_ray ray, double *t)
 {
-	float	denom;
+	double	denom;
 
 	plane->normal = normalize_v(plane->normal);
 	denom = dot(plane->normal, ray.dir);
@@ -27,10 +27,10 @@ int	interplane(t_plane *plane, t_ray ray, float *t)
 	return (0);
 }
 
-int	get_intersection_plane(t_plane *plane, t_ray *ray, float *t)
+int	get_intersection_plane(t_plane *plane, t_ray *ray, double *t)
 {
 	t_vect	inter;
-	float	dist;
+	double	dist;
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, inter);

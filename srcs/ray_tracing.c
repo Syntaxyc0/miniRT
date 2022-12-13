@@ -26,8 +26,8 @@ t_camera_settings	init_settings(t_camera *cam)
 
 t_vect	get_direction(t_camera_settings settings, int x, int y)
 {
-	float	x_proj;
-	float	y_proj;
+	double	x_proj;
+	double	y_proj;
 
 	x_proj = (2 * (x + 0.5) / WINDOW_WIDTH - 1)
 		* settings.ratio * settings.fov_ratio;
@@ -57,7 +57,7 @@ t_ray	set_ray(t_camera *cam, t_camera_settings settings, int x, int y)
 void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
 {
 	t_objects	*obj;
-	float		t;
+	double		t;
 
 	t = 0;
 	obj = minirt->objects;
@@ -75,8 +75,8 @@ void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
 		}
 		else if (obj->type == 6)
 		{
-			if (intercylinder((t_cylinder *)obj->object, *ray, &t))
-				get_intersect_cylinder((t_cylinder *)obj->object, ray, &t);
+			if (inter_cylinder((t_cylinder *)obj->object, ray, &t))
+				get_intersection_cylinder((t_cylinder *)obj->object, ray, &t);
 		}
 		obj = obj->next;
 	}

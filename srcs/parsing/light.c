@@ -30,8 +30,8 @@ void	light_parameter(char *line, t_minirt *minirt)
 		i++;
 	while (line[i] == ' ')
 		i++;
-	light->intensity = ft_atof(get_float(line, i, minirt));
-	if (range_float(light->intensity, 0, 1))
+	light->intensity = ft_atof(get_double(line, i, minirt));
+	if (range_double(light->intensity, 0, 1))
 		msg_free_line_exit(minirt, line, ERR_INTENSITY_L);
 }
 
@@ -48,7 +48,7 @@ int	light_check_line(char *line, int i)
 	i = check_space(line, i);
 	if (!i)
 		return (1);
-	i = check_float(line, i);
+	i = check_double(line, i);
 	if (!i)
 		return (1);
 	i = check_eof(line, i);

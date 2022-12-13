@@ -25,8 +25,8 @@ void	ambiant_parameter(char *line, t_minirt *minirt)
 		i++;
 	while (line[i] == ' ')
 		i++;
-	ambiant->intensity = ft_atof(get_float(line, i, minirt));
-	if (range_float(ambiant->intensity, 0, 1))
+	ambiant->intensity = ft_atof(get_double(line, i, minirt));
+	if (range_double(ambiant->intensity, 0, 1))
 		msg_free_line_exit(minirt, line, ERR_INTENSITY_A);
 	while (line[i] != ' ')
 		i++;
@@ -42,7 +42,7 @@ int	ambiant_check_line(char *line, int i)
 	i = check_space(line, i);
 	if (!i)
 		return (1);
-	i = check_float(line, i);
+	i = check_double(line, i);
 	if (!i)
 		return (1);
 	i = check_space(line, i);

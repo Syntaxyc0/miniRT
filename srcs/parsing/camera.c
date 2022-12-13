@@ -31,8 +31,8 @@ void	camera_parameter(char *line, t_minirt *minirt)
 	if (range_vector(camera->orientation, -1, 1))
 		msg_free_line_exit(minirt, line, ERR_ORIENT_C);
 	i = next_value(line, i);
-	camera->angle = ft_atof(get_float(line, i, minirt));
-	if (range_float(camera->angle, 0, 180))
+	camera->angle = ft_atof(get_double(line, i, minirt));
+	if (range_double(camera->angle, 0, 180))
 		msg_free_line_exit(minirt, line, ERR_FOV_C);
 }
 

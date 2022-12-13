@@ -45,8 +45,18 @@ t_color	init_white(void)
 {
 	t_color			white;
 
-	white.red = 0;
-	white.blue = 0;
-	white.green = 0;
+	white.red = 255;
+	white.blue = 255;
+	white.green = 255;
 	return (white);
+}
+
+t_color	init_black(void)
+{
+	t_color			black;
+
+	black.red = 0;
+	black.blue = 0;
+	black.green = 0;
+	return (black);
 }

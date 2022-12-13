@@ -47,16 +47,16 @@
 # define ERR_INIT	"mlx_init failed"
 # define ERR_WIN	"mlx_new_window failed"
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 
 # define EPS 1e-6
 
 typedef struct s_vect
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_vect;
 
 typedef struct s_ray
@@ -65,7 +65,7 @@ typedef struct s_ray
 	t_vect			dir;
 	t_vect			inter;
 	t_vect			normal;
-	float			inter_distance;
+	double			inter_distance;
 	unsigned int	color;
 }	t_ray;
 
@@ -78,7 +78,7 @@ typedef struct s_color
 
 typedef struct s_ambiant
 {
-	float	intensity;
+	double	intensity;
 	t_color	color;
 }	t_ambiant;
 
@@ -86,19 +86,19 @@ typedef struct s_camera
 {
 	t_vect	position;
 	t_vect	orientation;
-	float	angle;
+	double	angle;
 }	t_camera;
 
 typedef struct s_light
 {
 	t_vect	position;
-	float	intensity;
+	double	intensity;
 }	t_light;
 
 typedef struct s_sphere
 {
 	t_vect	center;
-	float	radius;
+	double	radius;
 	t_color	color;
 }	t_sphere;
 
@@ -114,8 +114,8 @@ typedef struct s_cylinder
 	t_vect	point;
 	t_vect	normal;
 	t_color	color;
-	float	diameter;
-	float	height;
+	double	diameter;
+	double	height;
 }	t_cylinder;
 
 typedef struct s_objects
@@ -141,16 +141,16 @@ typedef struct s_camera_settings
 	t_vect	forward;
 	t_vect	abs;
 	t_vect	ord;	
-	float	ratio;
-	float	fov_ratio;
+	double	ratio;
+	double	fov_ratio;
 }	t_camera_settings;
 
 typedef struct s_res
 {
-	float	a;
-	float	b;
-	float	c;
-	float	delta;
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
 }	t_res;
 
 typedef struct s_minirt
@@ -174,48 +174,53 @@ typedef struct s_minirt
 
 // Vectors
 
-float			dot(t_vect a, t_vect b);
+double			dot(t_vect a, t_vect b);
 t_vect			add_v(t_vect a, t_vect b);
 t_vect			substract_v(t_vect a, t_vect b);
-t_vect			mult_v(t_vect a, float t);
-float			norm_v(t_vect a);
+t_vect			mult_v(t_vect a, double t);
+double			norm_v(t_vect a);
 t_vect			vect_product(t_vect a, t_vect b);
 t_vect			normalize_v(t_vect a);
-t_vect			init_vect(float x, float y, float z);
-float			compute_dist(t_vect a, t_vect b);
+t_vect			init_vect(double x, double y, double z);
+double			compute_dist(t_vect a, t_vect b);
 
-int				intersphere(t_sphere *sphere, t_ray ray, float *t);
-int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t);
+int				intersphere(t_sphere *sphere, t_ray ray, double *t);
+int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t);
 
-int				interplane(t_plane *plane, t_ray ray, float *t);
-int				get_intersection_plane(t_plane *plane, t_ray *ray, float *t);
+int				interplane(t_plane *plane, t_ray ray, double *t);
+int				get_intersection_plane(t_plane *plane, t_ray *ray, double *t);
 
-int				intercylinder(t_cylinder *cyl, t_ray ray, float *t);
-int				inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t);
+int				intercylinder(t_cylinder *cyl, t_ray ray, double *t);
+int				inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, double *t);
 void			get_intersection_bot_point(t_cylinder *cyl,
-					t_ray *ray, float *t);
-int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t);
+					t_ray *ray, double *t);
+int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, double *t);
 void			get_intersection_top_point(t_cylinder *cyl,
-					t_ray *ray, float *t);
-void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t);
+					t_ray *ray, double *t);
+void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
+int				inter_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
+void			get_intersection_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
+
+
 void			ray_tracing(t_minirt *mini);
 unsigned int	shadows(t_minirt *mini, t_ray *ray);
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
-t_vect			get_intersection_point(t_ray ray, float t);
-int				solve_quadratic_equation(float a, float b, float c, float *t);
+t_vect			get_intersection_point(t_ray ray, double t);
+int				solve_quadratic_equation(double a, double b, double c, double *t);
 
 t_image			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
-unsigned int	apply_coeff(unsigned int color, float coeff);
+unsigned int	apply_coeff(unsigned int color, double coeff);
 unsigned int	apply_coeff_color(unsigned int color,
-					t_color to_add, float coeff);
+					t_color to_add, double coeff);
 unsigned int	add_color(unsigned int color,
 					unsigned int to_add);
 t_color			hex_to_rgb(unsigned int hex);
 void			set_img(t_minirt *mini);
 void			put_pixel(t_image	*img, int x, int y, unsigned int color);
 t_color			init_white(void);
+t_color			init_black(void);
 void			display_img(t_image	*img);
 void			loop(t_minirt *minirt);
 
@@ -238,7 +243,7 @@ void			obj_type3(t_minirt *minirt, int type, char *line,
 					t_objects *obj);
 void			plane_parameter(char *line, t_minirt *minirt, t_objects *obj);
 void			sphere_parameter(char *line, t_minirt *minirt, t_objects *obj);
-char			*get_float(char *line, int i, t_minirt *minirt);
+char			*get_double(char *line, int i, t_minirt *minirt);
 char			*get_red(char *line, int i, t_minirt *minirt);
 char			*get_green(char *line, int i, t_minirt *minirt);
 char			*get_blue(char *line, int i, t_minirt *minirt);
@@ -253,7 +258,7 @@ int				check_args(int ac, char **av);
 int				check_vector(char *line, int i);
 int				check_color(char *line, int i);
 int				check_space(char *line, int i);
-int				check_float(char *line, int i);
+int				check_double(char *line, int i);
 int				check_digit(char *line, int i);
 int				check_eof(char *line, int i);
 int				get_id(char *line, t_minirt *minirt);
@@ -262,8 +267,8 @@ int				is_rt(char *str);
 int				light_check_line(char *line, int i);
 int				next_value(char *line, int i);
 int				plane_check_line(char *line, int i);
-int				range_float(float x, float min, float max);
-int				range_vector(t_vect vect, float min, float max);
+int				range_double(double x, double min, double max);
+int				range_vector(t_vect vect, double min, double max);
 int				sphere_check_line(char *line, int i);
 t_minirt		*init_minirt(void);
 t_ambiant		*new_ambiant(void);
@@ -288,9 +293,9 @@ void			free_img(t_minirt *minirt);
 
 // Utils
 
-int				ft_isfloat(char c);
+int				ft_isdouble(char c);
 int				str_big(char *str1, char *str2);
-float			ft_atof(char *str);
+double			ft_atof(char *str);
 unsigned int	ft_atoui(char *str);
 void			display_vect(t_vect	vect);
 

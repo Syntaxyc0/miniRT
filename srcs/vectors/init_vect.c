@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_vect	init_vect(float x, float y, float z)
+t_vect	init_vect(double x, double y, double z)
 {
 	t_vect	ret;
 

@@ -12,12 +12,12 @@
 
 #include "minirt.h"
 
-int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
+int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_vect	cyl_ray;
-	float	a;
-	float	b;
-	float	c;
+	double	a;
+	double	b;
+	double	c;
 	t_vect	point;
 
 	cyl_ray = substract_v(ray->start, cyl->point);
@@ -41,10 +41,10 @@ int	inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	return (0);
 }
 
-void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
+void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_vect	inter;
-	float	dist;
+	double	dist;
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, inter);
@@ -57,7 +57,7 @@ void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, float *t)
 	ray->color = rgb_to_hex(cyl->color);
 }
 
-void	get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t)
+void	get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	if (inter_cylinder_bot(cyl, ray, t))
 		get_intersection_bot_point(cyl, ray, t);
@@ -67,7 +67,7 @@ void	get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t)
 		get_intersection_cylinder_pipe(cyl, ray, t);
 }
 
-int	intercylinder(t_cylinder *cyl, t_ray ray, float *t)
+int	intercylinder(t_cylinder *cyl, t_ray ray, double *t)
 {
 	if (inter_cylinder_bot(cyl, &ray, t))
 		return (1);

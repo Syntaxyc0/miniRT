@@ -30,7 +30,7 @@ void	sphere_parameter(char *line, t_minirt *minirt, t_objects *obj)
 		i++;
 	while (line[i] == ' ')
 		i++;
-	sphere->radius = ft_atof(get_float(line, i, minirt));
+	sphere->radius = ft_atof(get_double(line, i, minirt));
 	while (line[i] != ' ')
 		i++;
 	while (line[i] == ' ')
@@ -51,7 +51,7 @@ int	sphere_check_line(char *line, int i)
 	i = check_space(line, i);
 	if (!i)
 		return (1);
-	i = check_float(line, i);
+	i = check_double(line, i);
 	if (!i)
 		return (1);
 	i = check_space(line, i);

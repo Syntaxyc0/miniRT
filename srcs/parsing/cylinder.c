@@ -31,9 +31,9 @@ void	cylinder_parameter(char *line, t_minirt *minirt, t_objects *obj)
 	if (range_vector(cylinder->normal, -1, 1))
 		msg_free_line_exit(minirt, line, ERR_ORIENT_CY);
 	i = next_value(line, i);
-	cylinder->height = ft_atof(get_float(line, i, minirt));
+	cylinder->height = ft_atof(get_double(line, i, minirt));
 	i = next_value(line, i);
-	cylinder->diameter = ft_atof(get_float(line, i, minirt));
+	cylinder->diameter = ft_atof(get_double(line, i, minirt));
 	i = next_value(line, i);
 	cylinder->color = get_colors(line, i, minirt);
 }
@@ -57,7 +57,7 @@ int	cylinder_check_line(char *line, int i)
 	i = check_space(line, i);
 	if (!i)
 		return (1);
-	i = check_float(line, i);
+	i = check_double(line, i);
 	if (!i)
 		return (1);
 	if (cylinder_check_line2(line, i))
@@ -70,7 +70,7 @@ int	cylinder_check_line2(char *line, int i)
 	i = check_space(line, i);
 	if (!i)
 		return (1);
-	i = check_float(line, i);
+	i = check_double(line, i);
 	if (!i)
 		return (1);
 	i = check_space(line, i);

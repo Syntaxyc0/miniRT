@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_vect	get_intersection_point(t_ray ray, float t)
+t_vect	get_intersection_point(t_ray ray, double t)
 {
 	t_vect	ret;
 

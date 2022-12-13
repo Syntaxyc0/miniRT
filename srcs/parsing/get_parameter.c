@@ -12,26 +12,26 @@
 
 #include "minirt.h"
 
-char	*get_float(char *line, int i, t_minirt *minirt)
+char	*get_double(char *line, int i, t_minirt *minirt)
 {
 	int		j;
-	char	*float_value;
+	char	*double_value;
 
 	j = 0;
-	while ((line[i] && ft_isfloat(line[i])) || (line[i] && line[i] == '-'))
+	while ((line[i] && ft_isdouble(line[i])) || (line[i] && line[i] == '-'))
 	{
 		i++;
 		j++;
 	}
-	float_value = malloc(j + 1);
-	if (!float_value)
+	double_value = malloc(j + 1);
+	if (!double_value)
 		msg_free_exit(minirt, ERR_MALLOC);
 	i -= j;
 	j = 0;
-	while ((line[i] && ft_isfloat(line[i])) || (line[i] && line[i] == '-'))
-		float_value[j++] = line[i++];
-	float_value[j] = 0;
-	return (float_value);
+	while ((line[i] && ft_isdouble(line[i])) || (line[i] && line[i] == '-'))
+		double_value[j++] = line[i++];
+	double_value[j] = 0;
+	return (double_value);
 }
 
 t_color	get_colors(char *line, int i, t_minirt *minirt)

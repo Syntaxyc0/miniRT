@@ -12,14 +12,14 @@
 
 #include "minirt.h"
 
-int	range_float(float x, float min, float max)
+int	range_double(double x, double min, double max)
 {
 	if (x < min || x > max)
 		return (1);
 	return (0);
 }
 
-int	range_vector(t_vect vect, float min, float max)
+int	range_vector(t_vect vect, double min, double max)
 {
 	if (vect.x < min || vect.x > max)
 		return (1);

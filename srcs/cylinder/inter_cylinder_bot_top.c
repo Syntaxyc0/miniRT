@@ -12,12 +12,12 @@
 
 #include "minirt.h"
 
-int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
+int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_plane	*plane;
 	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
+	double	dist;
+	double	dist_to_center;
 
 	plane = (t_plane *)cyl;
 	if (interplane(plane, *ray, t))
@@ -34,11 +34,11 @@ int	inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, float *t)
 	return (0);
 }
 
-void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, float *t)
+void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
+	double	dist;
+	double	dist_to_center;
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(inter, ray->start);
@@ -64,7 +64,7 @@ t_plane	*init_top_plane(t_cylinder *cyl)
 	return (ret);
 }
 
-int	inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t)
+int	inter_cylinder_top(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_plane	*plane;
 
@@ -78,11 +78,11 @@ int	inter_cylinder_top(t_cylinder *cyl, t_ray *ray, float *t)
 	return (0);
 }
 
-void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, float *t)
+void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, double *t)
 {
 	t_vect	inter;
-	float	dist;
-	float	dist_to_center;
+	double	dist;
+	double	dist_to_center;
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(inter, ray->start);

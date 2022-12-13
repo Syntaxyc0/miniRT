@@ -12,11 +12,11 @@
 
 #include "minirt.h"
 
-int	solve_quadratic_equation(float a, float b, float c, float *t)
+int	solve_quadratic_equation(double a, double b, double c, double *t)
 {
-	float	delta;
-	float	r0;
-	float	r1;
+	double	delta;
+	double	r0;
+	double	r1;
 
 	delta = b * b - 4.0 * a * c;
 	if (delta < EPS)
@@ -41,11 +41,11 @@ int	solve_quadratic_equation(float a, float b, float c, float *t)
 	return (1);
 }
 
-int	intersphere(t_sphere *sphere, t_ray ray, float *t)
+int	intersphere(t_sphere *sphere, t_ray ray, double *t)
 {
-	float	a;
-	float	b;
-	float	c;
+	double	a;
+	double	b;
+	double	c;
 
 	a = dot(ray.dir, ray.dir);
 	b = 2.0 * dot(ray.dir, substract_v(ray.start, sphere->center));
@@ -56,10 +56,10 @@ int	intersphere(t_sphere *sphere, t_ray ray, float *t)
 	return (0);
 }
 
-int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, float *t)
+int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t)
 {
 	t_vect	inter;
-	float	dist;
+	double	dist;
 
 	inter = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, inter);

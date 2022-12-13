@@ -12,10 +12,10 @@
 
 #include "minirt.h"
 
-int	check_dist(t_ray *ray, float *t)
+int	check_dist(t_ray *ray, double *t)
 {
 	t_vect	point;
-	float	dist;
+	double	dist;
 
 	point = get_intersection_point(*ray, *t);
 	dist = compute_dist(ray->start, point);
@@ -26,7 +26,7 @@ int	check_dist(t_ray *ray, float *t)
 
 int	intersect_obj(t_objects *obj, t_ray *ray)
 {
-	float	t;
+	double	t;
 
 	t = 0;
 	if (obj->type == 4)
@@ -41,7 +41,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	}
 	else if (obj->type == 6)
 	{
-		if (intercylinder((t_cylinder *)obj->object, *ray, &t))
+		if (inter_cylinder((t_cylinder *)obj->object, ray, &t))
 			return (check_dist(ray, &t));
 	}
 	return (0);
@@ -49,7 +49,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 
 void	get_color(t_minirt *mini, t_ray *ray)
 {
-	float			angle;
+	double			angle;
 	unsigned int	nuance_color;
 
 	angle = dot(ray->dir, ray->normal);
@@ -80,8 +80,7 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 		obj = obj->next;
 	}
 	if (is_in_shadow)
-		ray->color = apply_coeff_color(ray->color,
-				mini->ambiant->color, mini->ambiant->intensity);
+		ray->color = apply_coeff_color(ray->color, mini->ambiant->color, mini->ambiant->intensity);
 	else
 		get_color(mini, ray);
 }
@@ -94,7 +93,7 @@ unsigned int	shadows(t_minirt *mini, t_ray *ray)
 	if (ray->inter_distance != INFINITY)
 	{
 		dir = substract_v(mini->light->position, ray->inter);
-		shadow = init_ray(ray->inter, dir);
+		shadow = init_ray(add_v(ray->inter, mult_v(dir, 1e-3)), dir);
 		shadow.inter = mini->light->position;
 		shadow.inter_distance = norm_v(shadow.dir);
 		shadow.color = ray->color;
@@ -105,6 +104,9 @@ unsigned int	shadows(t_minirt *mini, t_ray *ray)
 		check_shadow_intersect(mini, &shadow);
 		return (shadow.color);
 	}
-	return (apply_coeff(rgb_to_hex(mini->ambiant->color),
+	else
+	{
+		return (apply_coeff(rgb_to_hex(mini->ambiant->color),
 			mini->ambiant->intensity));
+	}
 }
