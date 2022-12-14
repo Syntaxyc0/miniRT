@@ -28,14 +28,14 @@
 # define ERR_MALLOC "malloc failed"
 # define ERR_ID "id unknown"
 # define ERR_COLOR "wrong value of color"
-# define ERR_DOUBLE_A "ambiant light has to be defined once"
+# define ERR_double_A "ambiant light has to be defined once"
 # define ERR_CONFORM_A "value(s) missing or not conform for ambiant light (A)"
 # define ERR_INTENSITY_A "intensity value of ambiant light not in range [0,1]"
-# define ERR_DOUBLE_C "camera has to be defined once"
+# define ERR_double_C "camera has to be defined once"
 # define ERR_CONFORM_C "value(s) missing or not conform for camera (C)"
 # define ERR_ORIENT_C "orientation value(s) of camera not in range [-1,1]"
 # define ERR_FOV_C "FOV value(s) of camera not in range [-1,1]"
-# define ERR_DOUBLE_L "light has to be defined once"
+# define ERR_double_L "light has to be defined once"
 # define ERR_CONFORM_L "value(s) missing or not conform for light (L)"
 # define ERR_INTENSITY_L "intensity value of light not in range [0,1]"
 # define ERR_CONFORM_SP "value(s) missing or not conform for sphere (sp)"
@@ -50,7 +50,7 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
 
-# define EPS 1e-6
+# define EPS 1e-8
 
 typedef struct s_vect
 {
@@ -59,6 +59,13 @@ typedef struct s_vect
 	double	z;
 }	t_vect;
 
+typedef struct s_color
+{
+	unsigned int	red;
+	unsigned int	green;
+	unsigned int	blue;
+}	t_color;
+
 typedef struct s_ray
 {
 	t_vect			start;
@@ -66,15 +73,8 @@ typedef struct s_ray
 	t_vect			inter;
 	t_vect			normal;
 	double			inter_distance;
-	unsigned int	color;
+	t_color	color;
 }	t_ray;
-
-typedef struct s_color
-{
-	unsigned int	red;
-	unsigned int	green;
-	unsigned int	blue;
-}	t_color;
 
 typedef struct s_ambiant
 {
@@ -203,7 +203,7 @@ void			get_intersection_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
 
 
 void			ray_tracing(t_minirt *mini);
-unsigned int	shadows(t_minirt *mini, t_ray *ray);
+t_color	shadows(t_minirt *mini, t_ray *ray);
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, double t);
@@ -211,16 +211,17 @@ int				solve_quadratic_equation(double a, double b, double c, double *t);
 
 t_image			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
-unsigned int	apply_coeff(unsigned int color, double coeff);
-unsigned int	apply_coeff_color(unsigned int color,
+t_color	apply_coeff(t_color color, double coeff);
+t_color	apply_coeff_color(t_color color,
 					t_color to_add, double coeff);
-unsigned int	add_color(unsigned int color,
-					unsigned int to_add);
+t_color	add_color_v(t_color color,
+					t_color to_add);
 t_color			hex_to_rgb(unsigned int hex);
 void			set_img(t_minirt *mini);
 void			put_pixel(t_image	*img, int x, int y, unsigned int color);
 t_color			init_white(void);
 t_color			init_black(void);
+t_color			mix_colors(t_color color, t_color add, double coeff);
 void			display_img(t_image	*img);
 void			loop(t_minirt *minirt);
 

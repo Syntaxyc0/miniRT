@@ -54,7 +54,7 @@ void	get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t)
 	ray->normal = substract_v(inter, add_v(cyl->point,
 				mult_v(cyl->normal, dot(inter, cyl->normal))));
 	ray->inter_distance = dist;
-	ray->color = rgb_to_hex(cyl->color);
+	ray->color = cyl->color;
 }
 
 void	get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, double *t)

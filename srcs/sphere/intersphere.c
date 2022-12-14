@@ -69,6 +69,6 @@ int	get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t)
 	ray->inter = inter;
 	ray->normal = normalize_v(ray->normal);
 	ray->inter_distance = dist;
-	ray->color = rgb_to_hex(sphere->color);
+	ray->color = sphere->color;
 	return (1);
 }

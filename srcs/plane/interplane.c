@@ -41,6 +41,6 @@ int	get_intersection_plane(t_plane *plane, t_ray *ray, double *t)
 	if (dot(ray->dir, plane->normal) > 0)
 		ray->normal = mult_v(plane->normal, -1);
 	ray->inter_distance = dist;
-	ray->color = rgb_to_hex(plane->color);
+	ray->color = plane->color;
 	return (1);
 }

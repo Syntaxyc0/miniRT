@@ -21,6 +21,6 @@ t_ray	init_ray(t_vect	origin, t_vect direction)
 	ret.inter = init_vect(0, 0, 0);
 	ret.normal = init_vect(0, 0, 0);
 	ret.inter_distance = INFINITY;
-	ret.color = 0;
+	ret.color = init_black();
 	return (ret);
 }

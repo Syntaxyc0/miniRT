@@ -12,26 +12,24 @@
 
 #include "minirt.h"
 
-unsigned int	apply_coeff(unsigned int color, double coeff)
+t_color	apply_coeff(t_color color, double coeff)
 {
-	t_color	rgb;
+	t_color	ret;
 
-	rgb = hex_to_rgb(color);
-	rgb.red = rgb.red * coeff;
-	rgb.green = rgb.green * coeff;
-	rgb.blue = rgb.blue * coeff;
-	return (rgb_to_hex(rgb));
+	ret.red = color.red * coeff;
+	ret.green = color.green * coeff;
+	ret.blue = color.blue * coeff;
+	return (ret);
 }
 
-unsigned int	apply_coeff_color(unsigned int color, t_color add, double coeff)
+t_color	apply_coeff_color(t_color color, t_color add, double coeff)
 {
-	t_color	rgb;
+	t_color	ret;
 
-	rgb = hex_to_rgb(color);
-	rgb.red = rgb.red * add.red * coeff / 255;
-	rgb.green = rgb.green * add.green * coeff / 255;
-	rgb.blue = rgb.blue * add.blue * coeff / 255;
-	return (rgb_to_hex(rgb));
+	ret.red = color.red * add.red * coeff / 255;
+	ret.green = color.green * add.green * coeff / 255;
+	ret.blue = color.blue * add.blue * coeff / 255;
+	return (ret);
 }
 
 unsigned int	add_color(unsigned int color, unsigned int to_add)

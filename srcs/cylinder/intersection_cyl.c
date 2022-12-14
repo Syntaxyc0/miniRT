@@ -70,7 +70,7 @@ void	get_intersection_cylinder(t_cylinder *cyl, t_ray *ray, double *t)
 	dist = compute_dist(ray->start, inter);
 	if (dist < EPS || dist >= ray->inter_distance)
 		return ;
-	ray->color = rgb_to_hex(cyl->color);
+	ray->color = cyl->color;
 	ray->inter = inter;
 	ray->inter_distance = dist;
 	len = dot(ray->dir, mult_v(cyl->normal, *t))

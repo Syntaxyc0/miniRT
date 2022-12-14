@@ -49,7 +49,7 @@ void	get_intersection_bot_point(t_cylinder *cyl, t_ray *ray, double *t)
 	ray->inter = inter;
 	ray->normal = mult_v(cyl->normal, -1);
 	ray->inter_distance = dist;
-	ray->color = rgb_to_hex(cyl->color);
+	ray->color = cyl->color;
 }
 
 t_plane	*init_top_plane(t_cylinder *cyl)
@@ -93,5 +93,5 @@ void	get_intersection_top_point(t_cylinder *cyl, t_ray *ray, double *t)
 	ray->inter = inter;
 	ray->normal = cyl->normal;
 	ray->inter_distance = dist;
-	ray->color = rgb_to_hex(cyl->color);
+	ray->color = cyl->color;
 }

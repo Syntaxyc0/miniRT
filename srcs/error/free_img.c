@@ -20,6 +20,7 @@ void	free_img(t_minirt *minirt)
 			mlx_destroy_window(minirt->img->mlx, minirt->img->win);
 		if (minirt->img->img)
 			mlx_destroy_image(minirt->img->mlx, minirt->img->img);
+		mlx_destroy_display(minirt->img->mlx);
 		free(minirt->img->mlx);
 	}
 	free(minirt->img);
