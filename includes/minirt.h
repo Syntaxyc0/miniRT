@@ -190,7 +190,6 @@ int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t);
 int				interplane(t_plane *plane, t_ray ray, double *t);
 int				get_intersection_plane(t_plane *plane, t_ray *ray, double *t);
 
-int				intercylinder(t_cylinder *cyl, t_ray ray, double *t);
 int				inter_cylinder_bot(t_cylinder *cyl, t_ray *ray, double *t);
 void			get_intersection_bot_point(t_cylinder *cyl,
 					t_ray *ray, double *t);
@@ -198,8 +197,8 @@ int				inter_cylinder_top(t_cylinder *cyl, t_ray *ray, double *t);
 void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, double *t);
 void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
-int				inter_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
-void			get_intersection_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
+int				inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t);
+void			get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t);
 
 
 void			ray_tracing(t_minirt *mini);

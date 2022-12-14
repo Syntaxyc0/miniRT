@@ -75,8 +75,12 @@ void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
 		}
 		else if (obj->type == 6)
 		{
-			if (inter_cylinder((t_cylinder *)obj->object, ray, &t))
-				get_intersection_cylinder((t_cylinder *)obj->object, ray, &t);
+			if (inter_cylinder_pipe((t_cylinder *)obj->object, ray, &t))
+				get_intersection_cylinder_pipe((t_cylinder *)obj->object, ray, &t);
+			if (inter_cylinder_bot((t_cylinder *)obj->object, ray, &t))
+				get_intersection_bot_point((t_cylinder *)obj->object, ray, &t);
+			if (inter_cylinder_top((t_cylinder *)obj->object, ray, &t))
+				get_intersection_top_point((t_cylinder *)obj->object, ray, &t);
 		}
 		obj = obj->next;
 	}

@@ -27,8 +27,10 @@ int	check_dist(t_ray *ray, double *t)
 int	intersect_obj(t_objects *obj, t_ray *ray)
 {
 	double	t;
+	int check;
 
 	t = 0;
+	check = 0;
 	if (obj->type == 4)
 	{
 		if (intersphere((t_sphere *)obj->object, *ray, &t))
@@ -41,8 +43,14 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	}
 	else if (obj->type == 6)
 	{
-		if (inter_cylinder((t_cylinder *)obj->object, ray, &t))
-			return (check_dist(ray, &t));
+		if (inter_cylinder_pipe((t_cylinder *)obj->object, ray, &t))
+			check = check_dist(ray, &t);
+		if (inter_cylinder_bot((t_cylinder *)obj->object, ray, &t))
+			check = check_dist(ray, &t);
+		if (inter_cylinder_top((t_cylinder *)obj->object, ray, &t))
+			check = check_dist(ray, &t);
+		return (check);
+
 	}
 	return (0);
 }
@@ -55,7 +63,7 @@ void	get_color(t_minirt *mini, t_ray *ray)
 	angle = dot(ray->dir, ray->normal);
 	ray->color = apply_coeff_color(ray->color,
 			mini->ambiant->color, mini->ambiant->intensity);
-	if (angle >= EPS)
+	if (angle > EPS)
 	{
 		nuance_color = apply_coeff_color(ray->color,
 				init_white(), angle * mini->light->intensity);
@@ -102,7 +110,7 @@ t_color	shadows(t_minirt *mini, t_ray *ray)
 	if (ray->inter_distance != INFINITY)
 	{
 		dir = substract_v(mini->light->position, ray->inter);
-		shadow = init_ray(add_v(ray->inter, mult_v(dir, 1e-4)), dir);
+		shadow = init_ray(add_v(ray->inter, mult_v(dir, 1e-5)), dir);
 		shadow.inter = mini->light->position;
 		shadow.inter_distance = norm_v(shadow.dir);
 		shadow.color = ray->color;
