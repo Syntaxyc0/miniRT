@@ -1,8 +1,8 @@
 NAME		= miniRT
 FSANITIZE	= -g3 -fsanitize=address
-FLAGS_LIB	=	-Lminilib -lminilib -L/usr/lib -Iminilib -lXext -lX11 -lm -lz
-MLX			= minilib/libmlx.a
-MLX_DIR 	= minilib
+FLAGS_LIB	= -Lmlx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX			= mlx_linux/libmlx.a
+MLX_DIR 	= mlx_linux
 SRCSPATH 	= srcs
 OBJ_PATH	= objs
 ERR_PATH	= error
