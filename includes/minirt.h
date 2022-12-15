@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:47:30 by ggobert           #+#    #+#             */
-/*   Updated: 2022/12/15 13:51:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/12/15 14:03:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <math.h>
 # include "../libft/libft.h"
-# include "../mlx_lin/mlx.h"
-# include "../mlx_lin/mlx_int.h"
+# include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include <fcntl.h>
 # include <X11/X.h>
 
@@ -44,6 +44,7 @@
 # define ERR_CONFORM_CY "value(s) missing or not conform for cylinder (cy)"
 # define ERR_ORIENT_CY "orientation value(s) of cylinder not in range [-1,1]"
 # define ERR_MISSCAM "need a camera in file"
+# define ERR_MISSAMB "need an ambiant light in file"
 # define ERR_INIT	"mlx_init failed"
 # define ERR_WIN	"mlx_new_window failed"
 
