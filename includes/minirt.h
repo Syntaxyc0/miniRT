@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <math.h>
 # include "../libft/libft.h"
-# include "../mlx_linux/mlx.h"
-# include "../mlx_linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <fcntl.h>
 # include <X11/X.h>
 
