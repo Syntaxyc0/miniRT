@@ -28,14 +28,14 @@
 # define ERR_MALLOC "malloc failed"
 # define ERR_ID "id unknown"
 # define ERR_COLOR "wrong value of color"
-# define ERR_double_A "ambiant light has to be defined once"
+# define ERR_DOUBLE_A "ambiant light has to be defined once"
 # define ERR_CONFORM_A "value(s) missing or not conform for ambiant light (A)"
 # define ERR_INTENSITY_A "intensity value of ambiant light not in range [0,1]"
-# define ERR_double_C "camera has to be defined once"
+# define ERR_DOUBLE_C "camera has to be defined once"
 # define ERR_CONFORM_C "value(s) missing or not conform for camera (C)"
 # define ERR_ORIENT_C "orientation value(s) of camera not in range [-1,1]"
 # define ERR_FOV_C "FOV value(s) of camera not in range [-1,1]"
-# define ERR_double_L "light has to be defined once"
+# define ERR_DOUBLE_L "light has to be defined once"
 # define ERR_CONFORM_L "value(s) missing or not conform for light (L)"
 # define ERR_INTENSITY_L "intensity value of light not in range [0,1]"
 # define ERR_CONFORM_SP "value(s) missing or not conform for sphere (sp)"
@@ -74,7 +74,7 @@ typedef struct s_ray
 	t_vect			inter;
 	t_vect			normal;
 	double			inter_distance;
-	t_color	color;
+	t_color			color;
 }	t_ray;
 
 typedef struct s_ambiant
@@ -186,7 +186,8 @@ t_vect			init_vect(double x, double y, double z);
 double			compute_dist(t_vect a, t_vect b);
 
 int				intersphere(t_sphere *sphere, t_ray ray, double *t);
-int				get_intersection_sphere(t_sphere *sphere, t_ray *ray, double *t);
+int				get_intersection_sphere(t_sphere *sphere,
+					t_ray *ray, double *t);
 
 int				interplane(t_plane *plane, t_ray ray, double *t);
 int				get_intersection_plane(t_plane *plane, t_ray *ray, double *t);
@@ -199,22 +200,23 @@ void			get_intersection_top_point(t_cylinder *cyl,
 					t_ray *ray, double *t);
 void			get_intersect_cylinder(t_cylinder *cyl, t_ray *ray, double *t);
 int				inter_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t);
-void			get_intersection_cylinder_pipe(t_cylinder *cyl, t_ray *ray, double *t);
-
+void			get_intersection_cylinder_pipe(t_cylinder *cyl,
+					t_ray *ray, double *t);
 
 void			ray_tracing(t_minirt *mini);
-t_color	shadows(t_minirt *mini, t_ray *ray);
+t_color			shadows(t_minirt *mini, t_ray *ray);
 
 t_ray			init_ray(t_vect	origin, t_vect direction);
 t_vect			get_intersection_point(t_ray ray, double t);
-int				solve_quadratic_equation(double a, double b, double c, double *t);
+int				solve_quadratic_equation(double a,
+					double b, double c, double *t);
 
 t_image			*init_img(void);
 unsigned int	rgb_to_hex(t_color color);
-t_color	apply_coeff(t_color color, double coeff);
-t_color	apply_coeff_color(t_color color,
+t_color			apply_coeff(t_color color, double coeff);
+t_color			apply_coeff_color(t_color color,
 					t_color to_add, double coeff);
-t_color	add_color_v(t_color color,
+t_color			add_color_v(t_color color,
 					t_color to_add);
 t_color			hex_to_rgb(unsigned int hex);
 void			set_img(t_minirt *mini);

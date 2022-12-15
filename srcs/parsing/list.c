@@ -55,7 +55,7 @@ void	obj_type(t_minirt *minirt, int type, char *line, t_objects *obj)
 		if (minirt->ambiant)
 		{
 			free(line);
-			msg_free_exit(minirt, ERR_double_A);
+			msg_free_exit(minirt, ERR_DOUBLE_A);
 		}
 		minirt->ambiant = (void *)new_ambiant();
 		ambiant_parameter(line, minirt);
@@ -66,7 +66,7 @@ void	obj_type(t_minirt *minirt, int type, char *line, t_objects *obj)
 		if (minirt->camera)
 		{
 			free(line);
-			msg_free_exit(minirt, ERR_double_A);
+			msg_free_exit(minirt, ERR_DOUBLE_A);
 		}
 		minirt->camera = (void *)new_camera();
 		camera_parameter(line, minirt);
@@ -82,7 +82,7 @@ void	obj_type2(t_minirt *minirt, int type, char *line, t_objects *obj)
 		if (minirt->light)
 		{
 			free(line);
-			msg_free_exit(minirt, ERR_double_L);
+			msg_free_exit(minirt, ERR_DOUBLE_L);
 		}
 		minirt->light = (void *)new_light();
 		light_parameter(line, minirt);

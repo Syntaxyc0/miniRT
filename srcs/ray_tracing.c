@@ -76,7 +76,8 @@ void	get_intersect_ray(t_minirt *minirt, t_ray *ray)
 		else if (obj->type == 6)
 		{
 			if (inter_cylinder_pipe((t_cylinder *)obj->object, ray, &t))
-				get_intersection_cylinder_pipe((t_cylinder *)obj->object, ray, &t);
+				get_intersection_cylinder_pipe((t_cylinder *)obj->object,
+					ray, &t);
 		}
 		obj = obj->next;
 	}
@@ -88,7 +89,7 @@ void	ray_tracing(t_minirt *mini)
 	t_ray				ray;
 	int					x;
 	int					y;
-	t_color		color;
+	t_color				color;
 
 	color = init_black();
 	settings = init_settings(mini->camera);

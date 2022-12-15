@@ -27,10 +27,8 @@ int	check_dist(t_ray *ray, double *t)
 int	intersect_obj(t_objects *obj, t_ray *ray)
 {
 	double	t;
-	int check;
 
 	t = 0;
-	check = 0;
 	if (obj->type == 4)
 	{
 		if (intersphere((t_sphere *)obj->object, *ray, &t))
@@ -44,8 +42,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	else if (obj->type == 6)
 	{
 		if (inter_cylinder_pipe((t_cylinder *)obj->object, ray, &t))
-			check = check_dist(ray, &t);
-		return (check);
+			return (check_dist(ray, &t));
 	}
 	return (0);
 }
@@ -53,12 +50,11 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 void	get_color(t_minirt *mini, t_ray *ray)
 {
 	double			angle;
-	t_color	nuance_color;
+	t_color			nuance_color;
 
 	angle = dot(ray->dir, ray->normal);
 	ray->color = apply_coeff_color(ray->color,
 			mini->ambiant->color, mini->ambiant->intensity);
-	
 	if (angle > EPS)
 	{
 		nuance_color = apply_coeff_color(ray->color,
@@ -71,7 +67,7 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 {
 	t_objects		*obj;
 	int				is_in_shadow;
-	t_color	nuance_color;
+	t_color			nuance_color;
 
 	is_in_shadow = 0;
 	obj = mini->objects;
@@ -87,7 +83,7 @@ void	check_shadow_intersect(t_minirt *mini, t_ray *ray)
 	if (is_in_shadow)
 	{
 		ray->color = apply_coeff_color(ray->color,
-			mini->ambiant->color, mini->ambiant->intensity);
+				mini->ambiant->color, mini->ambiant->intensity);
 		nuance_color = apply_coeff_color(ray->color,
 				init_white(), 0);
 		ray->color = add_color_v(ray->color, nuance_color);
@@ -118,6 +114,6 @@ t_color	shadows(t_minirt *mini, t_ray *ray)
 	else
 	{
 		return (apply_coeff(mini->ambiant->color,
-			mini->ambiant->intensity));
+				mini->ambiant->intensity));
 	}
 }
