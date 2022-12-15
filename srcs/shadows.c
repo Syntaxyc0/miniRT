@@ -45,12 +45,7 @@ int	intersect_obj(t_objects *obj, t_ray *ray)
 	{
 		if (inter_cylinder_pipe((t_cylinder *)obj->object, ray, &t))
 			check = check_dist(ray, &t);
-		if (inter_cylinder_bot((t_cylinder *)obj->object, ray, &t))
-			check = check_dist(ray, &t);
-		if (inter_cylinder_top((t_cylinder *)obj->object, ray, &t))
-			check = check_dist(ray, &t);
 		return (check);
-
 	}
 	return (0);
 }
