@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:44:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 14:59:00 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/12/15 15:41:02 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	print_error(char *msg)
 {
-	printf("%s\n", msg);
+	write(2, "Error\n", 6);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 2);
 }

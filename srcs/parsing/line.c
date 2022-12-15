@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:04:25 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/24 15:14:46 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/12/15 15:46:09 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	get_line_parameter(char *line, t_minirt *minirt, int line_nb)
 {
 	if (!get_id(line, minirt))
 	{
-		printf("l.%d : ", line_nb);
+		write(2, "l.", 2);
+		ft_putnbr_fd(line_nb, 2);
+		write(2, " ", 1);
 		msg_free_exit(minirt, ERR_ID);
 	}
 }
